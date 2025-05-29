@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import type { Theme, ThemeContextType, ThemeProivderProps } from '.';
-import { components, createPalette, typography, ThemeContext } from '.';
+import { components, createPalette, typography, ThemeContext, globalStyles } from '.';
+import { GlobalStyles } from '@mui/material';
 
 const createTheme = (mode: Mode): Theme => {
   return {
@@ -25,7 +26,12 @@ const ThemeProvider = ({ children }: ThemeProivderProps) => {
     theme,
   };
 
-  return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={contextValue}>
+      <GlobalStyles styles={globalStyles} />
+      {children}
+    </ThemeContext.Provider>
+  );
 };
 
 export default ThemeProvider;
