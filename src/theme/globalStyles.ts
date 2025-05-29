@@ -1,13 +1,13 @@
 const globalStyles = {
-  '*, *::after, *::before': {
+  '*': {
     margin: '0',
     pading: '0',
     boxSizing: 'border-box',
   },
   body: {
-    minHeight: '100vh',
+    padding: '0',
+    margin: '0',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    backgroundColor: 'var(--joy-palette-background-body)',
   },
 };
 

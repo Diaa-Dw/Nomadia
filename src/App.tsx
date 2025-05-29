@@ -1,5 +1,11 @@
+import { Loader } from './containers';
+
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <Loader />
+    </div>
+  );
 };
 
 export default App;
