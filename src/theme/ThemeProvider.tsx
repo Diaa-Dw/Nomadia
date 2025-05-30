@@ -1,21 +1,21 @@
 import { useMemo, useState } from 'react';
-import type { Theme, ThemeContextType, ThemeProivderProps } from '.';
-import { components, createPalette, typography, ThemeContext, globalStyles } from '.';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
 import { GlobalStyles } from '@mui/material';
+import { createPalette, typography, globalStyles, components, ThemeContext } from '.';
+import { type ThemeContextType } from './';
 
-const createTheme = (mode: Mode): Theme => {
-  return {
-    palette: createPalette(mode),
-    typography,
-    components,
-    mode,
-  };
-};
-
-const ThemeProvider = ({ children }: ThemeProivderProps) => {
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [mode, setMode] = useState<Mode>('light');
 
-  const theme = useMemo(() => createTheme(mode), [mode]);
+  const theme = useMemo(
+    () =>
+      createTheme({
+        palette: createPalette(mode),
+        typography,
+        components,
+      }),
+    [mode]
+  );
 
   const toggleTheme = () => {
     setMode(prev => (prev === 'light' ? 'dark' : 'light'));
@@ -28,8 +28,10 @@ const ThemeProvider = ({ children }: ThemeProivderProps) => {
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      <GlobalStyles styles={globalStyles} />
-      {children}
+      <MuiThemeProvider theme={theme}>
+        <GlobalStyles styles={globalStyles} />
+        {children}
+      </MuiThemeProvider>
     </ThemeContext.Provider>
   );
 };

@@ -19,8 +19,10 @@ const components: Components = {
   MuiTextField: {
     styleOverrides: {
       root: {
-        '& .MuiOutlinedInput-root': {
-          borderRadius: 8,
+        color: '#fff',
+        padding: '8px 12px',
+        '& input': {
+          padding: '8px',
         },
       },
     },

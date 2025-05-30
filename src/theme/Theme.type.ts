@@ -1,12 +1,5 @@
 import type { ReactNode } from 'react';
-import { createPalette, typography, components } from './';
-
-export interface Theme {
-  palette: ReturnType<typeof createPalette>;
-  typography: typeof typography;
-  components: typeof components;
-  mode: 'light' | 'dark';
-}
+import type { Theme } from '@mui/material';
 
 export interface ThemeContextType {
   toggleTheme: () => void;
