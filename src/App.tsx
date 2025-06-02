@@ -1,9 +1,9 @@
-import { Loader } from './containers';
+import { AppRoutes } from './routes';
 
 const App = () => {
   return (
     <div>
-      <Loader />
+      <AppRoutes />
     </div>
   );
 };
