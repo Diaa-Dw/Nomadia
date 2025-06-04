@@ -23,8 +23,10 @@ const LoginForm = () => {
         <Button
           type="submit"
           variant={'contained'}
+          onClick={submitForm}
           fullWidth
           loading={isSubmitting}
+          loadingPosition={'start'}
           disabled={!dirty || !isValid}
           aria-label="Login"
         >

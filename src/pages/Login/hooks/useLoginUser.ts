@@ -1,0 +1,37 @@
+import { login } from '../../../features';
+import { useAppDispatch } from '../../../store';
+import { parseJwtToLoginPayload, setAuthToken } from '../../../utils';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../api';
+
+const useLoginUser = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const { mutate: loginMutate, isPending } = useMutation({
+    mutationFn: loginUser,
+    onSuccess: res => {
+      const token = res.authentication;
+
+      setAuthToken(token);
+
+      const payload = parseJwtToLoginPayload(token);
+
+      if (!payload) {
+        return;
+      }
+
+      dispatch(login(payload));
+
+      navigate('/me');
+    },
+    onError: error => {
+      console.log('🚀 ~ useLoginUser ~ error:', error);
+    },
+  });
+
+  return { loginMutate, isPending };
+};
+
+export default useLoginUser;
