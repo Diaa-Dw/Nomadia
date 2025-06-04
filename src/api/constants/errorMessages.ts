@@ -1,4 +1,4 @@
-import { HttpStatus } from './';
+import { HttpStatus } from './httpStatus';
 
 export const ERROR_MESSAGES: Record<HttpStatus, string> = {
   [HttpStatus.BadRequest]: 'Bad request',

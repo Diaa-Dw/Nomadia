@@ -5,7 +5,7 @@ import { getErrorMessage } from '../utils';
 
 const setupResponseInterceptor = (instance: AxiosInstance): void => {
   instance.interceptors.response.use(
-    (response: AxiosResponse) => response.data,
+    (response: AxiosResponse) => response,
     (error: AxiosError<ApiErrorResponse>) => {
       showErrorToast(getErrorMessage(error));
       return Promise.reject(error);
