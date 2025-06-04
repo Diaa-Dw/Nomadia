@@ -3,7 +3,7 @@ import { AuthTokenPayload } from '@/types';
 import { jwtDecode } from 'jwt-decode';
 import { showErrorToast } from './toast';
 
-const parseJwtToLoginPayload = (token: string): LoginPayload | null => {
+export const parseJwtToLoginPayload = (token: string): LoginPayload | null => {
   try {
     const { user_id, given_name, family_name, userType, exp } = jwtDecode<AuthTokenPayload>(token);
 
@@ -25,4 +25,9 @@ const parseJwtToLoginPayload = (token: string): LoginPayload | null => {
   }
 };
 
-export default parseJwtToLoginPayload;
+export const isTokenExpired = (expirationDate: number): boolean => {
+  const expDate = new Date(expirationDate * 1000);
+  const currentDate = new Date();
+
+  return expDate <= currentDate;
+};

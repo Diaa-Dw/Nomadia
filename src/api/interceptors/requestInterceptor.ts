@@ -1,5 +1,5 @@
 import { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
-import { getAuthToken } from '../../utils';
+import { getAuthToken } from '@/utils';
 
 const setupRequestInterceptor = (instance: AxiosInstance): void => {
   instance.interceptors.request.use(

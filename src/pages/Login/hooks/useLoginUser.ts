@@ -1,6 +1,6 @@
-import { login } from '../../../features';
-import { useAppDispatch } from '../../../store';
-import { parseJwtToLoginPayload, setAuthToken } from '../../../utils';
+import { login } from '@/features';
+import { useAppDispatch } from '@/store';
+import { parseJwtToLoginPayload, setAuthToken } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../api';

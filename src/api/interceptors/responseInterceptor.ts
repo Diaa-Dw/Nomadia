@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
-import { showErrorToast } from '../../utils';
+import { showErrorToast } from '@/utils';
 import { ApiErrorResponse } from '../types';
 import { getErrorMessage } from '../utils';
 
