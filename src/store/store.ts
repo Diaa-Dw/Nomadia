@@ -1,4 +1,4 @@
-import { userReducer } from '@/features';
+import { userReducer } from '../features';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({
