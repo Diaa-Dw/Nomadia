@@ -1,6 +1,9 @@
+import { lazy } from 'react';
 import type { RouteObject } from 'react-router-dom';
-import { Login } from '../pages/Login';
-import { Layout } from '../containers';
+
+const Layout = lazy(() => import('@/containers/Layout'));
+const Login = lazy(() => import('@/pages/Login'));
+const Unauthorized = lazy(() => import('@/pages/Unauthorized'));
 
 const publicRoutes: RouteObject = {
   path: '/',
@@ -13,6 +16,10 @@ const publicRoutes: RouteObject = {
     {
       path: 'login',
       element: <Login />,
+    },
+    {
+      path: 'unauthorized',
+      element: <Unauthorized />,
     },
     {
       path: '*',
