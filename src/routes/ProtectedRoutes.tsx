@@ -1,6 +1,8 @@
+import { lazy } from 'react';
 import { type RouteObject } from 'react-router-dom';
 import PrivateWrapper from './PrivateWrapper';
-import { Layout } from '../containers';
+
+const Layout = lazy(() => import('@/containers/Layout'));
 
 const protectedRoutes: RouteObject = {
   path: '/me',
