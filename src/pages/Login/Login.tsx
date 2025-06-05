@@ -5,7 +5,7 @@ import { LoginForm } from './components';
 const Login = () => {
   return (
     <LoginContainer>
-      <Typography component="h1" variant="h4" fontWeight={600} color="primary" gutterBottom>
+      <Typography component="h2" variant="h4" fontWeight={600} color="primary" gutterBottom>
         Nomadia
       </Typography>
       <Typography variant="body2" color="text.secondary" gutterBottom>

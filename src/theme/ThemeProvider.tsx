@@ -5,7 +5,7 @@ import { createPalette, typography, globalStyles, components, ThemeContext } fro
 import { type ThemeContextType } from './';
 
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [mode, setMode] = useState<Mode>('light');
+  const [mode, setMode] = useState<Mode>('dark');
 
   const theme = useMemo(
     () =>
@@ -17,13 +17,14 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     [mode]
   );
 
+  console.log(mode);
   const toggleTheme = () => {
     setMode(prev => (prev === 'light' ? 'dark' : 'light'));
   };
 
   const contextValue: ThemeContextType = {
     toggleTheme,
-    theme,
+    mode,
   };
 
   return (

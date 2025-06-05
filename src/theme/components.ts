@@ -44,7 +44,6 @@ const components: Components<Theme> = {
         },
         '& input:-webkit-autofill': {
           boxShadow: `0 0 0px 1000px ${theme.palette.background.paper} inset`,
-          WebkitBoxShadow: `0 0 0px 1000px ${theme.palette.background.paper} inset`,
           border: '0 !important',
           outline: '0 !important',
           backgroundClip: 'content-box !important',
@@ -57,7 +56,7 @@ const components: Components<Theme> = {
   MuiAppBar: {
     styleOverrides: {
       root: {
-        boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+        boxShadow: 'none',
       },
     },
   },

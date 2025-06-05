@@ -38,6 +38,7 @@ const PasswordField = ({ name, label = 'Password', ...resetProps }: PasswordFiel
   };
 
   const textFieldProps = {
+    placeholder: '••••••••',
     ...field,
     ...resetProps,
     type: showPassword ? 'text' : 'password',

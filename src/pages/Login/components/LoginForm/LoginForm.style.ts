@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Form } from 'formik';
 
 export const LoginFormContainer = styled(Form)(({ theme }) => ({
-  background: theme.vars?.palette.background.paper,
+  background: theme.palette.background.paper,
   display: 'flex',
   flexDirection: 'column',
   gap: '8px',

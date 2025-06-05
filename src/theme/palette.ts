@@ -2,6 +2,7 @@ import { type PaletteOptions } from '@mui/material/styles';
 
 const createPalette = (mode: Mode): PaletteOptions => {
   return {
+    mode,
     primary: {
       main: mode === 'dark' ? '#6366F1' : '#4F46E5',
       light: '#818CF8',

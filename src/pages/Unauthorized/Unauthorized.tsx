@@ -16,7 +16,7 @@ const Unauthorized = () => {
           style={{ width: '350px' }}
         />
         <Box textAlign={'center'}>
-          <Typography component={'h1'} variant={'h2'} color={'primary'}>
+          <Typography component={'h2'} variant={'h2'} color={'primary'}>
             401 Unauthorized
           </Typography>
 
