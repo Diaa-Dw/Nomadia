@@ -6,11 +6,11 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 const PrivateWrapper = () => {
   const { isAuthenticating } = useVerifyToken();
-  const isAuthenticated = useAppSelector(selectUser);
+  const { isAuthenticated } = useAppSelector(selectUser);
 
   if (isAuthenticating) return <Loader />;
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/unauthorized" replace />;
 };
 
 export default PrivateWrapper;

@@ -17,7 +17,6 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     [mode]
   );
 
-  console.log(mode);
   const toggleTheme = () => {
     setMode(prev => (prev === 'light' ? 'dark' : 'light'));
   };
