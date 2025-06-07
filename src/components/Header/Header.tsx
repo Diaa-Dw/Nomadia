@@ -1,7 +1,12 @@
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
+import { useAppSelector } from '@/store';
+import { selectUser } from '@/features';
+import { UserMenu } from '../UserMenu';
 
 const Header = () => {
+  const { isAuthenticated } = useAppSelector(selectUser);
+
   return (
     <AppBar position={'static'} color={'transparent'}>
       <Container maxWidth={'xl'}>
@@ -15,7 +20,7 @@ const Header = () => {
           >
             Nomadia
           </Typography>
-          <ThemeToggle />
+          {isAuthenticated ? <UserMenu /> : <ThemeToggle />}
         </Toolbar>
       </Container>
     </AppBar>

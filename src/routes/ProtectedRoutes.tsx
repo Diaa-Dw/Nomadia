@@ -6,10 +6,10 @@ const Layout = lazy(() => import('@/containers/Layout'));
 
 const protectedRoutes: RouteObject = {
   path: '/me',
-  element: <PrivateWrapper />,
+  element: <Layout />,
   children: [
     {
-      element: <Layout />,
+      element: <PrivateWrapper />,
       children: [
         {
           index: true,

@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 
 export const Container = styled(Stack)(() => ({
   width: '100%',
-  height: '100vh',
+  height: '93vh',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
