@@ -1,7 +1,7 @@
+import { selectUser } from '@/features';
+import { useAppSelector } from '@/store';
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
-import { useAppSelector } from '@/store';
-import { selectUser } from '@/features';
 import { UserMenu } from '../UserMenu';
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <AppBar position={'static'} color={'transparent'}>
-      <Container maxWidth={'xl'}>
+      <Container maxWidth="xl">
         <Toolbar>
           <Typography
             component={'h1'}

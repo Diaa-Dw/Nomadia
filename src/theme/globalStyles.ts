@@ -1,12 +1,12 @@
 const globalStyles = {
-  '*,*::after,*::before ': {
+  '*,*::after,*::before': {
     margin: '0',
-    pading: '0',
+    padding: '0',
     boxSizing: 'border-box',
   },
-  body: {
+  body: () => ({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-  },
+  }),
 };
 
 export default globalStyles;
