@@ -1,9 +1,9 @@
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { Container, ContentBox } from './Unauthorized.style';
+import { Container, ContentBox } from './Unauthenticated.style';
 import { Box, Button, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const Unauthorized = () => {
+const Unauthenticated = () => {
   const navigate = useNavigate();
 
   return (
@@ -33,4 +33,4 @@ const Unauthorized = () => {
   );
 };
 
-export default Unauthorized;
+export default Unauthenticated;

@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { LoginContainer } from '../Login.style';
+import { LoginContainer } from './Login.style';
 import { LoginForm } from './components';
 
 const Login = () => {

@@ -3,7 +3,7 @@ import type { RouteObject } from 'react-router-dom';
 
 const Layout = lazy(() => import('@/containers/Layout'));
 const Login = lazy(() => import('@/pages/Login'));
-const Unauthorized = lazy(() => import('@/pages/Unauthorized'));
+const Unauthorized = lazy(() => import('@/pages/Unauthenticated'));
 
 const publicRoutes: RouteObject = {
   path: '/',

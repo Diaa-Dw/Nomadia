@@ -1,4 +1,4 @@
-import type { LoginFormPayload } from './';
+import { LoginFormPayload } from './Login.type';
 
 export const INITIAL_VALUES: LoginFormPayload = {
   userName: '',
