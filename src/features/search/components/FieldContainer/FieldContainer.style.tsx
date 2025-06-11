@@ -1,16 +1,15 @@
-import { Grid } from '@mui/material';
+import { Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface StyledProps {
   pointer?: boolean;
 }
 
-export const StyledFieldContainer = styled(Grid, {
+export const StyledFieldContainer = styled(Box, {
   shouldForwardProp: prop => prop !== 'pointer',
 })<StyledProps>(({ theme, pointer }) => ({
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(2),
+  borderRadius: '8px',
+  padding: '8px',
   display: 'flex',
   alignItems: 'center',
   gap: theme.spacing(1),
