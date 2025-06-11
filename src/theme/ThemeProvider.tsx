@@ -23,6 +23,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const contextValue: ThemeContextType = {
     toggleTheme,
+    theme,
     mode,
   };
 
