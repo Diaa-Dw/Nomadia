@@ -3,3 +3,7 @@ export interface SearchCounter {
   label: string;
   min: number;
 }
+
+export interface StyledFormProps {
+  isSearchPage?: boolean;
+}

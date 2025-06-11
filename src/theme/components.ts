@@ -60,6 +60,13 @@ const components: Components<Theme> = {
       },
     },
   },
+  MuiDivider: {
+    styleOverrides: {
+      root: () => ({
+        borderWidth: '1px',
+      }),
+    },
+  },
 };
 
 export default components;
