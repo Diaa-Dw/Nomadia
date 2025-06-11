@@ -40,4 +40,10 @@ export const StyledDateRangePicker = styled(DateRangePicker)(({ theme }) => ({
   '& .rdrInRange, & .rdrStartEdge, & .rdrEndEdge': {
     backgroundColor: theme.palette.primary.main,
   },
+
+  [theme.breakpoints.down('sm')]: {
+    '& .rdrDefinedRangesWrapper': {
+      display: 'none',
+    },
+  },
 }));
