@@ -6,6 +6,7 @@ const globalStyles = {
   },
   body: () => ({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    overflowX: 'hidden',
   }),
 };
 
