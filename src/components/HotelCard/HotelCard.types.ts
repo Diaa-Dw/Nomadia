@@ -36,7 +36,6 @@ export interface CompactHotelCardProps extends BaseHotelCardProps {
 }
 
 export interface HotelCardProps {
-  variant: 'horizontal' | 'compact';
   hotelData: HorizontalHotelCardProps | CompactHotelCardProps;
   onClick?: () => void;
 }
