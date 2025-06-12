@@ -3,7 +3,8 @@ import { styled } from '@mui/material/styles';
 
 export const CompactCardContainer = styled('div')(({ theme }) => ({
   position: 'relative',
-  width: 240,
+  width: '280px',
+  height: '100%',
   backgroundColor: theme.palette.background.paper,
   borderRadius: theme.spacing(1),
   overflow: 'hidden',
@@ -11,6 +12,7 @@ export const CompactCardContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   rowGap: theme.spacing(1),
+  margin: '0 auto',
 }));
 
 export const CompactHotelImage = styled('img')({
@@ -21,7 +23,8 @@ export const CompactHotelImage = styled('img')({
 
 export const DiscountChip = styled(Chip)(({ theme }) => ({
   position: 'absolute',
-  top: '5px',
-  right: '5px',
+  top: '8px',
+  right: '8px',
+  fontWeight: 'bold',
   boxShadow: theme.shadows[3],
 }));

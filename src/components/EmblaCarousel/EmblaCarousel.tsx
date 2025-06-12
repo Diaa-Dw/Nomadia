@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
 const EmblaCarousel = ({
   children,
-  options = { loop: true, align: 'center' },
+  options = { loop: true, align: 'start', containScroll: 'trimSnaps' },
   showButtons = true,
   ariaLabel = 'carousel',
 }: EmblaCarouselProps) => {

@@ -3,19 +3,20 @@ import { Box, IconButton, styled } from '@mui/material';
 export const Viewport = styled(Box)(() => ({
   overflow: 'hidden',
   width: '100%',
-  position: 'relative',
 }));
 
-export const Container = styled(Box)(({ theme }) => ({
+export const Container = styled(Box)(() => ({
   display: 'flex',
   flexWrap: 'nowrap',
-  gap: theme.spacing(2),
-  padding: theme.spacing(2),
+  padding: '0 8px',
 }));
 
-export const Slide = styled(Box)(() => ({
-  width: '240px',
-  flex: '0 0 auto',
+export const Slide = styled(Box)(({ theme }) => ({
+  minWidth: '296px',
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
+    flex: '0 0 100%',
+  },
 }));
 
 export const NavButton = styled(IconButton)(({ theme }) => ({

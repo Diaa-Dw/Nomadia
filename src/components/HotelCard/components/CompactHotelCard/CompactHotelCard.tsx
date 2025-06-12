@@ -3,45 +3,99 @@ import { Box, IconButton, Rating, Stack, Typography } from '@mui/material';
 import { CompactHotelCardProps } from '../../HotelCard.types';
 import { CompactCardContainer, CompactHotelImage, DiscountChip } from './CompactHotelCard.style';
 
-const CompactHotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
+const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
   const {
     hotelName,
-    roomPhotoUrl: imageUrl,
     cityName,
+    hotelStarRating,
+    starRating,
     originalRoomPrice,
     discount,
     finalPrice,
-    hotelStarRating,
+    priceLowerBound,
+    priceUpperBound,
+    roomPhotoUrl,
+    thumbnailUrl,
+    title,
+    description,
+    visitDate,
   } = hotelData;
+
+  const imageUrl = roomPhotoUrl || thumbnailUrl || '';
+  const rating = hotelStarRating ?? starRating ?? 0;
 
   return (
     <CompactCardContainer>
-      <CompactHotelImage src={imageUrl} alt={hotelName} />
-      <DiscountChip label={`${discount}%`} variant={'filled'} color={'primary'} />
-      <Box px={1} py={0.5}>
-        <Rating defaultValue={hotelStarRating} precision={0.5} size={'small'} readOnly />
-        <Typography variant="subtitle1">{hotelName}</Typography>
-        <Typography variant="body2" color="text.secondary" mb={2}>
+      <Box position={'relative'}>
+        <CompactHotelImage
+          src={imageUrl}
+          alt={hotelName}
+          style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+        />
+        {discount !== undefined && (
+          <DiscountChip label={`${discount}% OFF`} color="primary" size="small" />
+        )}
+      </Box>
+
+      <Stack direction={'column'} flexGrow={1} p={2}>
+        <Rating value={rating} precision={0.5} size="small" readOnly />
+        <Typography variant="h6" component="h2" gutterBottom>
+          {hotelName}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" mb={1}>
           {cityName}
         </Typography>
 
-        <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+        {title && (
+          <Typography variant="subtitle2" gutterBottom>
+            {title}
+          </Typography>
+        )}
+        {description && (
+          <Typography variant="body2" color="text.secondary" mb={2}>
+            {description}
+          </Typography>
+        )}
+
+        {visitDate && (
+          <Typography variant="body2" color="text.secondary" mb={2}>
+            Visit Date: {new Date(visitDate).toLocaleDateString()}
+          </Typography>
+        )}
+
+        <Stack direction="row" justifyContent="space-between" alignItems={'flex-end'} flexGrow={1}>
           <Box>
-            <Typography
-              variant={'body2'}
-              color={'textSecondary'}
-              sx={{ textDecoration: 'line-through' }}
-            >
-              from ${originalRoomPrice}/night
-            </Typography>
-            <Typography variant="subtitle1">from ${finalPrice}/night</Typography>
+            {priceLowerBound !== undefined && priceUpperBound !== undefined ? (
+              <Typography variant="body2" color="text.secondary">
+                Price range: ${priceLowerBound} - ${priceUpperBound} / night
+              </Typography>
+            ) : (
+              <>
+                {originalRoomPrice !== undefined && (
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ textDecoration: 'line-through' }}
+                  >
+                    from ${originalRoomPrice} / night
+                  </Typography>
+                )}
+                {finalPrice !== undefined && (
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    from ${finalPrice} / night
+                  </Typography>
+                )}
+              </>
+            )}
           </Box>
 
-          <IconButton>{<ArrowForwardIos />}</IconButton>
+          <IconButton aria-label={`View details for ${hotelName}`}>
+            <ArrowForwardIos fontSize="small" />
+          </IconButton>
         </Stack>
-      </Box>
+      </Stack>
     </CompactCardContainer>
   );
 };
 
-export default CompactHotelCard;
+export default HotelCard;
