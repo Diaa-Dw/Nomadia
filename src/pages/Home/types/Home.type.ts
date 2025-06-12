@@ -21,3 +21,11 @@ export interface RecentlyVisitedHotelsResponse {
   priceLowerBound: number;
   priceUpperBound: number;
 }
+
+export interface TrendingDestinationsResponse {
+  cityId: number;
+  cityName: string;
+  countryName: string;
+  description: string;
+  thumbnailUrl: string;
+}

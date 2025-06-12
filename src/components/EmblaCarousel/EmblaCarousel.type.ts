@@ -7,3 +7,7 @@ export interface EmblaCarouselProps {
   showButtons?: boolean;
   ariaLabel?: string;
 }
+
+export interface SlideProps {
+  width: string;
+}
