@@ -25,7 +25,9 @@ const createPalette = (mode: Mode): PaletteOptions => {
     error: { main: '#EF4444' },
 
     success: {
-      main: '#2e7d32',
+      main: '#009d52',
+      light: '#4ade80',
+      dark: '#047857',
     },
     info: {
       main: '#00acc1',
