@@ -1,23 +1,36 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import { EmblaCarouselProps } from './EmblaCarousel.type';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
-import { Container, NextButton, PrevButton, Viewport } from './EmblaCarousel.style';
+import { Container, NextButton, PrevButton, Slide, Viewport } from './EmblaCarousel.style';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 
 const EmblaCarousel = ({
   children,
-  options = { loop: true, align: 'start' },
+  options = { loop: true, align: 'center' },
   showButtons = true,
   ariaLabel = 'carousel',
 }: EmblaCarouselProps) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const [showNav, setShowNav] = useState(false);
 
   const onScrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const onScrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
   useEffect(() => {
-    emblaApi?.reInit();
+    if (!emblaApi) return;
+
+    const checkScroll = () => {
+      const canScroll = emblaApi.canScrollNext() || emblaApi.canScrollPrev();
+      setShowNav(canScroll);
+    };
+
+    checkScroll();
+    emblaApi.on('reInit', checkScroll);
+
+    return () => {
+      emblaApi.off('reInit', checkScroll);
+    };
   }, [emblaApi, children]);
 
   return (
@@ -26,7 +39,7 @@ const EmblaCarousel = ({
         <Container>{children}</Container>
       </Viewport>
 
-      {showButtons && (
+      {showButtons && showNav && (
         <>
           <PrevButton onClick={onScrollPrev} aria-label="Scroll back">
             <ChevronLeft />
@@ -40,5 +53,7 @@ const EmblaCarousel = ({
     </Box>
   );
 };
+
+EmblaCarousel.Slide = Slide;
 
 export default EmblaCarousel;

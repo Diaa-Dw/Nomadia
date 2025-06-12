@@ -2,9 +2,7 @@ import React from 'react';
 import { CompactHotelCardProps, HorizontalHotelCardProps, HotelCardProps } from './HotelCard.types';
 import { CompactHotelCard, HorizontalHotelCard } from './components';
 
-const HotelCard = ({ hotelData }: HotelCardProps) => {
-  const { variant } = hotelData;
-
+const HotelCard = ({ hotelData, variant }: HotelCardProps) => {
   if (variant === 'horizontal') {
     return <HorizontalHotelCard hotelData={hotelData as HorizontalHotelCardProps} />;
   }

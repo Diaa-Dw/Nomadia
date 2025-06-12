@@ -9,7 +9,7 @@ export const StyledForm = styled(Form, {
   display: 'flex',
   justifyContent: 'center',
   paddingInline: '1rem',
-  margin: isSearchPage ? '0 auto' : '-60px ',
+  margin: isSearchPage ? '0 auto' : '-60px 0 30px 0 ',
   zIndex: 1000,
 
   '@media (max-width: 1018px)': {
