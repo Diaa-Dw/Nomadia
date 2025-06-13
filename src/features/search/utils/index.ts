@@ -1,2 +1,2 @@
-export { parseSearchQueryParams } from './parseSearchQueryParams';
+export { parseSearchQueryParams } from './searchParams';
 export * from './dateRanges';

@@ -13,9 +13,9 @@ export const INITIAL_VALUES: SearchFormPayload = {
   numberOfRooms: 1,
   starRate: undefined,
   sort: 'rating',
-};
+} as const;
 
-export const SORT_OPTIONS = ['price', 'rating'];
+export const SORT_OPTIONS = ['price', 'rating'] as const;
 
 export const STAR_RATES = [1, 2, 3, 4, 5];
 
