@@ -4,18 +4,22 @@ import { StyledFormProps } from './Search.type';
 
 export const StyledForm = styled(Form, {
   shouldForwardProp: prop => prop !== 'isSearchPage',
-})<StyledFormProps>(({ isSearchPage }) => ({
-  position: 'relative',
-  display: 'flex',
-  justifyContent: 'center',
-  paddingInline: '1rem',
-  margin: isSearchPage ? '0 auto' : '-60px 0 30px 0 ',
-  zIndex: 1000,
+})<StyledFormProps>(({ isSearchPage }) => {
+  console.log('🚀 ~ isSearchPage:', isSearchPage);
 
-  '@media (max-width: 1018px)': {
-    margin: isSearchPage ? '0 auto' : '0px ',
-  },
-}));
+  return {
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    paddingInline: '1rem',
+    margin: isSearchPage ? '0px auto' : '-60px 0 30px 0 ',
+    zIndex: 1000,
+
+    '@media (max-width: 1018px)': {
+      margin: isSearchPage ? '0 auto' : '0px ',
+    },
+  };
+});
 
 export const SearchFieldsWrapper = styled(Box)(({ theme }) => ({
   display: 'flex',

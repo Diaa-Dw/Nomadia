@@ -18,7 +18,7 @@ export const useSearchForm = () => {
 
     navigate(
       {
-        pathname: '/search',
+        pathname: '/me/search',
         search: `?${queryString}`,
       },
       { replace: isSearchPage }

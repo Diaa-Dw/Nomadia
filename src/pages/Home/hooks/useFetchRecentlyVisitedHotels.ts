@@ -4,8 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import { RECENTLY_VISITED_HOTELS_QUERY_KEY } from '../Home.constants';
 import { fetchRecentlyVisitedHotels } from '../API';
 import { showErrorToast } from '@/utils';
+import { useEffect, useRef } from 'react';
 
 const useFetchRecentlyVisitedHotels = () => {
+  const hasShownError = useRef(false);
   const { userId } = useAppSelector(selectUser);
 
   const {
@@ -17,9 +19,14 @@ const useFetchRecentlyVisitedHotels = () => {
     queryKey: [RECENTLY_VISITED_HOTELS_QUERY_KEY, userId],
   });
 
-  if (error) {
-    showErrorToast('Failed to load featured deals. Please check your connection and try again');
-  }
+  useEffect(() => {
+    if (error && !hasShownError.current) {
+      showErrorToast(
+        'Failed to load recently visited hotels. Please check your connection and try again'
+      );
+      hasShownError.current = true;
+    }
+  }, [error]);
 
   return { recentlyVisitedHotels, isFetching };
 };

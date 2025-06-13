@@ -30,6 +30,8 @@ export const parseSearchQueryParams = (search: string): SearchFormPayload => {
 export const buildSearchParams = (values: SearchFormPayload): string => {
   const params = new URLSearchParams();
 
+  console.log('🚀 ~ buildSearchParams ~ values:', values);
+
   if (values.city) params.set('city', values.city);
 
   const { startDate, endDate } = values.dateRange;
