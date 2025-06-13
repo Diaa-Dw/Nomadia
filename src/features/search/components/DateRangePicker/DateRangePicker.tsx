@@ -1,15 +1,14 @@
 import { addDays } from 'date-fns';
-import { useField, useFormikContext } from 'formik';
+import { useFormikContext } from 'formik';
 import { RangeKeyDict } from 'react-date-range';
 import { selectionRange, staticRanges } from '../../utils/dateRanges';
 import { StyledDateRangePicker } from './DateRangePicker.style'; // Assume ErrorText is a styled span or div
 import { DateRangePickerProps } from './DateRangePicker.type';
 
-const CustomDateRangePicker = ({ name }: DateRangePickerProps) => {
+const CustomDateRangePicker = ({ name, dateRange }: DateRangePickerProps) => {
   const { setFieldValue } = useFormikContext();
-  const [field] = useField(name);
 
-  const { startDate, endDate } = field.value || {
+  const { startDate, endDate } = dateRange || {
     startDate: new Date(),
     endDate: addDays(new Date(), 1),
   };

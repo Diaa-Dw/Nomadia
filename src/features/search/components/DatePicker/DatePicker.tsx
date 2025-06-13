@@ -1,15 +1,17 @@
 import { SearchFormPayload } from '@/types';
 import { formatDisplayDate } from '@/utils';
 import { CalendarViewMonthOutlined } from '@mui/icons-material';
-import { Menu, Typography } from '@mui/material';
-import { useFormikContext } from 'formik';
+import { Menu, Stack, Typography } from '@mui/material';
+import { useField, useFormikContext } from 'formik';
 import { MouseEvent, useEffect, useState } from 'react';
 import { CustomDateRangePicker } from '../DateRangePicker';
 import { FieldContainer } from '../FieldContainer';
 
 const DatePicker = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [field, meta] = useField('dateRange');
 
+  const hasError = Boolean(meta.error);
   const { values } = useFormikContext<SearchFormPayload>();
   const { startDate, endDate } = values.dateRange;
   const isMenuOpen = Boolean(anchorEl);
@@ -26,15 +28,31 @@ const DatePicker = () => {
 
   return (
     <>
-      <FieldContainer
-        icon={<CalendarViewMonthOutlined />}
-        onClick={onOpenMenu}
-        pointer={!isMenuOpen}
-      >
-        <Typography variant="body2">
-          {formatDisplayDate(startDate)} - {formatDisplayDate(endDate)}
-        </Typography>
-      </FieldContainer>
+      <Stack direction={'column'}>
+        <FieldContainer
+          icon={<CalendarViewMonthOutlined />}
+          onClick={onOpenMenu}
+          pointer={!isMenuOpen}
+        >
+          <Typography variant="body2">
+            {formatDisplayDate(startDate)} - {formatDisplayDate(endDate)}
+          </Typography>
+        </FieldContainer>
+        {hasError && typeof meta.error === 'object' && (
+          <>
+            {'startDate' in meta.error && (
+              <Typography variant="body2" color="error" px={1}>
+                {(meta.error as { startDate?: string }).startDate}
+              </Typography>
+            )}
+            {'endDate' in meta.error && (
+              <Typography variant="body2" color="error" px={1}>
+                {(meta.error as { endDate?: string }).endDate}
+              </Typography>
+            )}
+          </>
+        )}
+      </Stack>
 
       <Menu
         open={isMenuOpen}
@@ -50,7 +68,7 @@ const DatePicker = () => {
         }}
         aria-hidden={!isMenuOpen}
       >
-        <CustomDateRangePicker name="dateRange" />
+        <CustomDateRangePicker name="dateRange" dateRange={field.value} />
       </Menu>
     </>
   );
