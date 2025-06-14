@@ -7,7 +7,7 @@ import { searchBarValidationSchema } from '../schema';
 import { buildSearchParams, parseSearchQueryParams } from '../utils/searchParams';
 import { SearchFormPayload } from '@/types';
 
-export const useSearchForm = () => {
+const useSearchForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -40,3 +40,5 @@ export const useSearchForm = () => {
 
   return { formikProps };
 };
+
+export default useSearchForm;

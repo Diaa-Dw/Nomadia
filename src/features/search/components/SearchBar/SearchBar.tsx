@@ -2,7 +2,7 @@ import { TextField } from '@/components';
 import { LocationCityOutlined, Search } from '@mui/icons-material';
 import { Button, Divider, useMediaQuery } from '@mui/material';
 import { FormikProvider } from 'formik';
-import { useSearchForm } from '../../hooks/useSearchForm';
+import { useSearchForm } from '../../hooks';
 import DatePicker from '../DatePicker/DatePicker';
 import { FieldContainer } from '../FieldContainer';
 import { GuestRoomDropdown } from '../GuestRoomDropdown';
@@ -23,7 +23,7 @@ const SearchBar = () => {
       <StyledForm isSearchPage={isSearchPage} autoComplete="off">
         <SearchFieldsWrapper>
           <FieldContainer icon={<LocationCityOutlined />}>
-            <TextField name="city" placeholder="Where are you going..."  />
+            <TextField name="city" placeholder="Where are you going..." />
           </FieldContainer>
 
           <Divider variant={'middle'} orientation={isSmallScreen ? 'horizontal' : 'vertical'} />
@@ -38,7 +38,7 @@ const SearchBar = () => {
           <Button
             type="submit"
             variant="contained"
-            color="info"
+            color={'primary'}
             disableElevation
             startIcon={<Search />}
             disabled={!isValid || !dirty}
