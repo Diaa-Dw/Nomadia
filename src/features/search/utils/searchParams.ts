@@ -1,9 +1,10 @@
-import { parse } from 'qs';
-import { parseDate, parseNumber, parseEnum } from './parsers';
-import { INITIAL_VALUES, SORT_OPTIONS, STAR_RATES } from '../constants';
 import { SearchFormPayload } from '@/types';
+import { format } from 'date-fns';
+import { parse } from 'qs';
+import { INITIAL_VALUES, SORT_OPTIONS, STAR_RATES } from '../constants';
+import { parseDate, parseEnum, parseNumber } from './parsers';
 
-const formatDate = (date: Date): string => date.toISOString().split('T')[0];
+const formatDate = (date: Date): string => format(date, 'yyyy-MM-dd');
 
 export const parseSearchQueryParams = (search: string): SearchFormPayload => {
   const params = parse(search, { ignoreQueryPrefix: true });

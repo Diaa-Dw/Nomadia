@@ -10,12 +10,13 @@ export const StyledForm = styled(Form, {
   return {
     position: 'relative',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: isSearchPage ? 'flex-start' : 'center',
     paddingInline: '1rem',
     margin: isSearchPage ? '0px auto' : '-60px 0 30px 0 ',
     zIndex: 1000,
 
     '@media (max-width: 1018px)': {
+      justifyContent: 'center',
       margin: isSearchPage ? '0 auto' : '0px ',
     },
   };
@@ -32,6 +33,8 @@ export const SearchFieldsWrapper = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 
   '@media (max-width: 1018px)': {
+    width: '100%',
+    maxWidth: '520px',
     alignItems: 'stretch',
     flexDirection: 'column',
     rowGap: '0.75rem',

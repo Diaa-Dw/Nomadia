@@ -14,4 +14,8 @@ export const StyledFieldContainer = styled(Box, {
   alignItems: 'center',
   gap: theme.spacing(1),
   cursor: pointer ? 'pointer' : 'default',
+
+  '& > *:last-child': {
+    flexGrow: 1,
+  },
 }));

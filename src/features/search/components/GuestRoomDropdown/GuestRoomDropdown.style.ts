@@ -8,7 +8,8 @@ export const GuestSummaryStack = styled(Stack)({
 });
 
 export const GuestSummaryText = styled(Typography)({
-  wordSpacing: 3,
+  display: 'flex',
+  flexWrap: 'wrap',
 });
 
 export const StyledMenu = styled(Menu)({

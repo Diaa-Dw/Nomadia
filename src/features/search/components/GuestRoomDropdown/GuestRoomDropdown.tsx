@@ -30,9 +30,15 @@ const GuestRoomDropdown = () => {
       <FieldContainer icon={<PeopleIcon />} onClick={handleOpenMenu} pointer={!isMenuOpen}>
         <GuestSummaryStack>
           <GuestSummaryText variant="body2">
-            {adults} {pluralize(adults, 'adult')} •&nbsp;
-            {children} {children === 1 ? 'child' : 'children'} •&nbsp;
-            {numberOfRooms} {pluralize(numberOfRooms, 'room')}
+            <span>
+              {adults} {pluralize(adults, 'adult')} •&nbsp;
+            </span>
+            <span>
+              {children} {children === 1 ? 'child' : 'children'} •&nbsp;
+            </span>
+            <span>
+              {numberOfRooms} {pluralize(numberOfRooms, 'room')}
+            </span>
           </GuestSummaryText>
 
           <ExpandMoreIcon fontSize="small" sx={{ ml: 'auto' }} />

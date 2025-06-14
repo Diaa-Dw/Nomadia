@@ -23,7 +23,7 @@ const SearchBar = () => {
       <StyledForm isSearchPage={isSearchPage} autoComplete="off">
         <SearchFieldsWrapper>
           <FieldContainer icon={<LocationCityOutlined />}>
-            <TextField name="city" placeholder="Where are you going..." />
+            <TextField name="city" placeholder="Where are you going..."  />
           </FieldContainer>
 
           <Divider variant={'middle'} orientation={isSmallScreen ? 'horizontal' : 'vertical'} />
