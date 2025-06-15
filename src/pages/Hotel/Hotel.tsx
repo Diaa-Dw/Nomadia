@@ -1,30 +1,47 @@
 import { useParams } from 'react-router-dom';
 import { useFetchHotel } from './hooks';
-import { Box, Container, Skeleton, Typography } from '@mui/material';
-import { Gallery } from './components';
+import { Box, Container, Skeleton, Stack, Typography } from '@mui/material';
+import { Gallery, HotelMap } from './components';
 import { HotelInfo } from './components/HotelInfo';
+import { HotelReviews } from './components/HotelReviews';
+import 'leaflet/dist/leaflet.css';
+import { MapWrapper, ReviewsMapContainer, ReviewsWrapper } from './Hotel.style';
 
 const Hotel = () => {
   const { hotelId: paramsId } = useParams();
-
-  const { hotel, isPending } = useFetchHotel(parseInt(paramsId ?? '-1'));
-
   const hotelId = parseInt(paramsId ?? '-1');
+  const { hotel, isPending } = useFetchHotel(hotelId);
 
   if (isPending) {
-    <Box>
-      <Skeleton height={'calc(100 - 65px)'} width={'100%'} />
-    </Box>;
+    return (
+      <Box>
+        <Skeleton variant="rectangular" height="calc(100vh - 65px)" width="100%" />
+      </Box>
+    );
   }
 
   if (!hotel) {
-    return <Typography>There is no hotel with provided ID</Typography>;
+    return (
+      <Typography variant="body1" color="text.secondary" mt={2}>
+        There is no hotel with the provided ID.
+      </Typography>
+    );
   }
 
   return (
     <Container maxWidth="xl">
       <Gallery id={hotelId} />
       <HotelInfo hotel={hotel} />
+
+      <ReviewsMapContainer>
+        <ReviewsWrapper>
+          <HotelReviews id={hotelId} />
+        </ReviewsWrapper>
+
+        <MapWrapper>
+          <HotelMap lat={hotel.latitude} lng={hotel.longitude} name={hotel.hotelName} />
+        </MapWrapper>
+      </ReviewsMapContainer>
     </Container>
   );
 };
