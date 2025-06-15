@@ -1,10 +1,11 @@
 import { lazy } from 'react';
 import { type RouteObject } from 'react-router-dom';
 import PrivateWrapper from './PrivateWrapper';
-import Home from '@/pages/Home';
-import { Search } from '@/pages/Search';
 
 const Layout = lazy(() => import('@/containers/Layout'));
+const Home = lazy(() => import('@/pages/Home/Home'));
+const Search = lazy(() => import('@/pages/Search/Search'));
+const Hotel = lazy(() => import('@/pages/Hotel/Hotel'));
 
 const protectedRoutes: RouteObject = {
   path: '/me',
@@ -20,6 +21,10 @@ const protectedRoutes: RouteObject = {
         {
           path: 'search',
           element: <Search />,
+        },
+        {
+          path: 'hotels/:hotelId',
+          element: <Hotel />,
         },
       ],
     },

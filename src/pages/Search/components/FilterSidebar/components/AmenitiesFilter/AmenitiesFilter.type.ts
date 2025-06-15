@@ -1,4 +1,4 @@
-import { Amenity } from '@/pages/Search/types';
+import { Amenity } from '@/types';
 
 export interface AmenitiesFilterProps {
   name: string;
