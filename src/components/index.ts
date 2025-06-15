@@ -4,3 +4,4 @@ export { Header } from './Header';
 export { HotelCard } from './HotelCard';
 export { EmblaCarousel } from './EmblaCarousel';
 export { SectionTitle } from './SectionTitle';
+export { RoomCard } from './RoomCard';
