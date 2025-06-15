@@ -1,10 +1,8 @@
 import { SearchFormPayload } from '@/types';
-import { format } from 'date-fns';
 import { parse } from 'qs';
 import { INITIAL_VALUES, SORT_OPTIONS, STAR_RATES } from '../constants';
 import { parseDate, parseEnum, parseNumber } from './parsers';
-
-const formatDate = (date: Date): string => format(date, 'yyyy-MM-dd');
+import { formatDate } from '@/utils';
 
 export const parseSearchQueryParams = (search: string): SearchFormPayload => {
   const params = parse(search, { ignoreQueryPrefix: true });

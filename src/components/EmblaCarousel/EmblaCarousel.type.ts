@@ -9,5 +9,5 @@ export interface EmblaCarouselProps {
 }
 
 export interface SlideProps {
-  width: string;
+  width?: string;
 }

@@ -32,6 +32,7 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
   return (
     <HorizontalCardContainer>
       <HotelImage src={imageUrl} alt={hotelName} />
+      
       <InfoSection>
         <Typography variant="h6">{hotelName}</Typography>
         <Typography variant="body2" color="text.secondary">
@@ -49,6 +50,7 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
           ))}
         </TagsSection>
       </InfoSection>
+
       <PriceSection>
         <Rating defaultValue={starRating} precision={0.5} readOnly />{' '}
         <Stack direction="row" alignItems="center" justifyContent={'flex-end'} spacing={1}>

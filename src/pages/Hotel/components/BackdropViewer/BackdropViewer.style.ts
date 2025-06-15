@@ -9,12 +9,19 @@ export const StyledBackdrop = styled(Backdrop)(({ theme }) => ({
 
 export const ContentWrapper = styled(Box)(({ theme }) => ({
   position: 'relative',
+  width: 800,
+  height: 500,
   maxWidth: '90%',
   maxHeight: '90%',
-  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: theme.palette.background.default,
+  borderRadius: 8,
 
-  [theme.breakpoints.up('md')]: {
-    width: 'auto',
+  [theme.breakpoints.down('sm')]: {
+    width: '90%',
+    height: '60vh',
   },
 }));
 

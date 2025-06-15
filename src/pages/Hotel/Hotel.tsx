@@ -1,10 +1,10 @@
+import { Box, Container, Skeleton, Typography } from '@mui/material';
+import 'leaflet/dist/leaflet.css';
 import { useParams } from 'react-router-dom';
-import { useFetchHotel } from './hooks';
-import { Box, Container, Skeleton, Stack, Typography } from '@mui/material';
-import { Gallery, HotelMap } from './components';
+import { Gallery, HotelMap, RoomsContainer } from './components';
 import { HotelInfo } from './components/HotelInfo';
 import { HotelReviews } from './components/HotelReviews';
-import 'leaflet/dist/leaflet.css';
+import { useFetchHotel } from './hooks';
 import { MapWrapper, ReviewsMapContainer, ReviewsWrapper } from './Hotel.style';
 
 const Hotel = () => {
@@ -33,6 +33,8 @@ const Hotel = () => {
       <Gallery id={hotelId} />
       <HotelInfo hotel={hotel} />
 
+      <RoomsContainer hotelId={hotelId} />
+
       <ReviewsMapContainer>
         <ReviewsWrapper>
           <HotelReviews id={hotelId} />
@@ -42,6 +44,32 @@ const Hotel = () => {
           <HotelMap lat={hotel.latitude} lng={hotel.longitude} name={hotel.hotelName} />
         </MapWrapper>
       </ReviewsMapContainer>
+
+      {/* <RoomCard
+        room={{
+          roomId: 201,
+          roomNumber: 101,
+          roomPhotoUrl:
+            'https://cf.bstatic.com/xdata/images/hotel/max1280x900/486144361.jpg?k=8c25e93bdc21997d0c129b913f23010dc50b5f22ada1cf003225d1cc6af8d619&o=&hp=1',
+          roomType: 'Deluxe Suite',
+          capacityOfAdults: 2,
+          capacityOfChildren: 2,
+          amenities: [
+            {
+              id: 1,
+              name: 'Free Wi-Fi',
+              description: 'High-speed internet access',
+            },
+            {
+              id: 2,
+              name: 'Air Conditioning',
+              description: 'Individually controlled air conditioning',
+            },
+          ],
+          price: 250.0,
+          availability: true,
+        }}
+      /> */}
     </Container>
   );
 };

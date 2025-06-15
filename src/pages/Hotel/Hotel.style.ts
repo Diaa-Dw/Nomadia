@@ -22,7 +22,7 @@ export const ReviewsWrapper = styled(Box)(({ theme }) => ({
   borderRadius: '8px',
 
   [theme.breakpoints.up('md')]: {
-    flexBasis: '70%',
+    flexBasis: '40%',
     height: 400,
   },
 }));
@@ -33,7 +33,7 @@ export const MapWrapper = styled(Box)(({ theme }) => ({
   height: 300,
 
   [theme.breakpoints.up('md')]: {
-    flexBasis: '30%',
+    flexBasis: '40%',
     height: 400,
   },
 }));

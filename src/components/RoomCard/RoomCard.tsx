@@ -17,7 +17,7 @@ const RoomCard = ({ room }: { room: Room }) => {
   return (
     <RoomCardContainer>
       <Box position="relative">
-        <RoomImage src={roomPhotoUrl} alt={roomType} />
+        <RoomImage src={roomPhotoUrl} alt={roomType} availability={availability} />
         {!availability && (
           <Chip
             label="Not Available"
@@ -53,7 +53,12 @@ const RoomCard = ({ room }: { room: Room }) => {
         </Typography>
       </Stack>
 
-      <Button variant={'contained'} color="inherit" startIcon={<ShoppingCart />}>
+      <Button
+        disabled={!availability}
+        variant={'contained'}
+        color="inherit"
+        startIcon={<ShoppingCart />}
+      >
         Add To Cart
       </Button>
     </RoomCardContainer>

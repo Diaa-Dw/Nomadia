@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { RoomImageProps } from './RoomCard.types';
 
 export const RoomCardContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -13,8 +14,12 @@ export const RoomCardContainer = styled('div')(({ theme }) => ({
   margin: '0 auto',
 }));
 
-export const RoomImage = styled('img')({
+export const RoomImage = styled('img', {
+  shouldForwardProp: prop => prop !== 'availability',
+})<RoomImageProps>(({ availability = true }) => ({
   width: '100%',
   height: 150,
   objectFit: 'cover',
-});
+  filter: availability ? 'none' : 'grayscale(100%)',
+  opacity: availability ? 1 : 0.6,
+}));

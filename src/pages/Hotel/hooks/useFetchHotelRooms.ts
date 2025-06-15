@@ -9,12 +9,12 @@ const useFetchHotelRooms = ({ hotelId, checkInDate, checkOutDate }: fetchHotelRo
   const hasShownError = useRef(false);
 
   const {
-    data: hotelReviews,
+    data: hotelRooms,
     isPending,
     error,
   } = useQuery({
     queryFn: () => fetchHotelRooms({ hotelId, checkInDate, checkOutDate }),
-    queryKey: [HOTEL_ROOMS_QUERY_KEY, hotelId],
+    queryKey: [HOTEL_ROOMS_QUERY_KEY, hotelId, checkInDate, checkOutDate],
   });
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const useFetchHotelRooms = ({ hotelId, checkInDate, checkOutDate }: fetchHotelRo
     }
   }, [error]);
 
-  return { hotelReviews, isPending };
+  return { hotelRooms, isPending };
 };
 
 export default useFetchHotelRooms;

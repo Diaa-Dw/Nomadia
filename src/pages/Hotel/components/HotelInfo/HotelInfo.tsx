@@ -27,13 +27,7 @@ const HotelInfo = ({ hotel }: { hotel: HotelResponse }) => {
 
       <Stack direction="row" spacing={1} flexWrap="wrap">
         {amenities.map(amenity => (
-          <Chip
-            key={amenity.id}
-            label={amenity.name}
-            variant="outlined"
-            color="primary"
-            sx={{ mb: 1 }}
-          />
+          <Chip key={amenity.id} label={amenity.name} color="primary" />
         ))}
       </Stack>
     </Box>

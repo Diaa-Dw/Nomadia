@@ -15,13 +15,15 @@ export const Container = styled(Box)(() => ({
 
 export const Slide = styled(Box, {
   shouldForwardProp: prop => prop !== 'width',
-})<SlideProps>(({ theme, width }) => ({
-  minWidth: width || '296px',
+})<SlideProps>(({ theme, width = '296px' }) => ({
+  minWidth: width,
   [theme.breakpoints.down('sm')]: {
     width: '100%',
     flex: '0 0 100%',
   },
 }));
+
+
 export const NavButton = styled(IconButton)(({ theme }) => ({
   position: 'absolute',
   top: '50%',
