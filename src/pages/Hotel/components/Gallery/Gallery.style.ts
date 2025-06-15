@@ -18,7 +18,7 @@ export const MainImageWrapper = styled(Box)(() => ({
 
 export const MainImage = styled('img')(({ theme }) => ({
   width: '100%',
-  height: '500px',
+  height: '350px',
   objectFit: 'cover',
   borderRadius: theme.shape.borderRadius,
   cursor: 'pointer',
@@ -41,7 +41,7 @@ export const SideImageGrid = styled(Box, {
 
   [theme.breakpoints.up('md')]: {
     width: '500px',
-    height: '500px',
+    height: '350px',
     gridTemplateColumns: '1fr 1fr',
     gridTemplateRows: '1fr 1fr',
   },
