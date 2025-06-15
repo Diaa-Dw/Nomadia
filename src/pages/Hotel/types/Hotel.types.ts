@@ -17,3 +17,10 @@ export interface PhotoResponse {
   id: number;
   url: string;
 }
+
+export interface ReviewResponse {
+  reviewId: number;
+  customerName: string;
+  rating: number;
+  description: string;
+}
