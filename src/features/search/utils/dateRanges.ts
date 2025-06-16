@@ -3,9 +3,9 @@ import { createStaticRanges } from 'react-date-range';
 
 const today = startOfDay(new Date());
 
-export const selectionRange = (startDate: Date, endDate: Date) => ({
-  startDate: startDate,
-  endDate: endDate || addDays(new Date(), 1),
+export const selectionRange = (checkInDate: Date, checkOutDate: Date) => ({
+  startDate: checkInDate,
+  endDate: checkOutDate || addDays(new Date(), 1),
   key: 'selection' as const,
 });
 

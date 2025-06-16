@@ -11,8 +11,8 @@ export const parseSearchQueryParams = (search: string): SearchFormPayload => {
   return {
     city: typeof params.city === 'string' ? params.city : INITIAL_VALUES.city,
     dateRange: {
-      startDate: parseDate(params.startDate, INITIAL_VALUES.dateRange.startDate),
-      endDate: parseDate(params.endDate, INITIAL_VALUES.dateRange.endDate),
+      checkInDate: parseDate(params.checkInDate, INITIAL_VALUES.dateRange.checkInDate),
+      checkOutDate: parseDate(params.checkOutDate, INITIAL_VALUES.dateRange.checkOutDate),
     },
     adults: parseNumber(params.adults, INITIAL_VALUES.adults),
     children: parseNumber(params.children, INITIAL_VALUES.children),
@@ -33,9 +33,9 @@ export const buildSearchParams = (values: SearchFormPayload): string => {
 
   if (values.city) params.set('city', values.city);
 
-  const { startDate, endDate } = values.dateRange;
-  if (startDate) params.set('startDate', formatDate(startDate));
-  if (endDate) params.set('endDate', formatDate(endDate));
+  const { checkInDate, checkOutDate } = values.dateRange;
+  if (checkInDate) params.set('checkInDate', formatDate(checkInDate));
+  if (checkOutDate) params.set('checkOutDate', formatDate(checkOutDate));
 
   params.set('adults', values.adults.toString());
   params.set('children', values.children.toString());

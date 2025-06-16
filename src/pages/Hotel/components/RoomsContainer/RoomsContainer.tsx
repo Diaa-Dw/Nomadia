@@ -10,8 +10,8 @@ import { EmblaCarousel, RoomCard } from '@/components';
 const RoomsContainer = ({ hotelId }: RoomsContainerProps) => {
   const [searchParams] = useSearchParams();
 
-  const checkInDate = searchParams.get('startDate') ?? formatDate(new Date());
-  const checkOutDate = searchParams.get('endDate') ?? formatDate(addDays(new Date(), 1));
+  const checkInDate = searchParams.get('checkInDate') ?? formatDate(new Date());
+  const checkOutDate = searchParams.get('checkOutDate') ?? formatDate(addDays(new Date(), 1));
 
   const { hotelRooms, isPending } = useFetchHotelRooms({ hotelId, checkInDate, checkOutDate });
 

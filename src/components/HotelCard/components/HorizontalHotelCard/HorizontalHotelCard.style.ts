@@ -18,7 +18,7 @@ export const HotelImage = styled('img')({
 
   '@media (max-width: 560px)': {
     width: '100%',
-    height: 'auto',
+    height: '200px',
   },
 });
 
@@ -29,13 +29,17 @@ export const InfoSection = styled('div')(({ theme }) => ({
 
 export const PriceSection = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2),
-
-  display: ' flex',
-  alignItems: 'flex-end',
+  display: 'flex',
+  alignItems: 'flex-end', // default
   flexDirection: 'column',
   gap: theme.spacing(1),
 
-  '@media (max-width: 800px)': {
+  button: {
+    width: 'auto', // default
+  },
+
+  // Apply shared styles between 1060px–901px and ≤800px
+  '@media (max-width: 1060px) and (min-width: 901px), (max-width: 800px)': {
     alignItems: 'flex-start',
     width: '100%',
 

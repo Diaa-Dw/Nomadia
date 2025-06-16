@@ -15,6 +15,10 @@ export const StyledForm = styled(Form, {
     margin: isSearchPage ? '0px auto' : '-60px 0 30px 0 ',
     zIndex: 1000,
 
+    '& .MuiBox-root ': {
+      flexGrow: isSearchPage ? 1 : 0,
+    },
+
     '@media (max-width: 1018px)': {
       justifyContent: 'center',
       margin: isSearchPage ? '0 auto' : '0px ',

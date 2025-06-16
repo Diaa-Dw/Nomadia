@@ -13,7 +13,7 @@ const DatePicker = () => {
 
   const hasError = Boolean(meta.error);
   const { values } = useFormikContext<SearchFormPayload>();
-  const { startDate, endDate } = values.dateRange;
+  const { checkInDate, checkOutDate } = values.dateRange;
   const isMenuOpen = Boolean(anchorEl);
 
   const onCloseMenu = () => {
@@ -35,19 +35,19 @@ const DatePicker = () => {
           pointer={!isMenuOpen}
         >
           <Typography variant="body2">
-            {formatDisplayDate(startDate)} - {formatDisplayDate(endDate)}
+            {formatDisplayDate(checkInDate)} - {formatDisplayDate(checkOutDate)}
           </Typography>
         </FieldContainer>
         {hasError && typeof meta.error === 'object' && (
           <>
-            {'startDate' in meta.error && (
+            {'checkInDate' in meta.error && (
               <Typography variant="body2" color="error" px={1}>
-                {(meta.error as { startDate?: string }).startDate}
+                {(meta.error as { checkInDate?: string }).checkInDate}
               </Typography>
             )}
-            {'endDate' in meta.error && (
+            {'checkOutDate' in meta.error && (
               <Typography variant="body2" color="error" px={1}>
-                {(meta.error as { endDate?: string }).endDate}
+                {(meta.error as { checkOutDate?: string }).checkOutDate}
               </Typography>
             )}
           </>

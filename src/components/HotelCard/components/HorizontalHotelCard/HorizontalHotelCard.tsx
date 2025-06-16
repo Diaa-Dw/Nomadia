@@ -26,13 +26,14 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
   } = hotelData;
 
   const totalGuests = numberOfAdults + numberOfChildren;
+  console.log('🚀 ~ HorizontalHotelCard ~ totalGuests:', totalGuests);
   const priceAfterDiscount = roomPrice - (roomPrice * discount) / 100;
   const priceLabel = `${checkInDate} - ${checkOutDate}, ${totalGuests} guests`;
 
   return (
     <HorizontalCardContainer>
       <HotelImage src={imageUrl} alt={hotelName} />
-      
+
       <InfoSection>
         <Typography variant="h6">{hotelName}</Typography>
         <Typography variant="body2" color="text.secondary">

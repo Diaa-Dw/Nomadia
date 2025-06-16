@@ -1,3 +1,5 @@
+import { Amenity } from './amenities';
+
 export interface SearchRequest {
   checkInDate: string;
   checkOutDate: string;
@@ -10,8 +12,23 @@ export interface SearchRequest {
 }
 
 export interface DateRange {
-  startDate: Date;
-  endDate: Date;
+  checkInDate: Date;
+  checkOutDate: Date;
+}
+
+export interface SearchResponse {
+  hotelId: number;
+  hotelName: string;
+  starRating: number;
+  latitude: number;
+  longitude: number;
+  roomPrice: number;
+  roomType: string;
+  cityName: string;
+  roomPhotoUrl: string;
+  discount: number;
+  amenities: Amenity[];
+  description: string;
 }
 
 export interface SearchFormPayload extends Omit<SearchRequest, 'checkInDate' | 'checkOutDate'> {

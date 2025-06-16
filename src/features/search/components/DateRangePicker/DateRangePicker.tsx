@@ -8,22 +8,22 @@ import { DateRangePickerProps } from './DateRangePicker.type';
 const CustomDateRangePicker = ({ name, dateRange }: DateRangePickerProps) => {
   const { setFieldValue } = useFormikContext();
 
-  const { startDate, endDate } = dateRange || {
-    startDate: new Date(),
-    endDate: addDays(new Date(), 1),
+  const { checkInDate, checkOutDate } = dateRange || {
+    checkInDate: new Date(),
+    checkOutDate: addDays(new Date(), 1),
   };
 
   const onSelectRange = (newRanges: RangeKeyDict) => {
     setFieldValue(name, {
-      startDate: newRanges.selection.startDate,
-      endDate: newRanges.selection.endDate,
+      checkInDate: newRanges.selection.startDate,
+      checkOutDate: newRanges.selection.endDate,
     });
   };
 
   return (
     <div>
       <StyledDateRangePicker
-        ranges={[selectionRange(startDate, endDate)]}
+        ranges={[selectionRange(checkInDate, checkOutDate)]}
         onChange={onSelectRange}
         minDate={new Date()}
         staticRanges={staticRanges}

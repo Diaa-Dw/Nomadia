@@ -9,12 +9,12 @@ const searchBarValidationSchema = Yup.object<SearchFormPayload>().shape({
   city: Yup.string().required('City is required').min(2, 'City must be at least 2 characters long'),
 
   dateRange: Yup.object().shape({
-    startDate: Yup.date()
+    checkInDate: Yup.date()
       .required('Start date is required')
       .min(today, 'Start date cannot be in the past'),
-    endDate: Yup.date()
+    checkOutDate: Yup.date()
       .required('End date is required')
-      .min(Yup.ref('startDate'), 'End date must be after start date'),
+      .min(Yup.ref('checkInDate'), 'End date must be after start date'),
   }),
 
   adults: Yup.number()

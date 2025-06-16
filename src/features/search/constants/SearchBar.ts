@@ -5,8 +5,8 @@ import { SearchCounter } from '../components/SearchBar/Search.type';
 export const INITIAL_VALUES: SearchFormPayload = {
   city: '',
   dateRange: {
-    startDate: new Date(),
-    endDate: addDays(new Date(), 1),
+    checkInDate: new Date(),
+    checkOutDate: addDays(new Date(), 1),
   },
   adults: 2,
   children: 0,
