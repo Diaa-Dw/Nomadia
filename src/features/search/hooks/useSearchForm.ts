@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { INITIAL_VALUES } from '../constants';
 import { searchBarValidationSchema } from '../schema';
-import { buildSearchParams, parseSearchQueryParams } from '../utils/searchParams';
+import { buildSearchParams, parseSearchQueryParams } from '@/utils';
 import { SearchFormPayload } from '@/types';
 
 const useSearchForm = () => {

@@ -5,14 +5,13 @@ import { StyledFormProps } from './Search.type';
 export const StyledForm = styled(Form, {
   shouldForwardProp: prop => prop !== 'isSearchPage',
 })<StyledFormProps>(({ isSearchPage }) => {
-  console.log('🚀 ~ isSearchPage:', isSearchPage);
-
   return {
     position: 'relative',
     display: 'flex',
     justifyContent: isSearchPage ? 'flex-start' : 'center',
     paddingInline: '1rem',
     margin: isSearchPage ? '0px auto' : '-60px 0 30px 0 ',
+    width: isSearchPage ? '100%' : 'fit-conent',
     zIndex: 1000,
 
     '& .MuiBox-root ': {
