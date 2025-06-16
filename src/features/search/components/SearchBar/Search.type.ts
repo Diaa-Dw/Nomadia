@@ -7,3 +7,7 @@ export interface SearchCounter {
 export interface StyledFormProps {
   isSearchPage?: boolean;
 }
+
+export interface SearchBarProps{
+  isPending:boolean
+}

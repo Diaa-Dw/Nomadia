@@ -1,6 +1,6 @@
 import { TextField } from '@/components';
 import { LocationCityOutlined, Search } from '@mui/icons-material';
-import { Button, Divider, useMediaQuery } from '@mui/material';
+import { Button, CircularProgress, Divider, useMediaQuery } from '@mui/material';
 import { FormikProvider } from 'formik';
 import { useSearchForm } from '../../hooks';
 import DatePicker from '../DatePicker/DatePicker';
@@ -8,8 +8,10 @@ import { FieldContainer } from '../FieldContainer';
 import { GuestRoomDropdown } from '../GuestRoomDropdown';
 import { SearchFieldsWrapper, StyledForm } from './SearchBar.style';
 import { useLocation } from 'react-router-dom';
+import { SearchBarProps } from './Search.type';
+import { SortDropdown } from '../SortDropdown';
 
-const SearchBar = () => {
+const SearchBar = ({ isPending }: SearchBarProps) => {
   const { pathname } = useLocation();
   const { formikProps } = useSearchForm();
   const isSmallScreen = useMediaQuery('(max-width:1018px)');
@@ -35,15 +37,16 @@ const SearchBar = () => {
           <GuestRoomDropdown />
           <Divider variant={'middle'} orientation={isSmallScreen ? 'horizontal' : 'vertical'} />
 
+          <SortDropdown />
+          <Divider variant={'middle'} orientation={isSmallScreen ? 'horizontal' : 'vertical'} />
+
           <Button
             type="submit"
             variant="contained"
-            color={'primary'}
-            disableElevation
-            startIcon={<Search />}
-            disabled={!isValid || !dirty}
+            disabled={!dirty || !isValid || isPending}
+            startIcon={isPending ? <CircularProgress size={20} /> : <Search />}
           >
-            Search
+            {isPending ? '' : 'Search'}
           </Button>
         </SearchFieldsWrapper>
       </StyledForm>

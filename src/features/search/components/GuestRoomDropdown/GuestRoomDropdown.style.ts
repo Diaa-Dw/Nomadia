@@ -1,4 +1,4 @@
-import { Menu, Stack, Typography } from '@mui/material';
+import { Menu, MenuItem, Stack, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const GuestSummaryStack = styled(Stack)({
@@ -17,3 +17,8 @@ export const StyledMenu = styled(Menu)({
     padding: 16,
   },
 });
+
+export const SortMenuItem = styled(MenuItem)(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  borderRadius: theme.shape.borderRadius,
+}));

@@ -5,7 +5,7 @@ export const SEARCH_QUERY_KEY = 'searchHotels';
 
 export const filterInitialValues: FilterFormValues = {
   amenities: [],
-  stars: [],
+  starRate: null,
 };
 
 export const REQUIRED_PARAMS = ['city', 'checkInDate', 'checkOutDate', 'adults', 'numberOfRooms'];
