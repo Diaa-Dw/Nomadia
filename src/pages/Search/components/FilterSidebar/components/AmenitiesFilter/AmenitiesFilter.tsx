@@ -7,7 +7,7 @@ import { AmenitiesFilterProps } from './AmenitiesFilter.type';
 const AmenitiesFilter = ({ name, amenities }: AmenitiesFilterProps) => {
   const { values, setFieldValue } = useFormikContext<FilterFormValues>();
 
-  const handleToggle = (id: number) => {
+  const handleToggle = (id: string) => {
     const isSelected = values.amenities.includes(id);
     const updated = isSelected
       ? values.amenities.filter(aid => aid !== id)
@@ -41,8 +41,8 @@ const AmenitiesFilter = ({ name, amenities }: AmenitiesFilterProps) => {
               key={amenity.id}
               control={
                 <Checkbox
-                  checked={values.amenities.includes(amenity.id)}
-                  onChange={() => handleToggle(amenity.id)}
+                  checked={values.amenities.includes(amenity.name)}
+                  onChange={() => handleToggle(amenity.name)}
                   color="primary"
                   slotProps={{
                     input: {

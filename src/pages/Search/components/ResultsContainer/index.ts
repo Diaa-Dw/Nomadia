@@ -1,1 +1,1 @@
-export { default as ResultsContainer } from './ResultsContainer';
+export { ResultsContainer } from './ResultsContainer';

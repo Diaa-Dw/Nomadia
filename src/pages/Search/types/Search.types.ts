@@ -1,4 +1,4 @@
 export interface FilterFormValues {
-  amenities: number[];
-  stars: number[];
+  amenities: string[];
+  starRate: number | null;
 }

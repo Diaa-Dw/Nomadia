@@ -38,6 +38,7 @@ export const buildSearchParams = (values: SearchFormPayload): string => {
   params.set('adults', values.adults.toString());
   params.set('children', values.children.toString());
   params.set('numberOfRooms', values.numberOfRooms.toString());
+  if (values.sort) params.set('sort', values.sort);
 
   return params.toString();
 };

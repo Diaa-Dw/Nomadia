@@ -11,18 +11,17 @@ import {
 } from '@mui/material';
 import { Form, FormikProvider } from 'formik';
 import { useState } from 'react';
-import { useFetchSearchPageAmenities, useFilterForm } from '../../hooks';
+import { useFetchSearchPageAmenities } from '../../hooks';
 import { AmenitiesFilter } from './components';
 import StarRatingFilter from './components/StarRatingFilter/StarRatingFilter';
 import { CloseButton, Drawer } from './FilterSidebar.style';
+import { FilterSidebarProps } from './FilterSidebar.types';
 
-export default function FilterSidebar() {
-  const { formikProps } = useFilterForm();
+export default function FilterSidebar({ formikProps }: FilterSidebarProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { amenities, isFetching } = useFetchSearchPageAmenities();
 
-  const { dirty, values } = formikProps;
-  console.log('🚀 ~ FilterSidebar ~ values:', values);
+  const { dirty } = formikProps;
 
   const onCloseDrawer = () => {
     setDrawerOpen(false);
@@ -39,7 +38,7 @@ export default function FilterSidebar() {
         <Form>
           {isFetching && <Skeleton height={'60vh'} width={'100%'} />}
           <AmenitiesFilter name="amenities" amenities={amenities} />
-          <StarRatingFilter name="stars" />
+          <StarRatingFilter name="starRate" />
 
           <Stack
             mt={2}

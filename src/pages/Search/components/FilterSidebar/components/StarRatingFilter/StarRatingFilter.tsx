@@ -11,11 +11,9 @@ const StarRatingFilter = ({ name }: StarRatingFilterProps) => {
 
   const toggleStar = useCallback(
     (star: number) => {
-      const isSelected = values.stars.includes(star);
-      const updated = isSelected ? values.stars.filter(s => s !== star) : [...values.stars, star];
-      setFieldValue(name, updated);
+      setFieldValue(name, star);
     },
-    [name, values.stars, setFieldValue]
+    [name, setFieldValue]
   );
 
   return (
@@ -28,7 +26,7 @@ const StarRatingFilter = ({ name }: StarRatingFilterProps) => {
           <StarItem
             key={star}
             star={star}
-            selected={values.stars.includes(star)}
+            selected={values.starRate === star}
             onToggle={toggleStar}
           />
         ))}
