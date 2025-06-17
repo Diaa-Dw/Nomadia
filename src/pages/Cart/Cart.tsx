@@ -1,15 +1,20 @@
-import { RoomCard } from '@/components';
+import { EmptyState, RoomCard } from '@/components';
 import { selectCart } from '@/features';
 import { useAppSelector } from '@/store';
 import { Container, Stack, Typography } from '@mui/material';
-import { EmptyCart } from './components';
 
 const Cart = () => {
   const { items, totalItems } = useAppSelector(selectCart);
 
   const isEmpty = totalItems === 0;
 
-  if (isEmpty) return <EmptyCart />;
+  if (isEmpty)
+    return (
+      <EmptyState
+        title={'Your cart is empty.'}
+        description={'Please add rooms to the cart to checkout.'}
+      />
+    );
 
   return (
     <Container maxWidth="xl">

@@ -1,7 +1,8 @@
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Stack, Typography } from '@mui/material';
+import { EmptyStateProps } from './EmptyState.types';
 
-const EmptyCart = () => {
+const EmptyState = ({ title, description }: EmptyStateProps) => {
   return (
     <Stack
       height="calc(100vh - 64px)"
@@ -19,12 +20,12 @@ const EmptyCart = () => {
       />
 
       <Typography variant="h6" color="text.secondary">
-        Your cart is empty.
+        {title}
         <br />
-        Please add rooms to the cart to checkout.
+        {description}
       </Typography>
     </Stack>
   );
 };
 
-export default EmptyCart;
+export default EmptyState;
