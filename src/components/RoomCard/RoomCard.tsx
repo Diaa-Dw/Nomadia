@@ -1,9 +1,18 @@
+import { addToCart } from '@/features';
+import { useAppDispatch } from '@/store';
 import { Room } from '@/types/room';
+import { formatDate } from '@/utils';
 import { ShoppingCart } from '@mui/icons-material';
 import { Box, Button, Chip, Stack, Typography } from '@mui/material';
+import { addDays } from 'date-fns';
+import { useSearchParams } from 'react-router-dom';
 import { RoomCardContainer, RoomImage } from './RoomCard.style';
 
 const RoomCard = ({ room }: { room: Room }) => {
+  const [searchParams] = useSearchParams();
+
+  const dispatch = useAppDispatch();
+
   const {
     roomPhotoUrl,
     roomType,
@@ -13,6 +22,19 @@ const RoomCard = ({ room }: { room: Room }) => {
     price,
     availability,
   } = room;
+
+  const checkInDate = searchParams.get('checkInDate') || formatDate(new Date());
+  const checkOutDate = searchParams.get('checkOutDate') || formatDate(addDays(new Date(), 1));
+
+  const item = {
+    ...room,
+    checkInDate,
+    checkOutDate,
+  };
+
+  const onAddToCard = () => {
+    dispatch(addToCart(item));
+  };
 
   return (
     <RoomCardContainer>
@@ -58,6 +80,7 @@ const RoomCard = ({ room }: { room: Room }) => {
         variant={'contained'}
         color="inherit"
         startIcon={<ShoppingCart />}
+        onClick={onAddToCard}
       >
         Add To Cart
       </Button>

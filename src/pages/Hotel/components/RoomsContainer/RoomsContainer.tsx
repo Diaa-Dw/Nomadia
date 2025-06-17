@@ -1,18 +1,9 @@
-import React from 'react';
+import { EmblaCarousel, RoomCard } from '@/components';
+import { Grid, Skeleton } from '@mui/material';
 import { useFetchHotelRooms } from '../../hooks';
 import { RoomsContainerProps } from './RoomsContainer.type';
-import { useSearchParams } from 'react-router-dom';
-import { addDays } from 'date-fns';
-import { formatDate } from '@/utils';
-import { Grid, Skeleton } from '@mui/material';
-import { EmblaCarousel, RoomCard } from '@/components';
 
-const RoomsContainer = ({ hotelId }: RoomsContainerProps) => {
-  const [searchParams] = useSearchParams();
-
-  const checkInDate = searchParams.get('checkInDate') ?? formatDate(new Date());
-  const checkOutDate = searchParams.get('checkOutDate') ?? formatDate(addDays(new Date(), 1));
-
+const RoomsContainer = ({ hotelId, checkInDate, checkOutDate }: RoomsContainerProps) => {
   const { hotelRooms, isPending } = useFetchHotelRooms({ hotelId, checkInDate, checkOutDate });
 
   return (

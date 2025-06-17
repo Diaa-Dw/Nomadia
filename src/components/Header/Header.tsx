@@ -1,8 +1,9 @@
 import { selectUser } from '@/features';
 import { useAppSelector } from '@/store';
-import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import { AppBar, Container, Stack, Toolbar, Typography } from '@mui/material';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import { UserMenu } from '../UserMenu';
+import { ShoppingCart } from '../ShoppingCart';
 
 const Header = () => {
   const { isAuthenticated } = useAppSelector(selectUser);
@@ -20,7 +21,14 @@ const Header = () => {
           >
             Nomadia
           </Typography>
-          {isAuthenticated ? <UserMenu /> : <ThemeToggle />}
+          {isAuthenticated ? (
+            <Stack direction={'row'} gap={3}>
+              <ShoppingCart />
+              <UserMenu />
+            </Stack>
+          ) : (
+            <ThemeToggle />
+          )}
         </Toolbar>
       </Container>
     </AppBar>

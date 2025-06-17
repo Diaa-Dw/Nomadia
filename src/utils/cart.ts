@@ -20,7 +20,7 @@ export const getCartItems = (): CartItem[] => {
 
 export const setCartItems = (state: CartState): void => {
   try {
-    localStorage.setItem(CART_ITEMS_KEY, JSON.stringify(state));
+    localStorage.setItem(CART_ITEMS_KEY, JSON.stringify(state.items));
   } catch (error: unknown) {
     console.error('Failed to save cart items to localStorage:', error);
     showErrorToast('Failed to save cart data. Your storage might be full.');

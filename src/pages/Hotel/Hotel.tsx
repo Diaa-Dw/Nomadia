@@ -1,6 +1,8 @@
+import { formatDate } from '@/utils';
 import { Box, Container, Skeleton, Typography } from '@mui/material';
+import { addDays } from 'date-fns';
 import 'leaflet/dist/leaflet.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { Gallery, HotelMap, RoomsContainer } from './components';
 import { HotelInfo } from './components/HotelInfo';
 import { HotelReviews } from './components/HotelReviews';
@@ -9,6 +11,11 @@ import { MapWrapper, ReviewsMapContainer, ReviewsWrapper } from './Hotel.style';
 
 const Hotel = () => {
   const { hotelId: paramsId } = useParams();
+  const [searchParams] = useSearchParams();
+
+  const checkInDate = searchParams.get('checkInDate') ?? formatDate(new Date());
+  const checkOutDate = searchParams.get('checkOutDate') ?? formatDate(addDays(new Date(), 1));
+
   const hotelId = parseInt(paramsId ?? '-1');
   const { hotel, isPending } = useFetchHotel(hotelId);
 
@@ -33,7 +40,7 @@ const Hotel = () => {
       <Gallery id={hotelId} />
       <HotelInfo hotel={hotel} />
 
-      <RoomsContainer hotelId={hotelId} />
+      <RoomsContainer hotelId={hotelId} checkOutDate={checkOutDate} checkInDate={checkInDate} />
 
       <ReviewsMapContainer>
         <ReviewsWrapper>

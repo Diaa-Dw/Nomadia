@@ -98,7 +98,7 @@ const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
             )}
           </Box>
 
-          <IconButton aria-label={`View details for ${hotelName}`} onClick={onCardClick}>
+          <IconButton aria-label={`View details for ${hotelName}`}>
             <ArrowForwardIos fontSize="small" />
           </IconButton>
         </Stack>

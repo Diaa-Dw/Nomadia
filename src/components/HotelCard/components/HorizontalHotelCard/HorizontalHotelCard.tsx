@@ -7,9 +7,10 @@ import {
   PriceSection,
   TagsSection,
 } from './HorizontalHotelCard.style';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProps }) => {
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const {
@@ -29,8 +30,11 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
     amenities,
   } = hotelData;
 
+  const checkInParams = searchParams.get('checkInDate') || checkInDate;
+  const checkOutParams = searchParams.get('checkOutDate') || checkOutDate;
+
   const onCardClick = () => {
-    navigate(`/me/hotels/${hotelId}`);
+    navigate(`/me/hotels/${hotelId}?checkInDate=${checkInParams}&checkOutDate=${checkOutParams}`);
   };
 
   const priceAfterDiscount = roomPrice - (roomPrice * discount) / 100;
@@ -53,7 +57,7 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
         <TagsSection>
           {discount > 0 && <Chip label={`-${discount}%`} color="primary" />}
           {amenities.map(a => (
-            <Chip key={a.id} label={`#${a.name}`} color="primary" />
+            <Chip key={a.id} label={a.name} color="primary" />
           ))}
         </TagsSection>
       </InfoSection>

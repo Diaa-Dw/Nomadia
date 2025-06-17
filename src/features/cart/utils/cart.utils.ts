@@ -1,7 +1,7 @@
 import { Draft } from '@reduxjs/toolkit';
 import { CartItem, CartState } from '../types';
 
-import { findItemIndex, setCartItems } from '@/utils';
+import { findItemIndex, setCartItems, showSuccessToast } from '@/utils';
 
 export const handleAddToCart = (state: Draft<CartState>, item: CartItem): boolean => {
   const exists = state.items.some(
@@ -11,13 +11,21 @@ export const handleAddToCart = (state: Draft<CartState>, item: CartItem): boolea
       existing.checkOutDate === item.checkOutDate
   );
 
-  if (exists) return false;
+  if (exists) {
+    showSuccessToast(`This room is already in your cart`);
+
+    return false;
+  }
 
   state.items.push(item);
   state.totalItems += 1;
   state.totalPrice += item.price;
 
   setCartItems(state);
+
+  showSuccessToast(
+    `${item.roomType} room added to cart (${item.checkInDate} → ${item.checkOutDate})`
+  );
 
   return true;
 };
