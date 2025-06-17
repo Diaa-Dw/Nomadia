@@ -1,7 +1,7 @@
 import { Draft } from '@reduxjs/toolkit';
 import { CartItem, CartState } from '../types';
 
-import { findItemIndex, setCartItems, showSuccessToast } from '@/utils';
+import { findItemIndex, setCartItems, showErrorToast, showSuccessToast } from '@/utils';
 
 export const handleAddToCart = (state: Draft<CartState>, item: CartItem): boolean => {
   const exists = state.items.some(
@@ -22,7 +22,6 @@ export const handleAddToCart = (state: Draft<CartState>, item: CartItem): boolea
   state.totalPrice += item.price;
 
   setCartItems(state);
-
   showSuccessToast(
     `${item.roomType} room added to cart (${item.checkInDate} → ${item.checkOutDate})`
   );
@@ -32,13 +31,17 @@ export const handleAddToCart = (state: Draft<CartState>, item: CartItem): boolea
 
 export const handleRemoveFromCart = (state: Draft<CartState>, roomId: number): boolean => {
   const index = findItemIndex(state.items, roomId);
-  if (index === -1) return false;
+  if (index === -1) {
+    showErrorToast(`There is no room with this ID: ${roomId}`);
+    return false;
+  }
 
   const [removed] = state.items.splice(index, 1);
   state.totalItems -= 1;
   state.totalPrice -= removed.price;
 
   setCartItems(state);
+  showSuccessToast(`Successfully deleted room with ID:${roomId} `);
 
   return true;
 };

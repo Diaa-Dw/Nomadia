@@ -1,19 +1,23 @@
-import { addToCart } from '@/features';
+import { addToCart, removeFromCart } from '@/features';
 import { useAppDispatch } from '@/store';
 import { Room } from '@/types/room';
 import { formatDate } from '@/utils';
 import { ShoppingCart } from '@mui/icons-material';
 import { Box, Button, Chip, Stack, Typography } from '@mui/material';
 import { addDays } from 'date-fns';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { RoomCardContainer, RoomImage } from './RoomCard.style';
+import { ConfirmDialog } from '../ConfirmDialog';
+import { useState } from 'react';
 
 const RoomCard = ({ room }: { room: Room }) => {
+  const [confirmOpen, setConfirmOpen] = useState(false);
   const [searchParams] = useSearchParams();
-
+  const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
   const {
+    roomId,
     roomPhotoUrl,
     roomType,
     capacityOfAdults,
@@ -25,6 +29,7 @@ const RoomCard = ({ room }: { room: Room }) => {
 
   const checkInDate = searchParams.get('checkInDate') || formatDate(new Date());
   const checkOutDate = searchParams.get('checkOutDate') || formatDate(addDays(new Date(), 1));
+  const isCartPage = pathname.includes('/cart');
 
   const item = {
     ...room,
@@ -32,8 +37,12 @@ const RoomCard = ({ room }: { room: Room }) => {
     checkOutDate,
   };
 
-  const onAddToCard = () => {
+  const onAddToCart = () => {
     dispatch(addToCart(item));
+  };
+
+  const onRemoveFromCart = () => {
+    dispatch(removeFromCart(roomId));
   };
 
   return (
@@ -65,7 +74,13 @@ const RoomCard = ({ room }: { room: Room }) => {
         {amenities?.length > 0 && (
           <Box display="flex" flexWrap="wrap" gap={1} mt={1}>
             {amenities.map(amenity => (
-              <Chip key={amenity.id} label={amenity.name} size="small" variant="outlined" />
+              <Chip
+                key={amenity.id}
+                label={amenity.name}
+                size="small"
+                color="primary"
+                variant="filled"
+              />
             ))}
           </Box>
         )}
@@ -75,15 +90,42 @@ const RoomCard = ({ room }: { room: Room }) => {
         </Typography>
       </Stack>
 
-      <Button
-        disabled={!availability}
-        variant={'contained'}
-        color="inherit"
-        startIcon={<ShoppingCart />}
-        onClick={onAddToCard}
-      >
-        Add To Cart
-      </Button>
+      {isCartPage ? (
+        <Stack direction={'row'} gap={2} justifyContent={'space-around'} mb={2}>
+          <Button
+            onClick={() => setConfirmOpen(true)}
+            variant="outlined"
+            aria-label="remove-from-cart"
+            color="error"
+            disableElevation
+          >
+            Remove
+          </Button>
+          <Button variant="contained" aria-label="checkout" color="primary" disableElevation>
+            Checkout
+          </Button>
+        </Stack>
+      ) : (
+        <Button
+          disabled={!availability}
+          variant={'contained'}
+          color="inherit"
+          startIcon={<ShoppingCart />}
+          onClick={onAddToCart}
+        >
+          Add To Cart
+        </Button>
+      )}
+
+      <ConfirmDialog
+        open={confirmOpen}
+        title="Remove Room"
+        description="Are you sure you want to remove this room from your cart?"
+        onClose={() => setConfirmOpen(false)}
+        onConfirm={onRemoveFromCart}
+        confirmText="Remove"
+        confirmColor="error"
+      />
     </RoomCardContainer>
   );
 };

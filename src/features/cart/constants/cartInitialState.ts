@@ -5,7 +5,7 @@ const items = getCartItems();
 console.log('🚀 ~ items:', items);
 
 export const cartInitialState: CartState = {
-  items: items,
-  totalItems: items?.length,
+  items,
+  totalItems: items.length,
   totalPrice: items.reduce((acc, item) => acc + item.price, 0),
 };
