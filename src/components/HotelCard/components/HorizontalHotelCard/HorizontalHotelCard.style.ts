@@ -15,6 +15,7 @@ export const HotelImage = styled('img')({
   width: 180,
   height: 160,
   objectFit: 'cover',
+  cursor: 'pointer',
 
   '@media (max-width: 560px)': {
     width: '100%',

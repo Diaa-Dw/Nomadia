@@ -7,9 +7,13 @@ import {
   PriceSection,
   TagsSection,
 } from './HorizontalHotelCard.style';
+import { useNavigate } from 'react-router-dom';
 
 const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProps }) => {
+  const navigate = useNavigate();
+
   const {
+    hotelId,
     hotelName,
     roomPhotoUrl: imageUrl,
     starRating,
@@ -25,14 +29,16 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
     amenities,
   } = hotelData;
 
-  const totalGuests = numberOfAdults + numberOfChildren;
-  console.log('🚀 ~ HorizontalHotelCard ~ totalGuests:', totalGuests);
+  const onCardClick = () => {
+    navigate(`/me/hotels/${hotelId}`);
+  };
+
   const priceAfterDiscount = roomPrice - (roomPrice * discount) / 100;
-  const priceLabel = `${checkInDate} - ${checkOutDate}, ${totalGuests} guests`;
+  const priceLabel = `${checkInDate} - ${checkOutDate}`;
 
   return (
     <HorizontalCardContainer>
-      <HotelImage src={imageUrl} alt={hotelName} />
+      <HotelImage src={imageUrl} alt={hotelName} onClick={onCardClick} />
 
       <InfoSection>
         <Typography variant="h6">{hotelName}</Typography>
@@ -67,7 +73,7 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
           </Typography>
         </Stack>
         <Typography variant="body2">{priceLabel}</Typography>
-        <Button variant="contained" color={'inherit'}>
+        <Button variant="contained" color={'inherit'} onClick={onCardClick}>
           See booking options
         </Button>
       </PriceSection>

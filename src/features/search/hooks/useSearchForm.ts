@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
 import { INITIAL_VALUES } from '../constants';
 import { searchBarValidationSchema } from '../schema';
@@ -8,21 +8,26 @@ import { buildSearchParams, parseSearchQueryParams } from '@/utils';
 import { SearchFormPayload } from '@/types';
 
 const useSearchForm = () => {
+  const [, setSearchParams] = useSearchParams();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const isSearchPage = location.pathname.includes('/search');
+  const isSearchPage = useMemo(() => location.pathname.includes('/search'), [location.pathname]);
 
   const handleFormSubmit = (values: SearchFormPayload) => {
     const queryString = buildSearchParams(values);
 
-    navigate(
-      {
-        pathname: '/me/search',
-        search: `?${queryString}`,
-      },
-      { replace: isSearchPage }
-    );
+    if (isSearchPage) {
+      setSearchParams(new URLSearchParams(queryString));
+    } else {
+      navigate(
+        {
+          pathname: '/me/search',
+          search: `?${queryString}`,
+        },
+        { replace: true }
+      );
+    }
   };
 
   const formikProps = useFormik<SearchFormPayload>({

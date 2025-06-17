@@ -34,3 +34,7 @@ export interface SearchResponse {
 export interface SearchFormPayload extends Omit<SearchRequest, 'checkInDate' | 'checkOutDate'> {
   dateRange: DateRange;
 }
+
+export interface SearchFormWithTimestamp extends SearchFormPayload {
+  ts: number;
+}

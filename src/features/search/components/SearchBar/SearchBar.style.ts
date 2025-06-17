@@ -34,6 +34,7 @@ export const SearchFieldsWrapper = styled(Box)(({ theme }) => ({
   columnGap: '0.75rem',
   rowGap: '0.5rem',
   backgroundColor: theme.palette.background.paper,
+  boxShadow: theme.shadows[3],
 
   '@media (max-width: 1018px)': {
     width: '100%',

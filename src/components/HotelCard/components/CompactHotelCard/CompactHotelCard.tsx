@@ -2,9 +2,13 @@ import { ArrowForwardIos } from '@mui/icons-material';
 import { Box, IconButton, Rating, Stack, Typography } from '@mui/material';
 import { CompactHotelCardProps } from '../../HotelCard.types';
 import { CompactCardContainer, CompactHotelImage, DiscountChip } from './CompactHotelCard.style';
+import { useNavigate } from 'react-router-dom';
 
 const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
+  const navigate = useNavigate();
+
   const {
+    hotelId,
     hotelName,
     cityName,
     hotelStarRating,
@@ -21,6 +25,10 @@ const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
     visitDate,
   } = hotelData;
 
+  const onCardClick = () => {
+    navigate(`/me/hotels/${hotelId}`);
+  };
+
   const imageUrl = roomPhotoUrl || thumbnailUrl || '';
   const rating = hotelStarRating ?? starRating ?? 0;
 
@@ -31,6 +39,7 @@ const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
           src={imageUrl}
           alt={hotelName}
           style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+          onClick={onCardClick}
         />
         {discount !== undefined && (
           <DiscountChip label={`${discount}% OFF`} color="primary" size="small" />
@@ -89,7 +98,7 @@ const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
             )}
           </Box>
 
-          <IconButton aria-label={`View details for ${hotelName}`}>
+          <IconButton aria-label={`View details for ${hotelName}`} onClick={onCardClick}>
             <ArrowForwardIos fontSize="small" />
           </IconButton>
         </Stack>

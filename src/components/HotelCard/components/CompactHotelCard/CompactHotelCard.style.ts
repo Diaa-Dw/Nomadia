@@ -19,6 +19,7 @@ export const CompactHotelImage = styled('img')({
   width: '100%',
   height: 150,
   objectFit: 'cover',
+  cursor: 'pointer',
 });
 
 export const DiscountChip = styled(Chip)(({ theme }) => ({
