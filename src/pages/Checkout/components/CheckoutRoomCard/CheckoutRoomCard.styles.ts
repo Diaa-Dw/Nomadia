@@ -5,10 +5,14 @@ export const Card = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignSelf: 'start',
   flexDirection: 'column',
-  maxWidth: '440px',
+  maxWidth: '540px',
   borderRadius: '16px',
   padding: theme.spacing(2),
   boxShadow: theme.shadows[2],
+
+  [theme.breakpoints.down('md')]: {
+    alignSelf: 'center',
+  },
 }));
 
 export const RoomImage = styled('img')(({ theme }) => ({

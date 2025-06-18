@@ -3,18 +3,24 @@ import { useMutation } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
 import { BookRequest, BookResponse } from '../types';
 import { submitBookingRequest } from '../API';
+import { useAppDispatch } from '@/store';
+import { removeFromCart } from '@/features';
 
-const useSubmitBooking = () => {
+const useSubmitBooking = (roomId: number) => {
   const hasShownError = useRef(false);
+  const dipatch = useAppDispatch();
 
   const {
-    mutateAsync: submitBooking,
+    mutate: submitBooking,
     isPending,
     error,
   } = useMutation<BookResponse, unknown, BookRequest>({
     mutationFn: submitBookingRequest,
-    onSuccess: () => {
+    onSuccess: response => {
       showSuccessToast('Booking completed successfully.');
+
+      sessionStorage.setItem(`bookingResponse${roomId}`, JSON.stringify(response));
+      dipatch(removeFromCart(roomId));
     },
     onError: error => {
       console.error('Booking submission failed:', error);

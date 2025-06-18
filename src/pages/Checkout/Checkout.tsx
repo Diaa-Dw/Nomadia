@@ -1,13 +1,13 @@
 import { EmptyState } from '@/components';
 import { selectCart } from '@/features';
 import { useAppSelector } from '@/store';
-import { Box, Container, Stack } from '@mui/material';
-import { useEffect } from 'react';
-import { replace, useNavigate, useParams } from 'react-router-dom';
-import { CheckoutRoomCard } from './components';
 import { isCartItemValid, showErrorToast } from '@/utils';
-import { CheckoutForm } from './components/CheckoutForm';
+import { Container } from '@mui/material';
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CheckoutContainer } from './Checkout.style';
+import { CheckoutRoomCard } from './components';
+import { CheckoutForm } from './components/CheckoutForm';
 
 const Checkout = () => {
   const { roomId: paramsId } = useParams();
@@ -35,7 +35,7 @@ const Checkout = () => {
     <Container maxWidth="xl">
       <CheckoutContainer>
         <CheckoutRoomCard room={room} />
-        <CheckoutForm />
+        <CheckoutForm room={room} />
       </CheckoutContainer>
     </Container>
   );

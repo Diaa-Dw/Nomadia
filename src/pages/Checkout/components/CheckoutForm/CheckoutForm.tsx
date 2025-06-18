@@ -1,14 +1,15 @@
 import { TextField } from '@/components';
 import { AccountCircle, CreditCard, Email, Home, Lock, Schedule } from '@mui/icons-material';
-import { Autocomplete, Button } from '@mui/material';
+import { Autocomplete, Button, CircularProgress } from '@mui/material';
 import { FormikProvider } from 'formik';
 import { useCheckoutForm } from '../../hooks';
 import { PaymentType } from '../../types';
 import PhoneInputField from '../PhoneInputField/PhoneInputField';
 import { CheckoutFormContainer } from './CheckoutForm.styles';
+import { CheckoutFormProps } from './CheckoutForm.types';
 
-const CheckoutForm = () => {
-  const { formikProps } = useCheckoutForm();
+const CheckoutForm = ({ room }: CheckoutFormProps) => {
+  const { formikProps, isPending } = useCheckoutForm(room);
   const { isValid, dirty, setFieldValue, values } = formikProps;
 
   const isCashPayment = values.paymentMethod !== PaymentType.CREDIT_CARD;
@@ -64,8 +65,14 @@ const CheckoutForm = () => {
           multiline
           rows={4}
         />
-        <Button type="submit" variant={'contained'} disabled={!isValid || !dirty} disableElevation>
-          Confirm Booking
+        <Button
+          type="submit"
+          variant={'contained'}
+          disabled={!isValid || !dirty}
+          startIcon={isPending && <CircularProgress size={25} />}
+          disableElevation
+        >
+          {isPending ? '' : 'Confirm Booking'}
         </Button>
       </CheckoutFormContainer>
     </FormikProvider>
