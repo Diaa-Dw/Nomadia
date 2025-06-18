@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { Counter } from '../Counter';
 import { FieldContainer } from '../FieldContainer';
 import { GuestSummaryStack, GuestSummaryText, StyledMenu } from './GuestRoomDropdown.style';
+import { pluralize } from '@/utils';
 
 const GuestRoomDropdown = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -20,10 +21,6 @@ const GuestRoomDropdown = () => {
 
   const handleCloseMenu = () => setAnchorEl(null);
   const handleOpenMenu = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
-
-  const pluralize = (value: number, word: string) => {
-    return value > 1 ? `${word}s` : word;
-  };
 
   return (
     <>

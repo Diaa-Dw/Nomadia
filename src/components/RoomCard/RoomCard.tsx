@@ -1,18 +1,20 @@
 import { addToCart, removeFromCart } from '@/features';
 import { useAppDispatch } from '@/store';
 import { Room } from '@/types/room';
-import { formatDate } from '@/utils';
+import { formatDate, isCartItemValid, showErrorToast } from '@/utils';
 import { ShoppingCart } from '@mui/icons-material';
 import { Box, Button, Chip, Stack, Typography } from '@mui/material';
 import { addDays } from 'date-fns';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { RoomCardContainer, RoomImage } from './RoomCard.style';
 import { ConfirmDialog } from '../ConfirmDialog';
 import { useState } from 'react';
+import { CartItem } from '@/features/cart/types';
 
 const RoomCard = ({ room }: { room: Room }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
@@ -31,11 +33,14 @@ const RoomCard = ({ room }: { room: Room }) => {
   const checkOutDate = searchParams.get('checkOutDate') || formatDate(addDays(new Date(), 1));
   const isCartPage = pathname.includes('/cart');
 
-  const item = {
+  const item: CartItem = {
     ...room,
-    checkInDate,
-    checkOutDate,
   };
+
+  item.checkInDate = item.checkInDate || checkInDate;
+  item.checkOutDate = item.checkOutDate || checkOutDate;
+
+  const isInvalid = !isCartItemValid(item);
 
   const onAddToCart = () => {
     dispatch(addToCart(item));
@@ -45,6 +50,10 @@ const RoomCard = ({ room }: { room: Room }) => {
     dispatch(removeFromCart(roomId));
   };
 
+  const onRoomCheckout = () => {
+    navigate(`/me/checkout/${roomId}`);
+  };
+
   return (
     <RoomCardContainer>
       <Box position="relative">
@@ -52,6 +61,20 @@ const RoomCard = ({ room }: { room: Room }) => {
         {!availability && (
           <Chip
             label="Not Available"
+            color="error"
+            size="small"
+            sx={{
+              position: 'absolute',
+              top: 8,
+              right: 8,
+              fontWeight: 'bold',
+              boxShadow: 3,
+            }}
+          />
+        )}
+        {isInvalid && (
+          <Chip
+            label="Invalid date"
             color="error"
             size="small"
             sx={{
@@ -101,7 +124,14 @@ const RoomCard = ({ room }: { room: Room }) => {
           >
             Remove
           </Button>
-          <Button variant="contained" aria-label="checkout" color="primary" disableElevation>
+          <Button
+            onClick={onRoomCheckout}
+            disabled={isInvalid}
+            variant="contained"
+            aria-label="checkout"
+            color="primary"
+            disableElevation
+          >
             Checkout
           </Button>
         </Stack>

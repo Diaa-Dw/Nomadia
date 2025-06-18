@@ -1,1 +1,1 @@
-export { default as searchBarValidationSchema } from './searchBar';
+export { default as searchBarValidationSchema } from './searchBar.schema';
