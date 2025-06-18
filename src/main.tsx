@@ -8,6 +8,8 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'react-redux';
 import store from './store/index.js';
+import 'react-phone-input-2/lib/style.css';
+import 'flag-icon-css/css/flag-icons.min.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

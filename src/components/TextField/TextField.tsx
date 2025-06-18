@@ -9,7 +9,7 @@ const TextField: FC<TextFieldProps> = ({
   startIcon,
   placeholder = '',
   ...resetProps
-}) => {
+}: TextFieldProps) => {
   const [field, meta] = useField(name);
   const hasError = meta.touched && Boolean(meta.error);
 
@@ -17,19 +17,16 @@ const TextField: FC<TextFieldProps> = ({
     <InputAdornment position="start">{startIcon}</InputAdornment>
   ) : undefined;
 
-  const slotProps = {
-    input: {
-      startAdornment: startAdornmentElement,
-    },
-  };
-
   const textFieldProps = {
     ...field,
-    ...resetProps,
-    placeholder: placeholder,
+    placeholder,
     error: hasError,
     helperText: hasError ? meta.error : '',
-    slotProps,
+    ...resetProps,
+    InputProps: {
+      startAdornment: startAdornmentElement,
+      ...(resetProps.InputProps || {}),
+    },
   };
 
   return (
@@ -39,7 +36,6 @@ const TextField: FC<TextFieldProps> = ({
           {label}
         </Typography>
       )}
-
       <MuiTextField {...textFieldProps} fullWidth />
     </Box>
   );
