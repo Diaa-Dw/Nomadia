@@ -1,16 +1,30 @@
 import { Loader } from '@/containers';
-import { selectUser } from '@/features';
+import { selectUser, selectIsAdmin } from '@/features';
 import useVerifyToken from '@/hooks/userVerifyToken';
 import { useAppSelector } from '@/store';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 
 const PrivateWrapper = () => {
+  const { pathname } = useLocation();
   const { isAuthenticating } = useVerifyToken();
   const { isAuthenticated } = useAppSelector(selectUser);
+  const isAdmin = useAppSelector(selectIsAdmin);
 
-  if (isAuthenticating) return <Loader />;
+  const isAdminRoute = pathname.startsWith('/me/admin');
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/unauthorized" replace />;
+  if (isAuthenticating) {
+    return <Loader />;
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (isAdminRoute && !isAdmin) {
+    return <Navigate to="/me" replace />;
+  }
+
+  return <Outlet />;
 };
 
 export default PrivateWrapper;
