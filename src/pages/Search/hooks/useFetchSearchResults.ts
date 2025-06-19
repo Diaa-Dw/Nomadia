@@ -10,23 +10,31 @@ const useFetchSearchResults = () => {
 
   const formPayload = parseSearchQueryParams(search);
 
-  const requestPayload: SearchRequest = {
-    city: formPayload.city,
-    checkInDate: formatDate(formPayload.dateRange.checkInDate),
-    checkOutDate: formatDate(formPayload.dateRange.checkOutDate),
-    adults: formPayload.adults,
-    children: formPayload.children,
-    numberOfRooms: formPayload.numberOfRooms,
-    starRate: formPayload.starRate,
-    sort: formPayload.sort,
-  };
+  const isValid =
+    !!formPayload.city &&
+    !!formPayload.dateRange?.checkInDate &&
+    !!formPayload.dateRange?.checkOutDate &&
+    formPayload.adults != null &&
+    formPayload.children != null &&
+    formPayload.numberOfRooms != null;
 
-  const hasRequiredParams = !!requestPayload.city;
+  const requestPayload: SearchRequest | null = isValid
+    ? {
+        city: formPayload.city,
+        checkInDate: formatDate(formPayload.dateRange.checkInDate),
+        checkOutDate: formatDate(formPayload.dateRange.checkOutDate),
+        adults: formPayload.adults,
+        children: formPayload.children,
+        numberOfRooms: formPayload.numberOfRooms,
+        starRate: formPayload.starRate,
+        sort: formPayload.sort,
+      }
+    : null;
 
-  const { data: searchResults, isPending } = useQuery({
+  const { data: searchResults, isFetching: isPending } = useQuery({
     queryKey: [SEARCH_QUERY_KEY, requestPayload],
-    queryFn: () => fetchSearchResults(requestPayload),
-    enabled: hasRequiredParams,
+    queryFn: () => fetchSearchResults(requestPayload!),
+    enabled: !!requestPayload,
   });
 
   return { searchResults, isPending };

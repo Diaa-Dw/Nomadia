@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import L from 'leaflet';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { HotelMapProps } from './HotelMap.types';
 
@@ -27,4 +27,4 @@ const HotelMap = ({ lat, lng, name }: HotelMapProps) => {
   );
 };
 
-export default HotelMap;
+export default memo(HotelMap);

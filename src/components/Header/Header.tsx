@@ -1,28 +1,32 @@
 import { selectUser } from '@/features';
 import { useAppSelector } from '@/store';
-import { AppBar, Container, Stack, Toolbar, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, Container, IconButton, Stack, Toolbar, Typography } from '@mui/material';
+import { ShoppingCart } from '../ShoppingCart';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import { UserMenu } from '../UserMenu';
-import { ShoppingCart } from '../ShoppingCart';
+import { HeaderPorps } from './Header.types';
 
-const Header = () => {
+const Header = ({ onOpenSidebar }: HeaderPorps) => {
   const { isAuthenticated } = useAppSelector(selectUser);
 
   return (
-    <AppBar position={'static'} color={'transparent'}>
+    <AppBar position="static" color="transparent" elevation={0}>
       <Container maxWidth="xl">
-        <Toolbar>
-          <Typography
-            component={'h1'}
-            variant={'h2'}
-            fontWeight={600}
-            color="primary"
-            sx={{ flexGrow: 1 }}
-          >
-            Nomadia
-          </Typography>
+        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            {onOpenSidebar && (
+              <IconButton onClick={onOpenSidebar} edge="start" color="inherit" sx={{ mr: 1 }}>
+                <MenuIcon />
+              </IconButton>
+            )}
+            <Typography component="h1" variant="h2" fontWeight={600} color="primary" noWrap>
+              Nomadia
+            </Typography>
+          </Stack>
+
           {isAuthenticated ? (
-            <Stack direction={'row'} gap={3}>
+            <Stack direction="row" spacing={2} alignItems="center">
               <ShoppingCart />
               <UserMenu />
             </Stack>
