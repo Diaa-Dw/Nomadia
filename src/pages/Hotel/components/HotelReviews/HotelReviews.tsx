@@ -1,19 +1,19 @@
+import { Star } from '@mui/icons-material';
 import {
   Avatar,
   Box,
   Button,
   Divider,
   MenuItem,
-  Rating,
   Select,
   Skeleton,
   Stack,
-  Typography,
+  Typography
 } from '@mui/material';
 import { useState } from 'react';
 import { useFetchHotelReviews } from '../../hooks';
-import { HotelReviewsProps, Order } from './HotelReviews.types';
 import { INITIAL_REVIEW_COUNT } from '../../Hotel.constants';
+import { HotelReviewsProps, Order } from './HotelReviews.types';
 
 const HotelReviews = ({ id }: HotelReviewsProps) => {
   const { hotelReviews, isPending } = useFetchHotelReviews(id);
@@ -60,7 +60,12 @@ const HotelReviews = ({ id }: HotelReviewsProps) => {
               <Avatar sx={{ bgcolor: 'primary.main' }}>{review.customerName.charAt(0)}</Avatar>
               <Box>
                 <Typography fontWeight={600}>{review.customerName}</Typography>
-                <Rating value={review.rating} readOnly precision={0.1} size="small" />
+                <Stack direction={'row'} gap={0.5} >
+                  <Typography variant="body2" fontWeight={500}>
+                    {review.rating}
+                  </Typography>
+                  <Star sx={{ color: 'gold', fontSize: 16 }} />
+                </Stack>
               </Box>
             </Stack>
 
