@@ -1,13 +1,10 @@
-import { useEffect, useRef } from 'react';
-import { fetchHotelRooms } from '../API';
-import { fetchHotelRoomsProps } from '../types';
-import { HOTEL_ROOMS_QUERY_KEY } from '../Hotel.constants';
+import { useErrorToastOnce } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
-import { showErrorToast } from '@/utils';
+import { fetchHotelRooms } from '../API';
+import { HOTEL_ROOMS_QUERY_KEY } from '../Hotel.constants';
+import { fetchHotelRoomsProps } from '../types';
 
 const useFetchHotelRooms = ({ hotelId, checkInDate, checkOutDate }: fetchHotelRoomsProps) => {
-  const hasShownError = useRef(false);
-
   const {
     data: hotelRooms,
     isPending,
@@ -17,12 +14,7 @@ const useFetchHotelRooms = ({ hotelId, checkInDate, checkOutDate }: fetchHotelRo
     queryKey: [HOTEL_ROOMS_QUERY_KEY, hotelId, checkInDate, checkOutDate],
   });
 
-  useEffect(() => {
-    if (error && !hasShownError.current) {
-      showErrorToast('Failed to load hotel data.');
-      hasShownError.current = true;
-    }
-  }, [error]);
+  useErrorToastOnce(error, `Failed to load hotel's rooms data.`);
 
   return { hotelRooms, isPending };
 };

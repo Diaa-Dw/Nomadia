@@ -1,13 +1,12 @@
+import { removeFromCart } from '@/features';
+import { useErrorToastOnce } from '@/hooks';
+import { useAppDispatch } from '@/store';
 import { showErrorToast, showSuccessToast } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
-import { useEffect, useRef } from 'react';
-import { BookRequest, BookResponse } from '../types';
 import { submitBookingRequest } from '../API';
-import { useAppDispatch } from '@/store';
-import { removeFromCart } from '@/features';
+import { BookRequest, BookResponse } from '../types';
 
 const useSubmitBooking = (roomId: number) => {
-  const hasShownError = useRef(false);
   const dipatch = useAppDispatch();
 
   const {
@@ -28,12 +27,7 @@ const useSubmitBooking = (roomId: number) => {
     },
   });
 
-  useEffect(() => {
-    if (error && !hasShownError.current) {
-      showErrorToast('Failed to load hotel data.');
-      hasShownError.current = true;
-    }
-  }, [error]);
+  useErrorToastOnce(error, 'Failed to load hotel data.');
 
   return { submitBooking, isPending };
 };

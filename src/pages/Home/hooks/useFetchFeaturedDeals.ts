@@ -1,12 +1,9 @@
-import { showErrorToast } from '@/utils';
+import { useErrorToastOnce } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { fetchFeaturedDeals } from '../API';
 import { FEATURED_DEALS_QUERY_KEY } from '../Home.constants';
-import { useEffect, useRef } from 'react';
 
 const useFetchFeaturedDeals = () => {
-  const hasShownError = useRef(false);
-
   const {
     data: featuredDeals,
     isFetching,
@@ -17,12 +14,10 @@ const useFetchFeaturedDeals = () => {
     retry: 1,
   });
 
-  useEffect(() => {
-    if (error && !hasShownError.current) {
-      showErrorToast('Failed to load featured deals. Please check your connection and try again');
-      hasShownError.current = true;
-    }
-  }, [error]);
+  useErrorToastOnce(
+    error,
+    'Failed to load featured deals. Please check your connection and try again.'
+  );
 
   return { featuredDeals, isFetching };
 };
