@@ -1,3 +1,5 @@
+import { InfiniteData } from '@tanstack/react-query';
+
 export interface City {
   id: number;
   name: string;
@@ -38,3 +40,5 @@ export interface CityFilters {
   name?: string;
   searchQuery?: string;
 }
+
+export type CitiesInfiniteData = InfiniteData<City[]>;
