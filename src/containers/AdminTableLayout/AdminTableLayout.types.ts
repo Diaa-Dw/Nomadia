@@ -30,6 +30,7 @@ export interface AdminTableLayoutProps<T, F> {
   onAdd: () => void;
   onRowClick: (row: T) => void;
   onDelete: (row: T) => void;
+  isDeleting: boolean;
   rowsPerPage: number;
   onSearchChange: (value: string) => void;
   searchValue: string;

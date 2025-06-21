@@ -7,4 +7,5 @@ export interface AdminTableProps<T> {
   isError: boolean;
   onRowClick: (row: T) => void;
   onDelete: (row: T) => void;
+  isDeleting: boolean;
 }

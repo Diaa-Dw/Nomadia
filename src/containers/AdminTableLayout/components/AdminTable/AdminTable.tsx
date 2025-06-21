@@ -18,6 +18,7 @@ function AdminTable<T extends { id: number }>({
   isError,
   onRowClick,
   onDelete,
+  isDeleting,
 }: AdminTableProps<T>) {
   const colSpan = columns.length + 1;
 
@@ -56,6 +57,7 @@ function AdminTable<T extends { id: number }>({
                 columns={columns}
                 onRowClick={onRowClick}
                 onDelete={onDelete}
+                isDeleting={isDeleting}
               />
             ))
           )}

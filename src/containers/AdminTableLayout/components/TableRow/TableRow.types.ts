@@ -5,4 +5,5 @@ export interface DataRowProps<T> {
   columns: Column<T>[];
   onRowClick: (row: T) => void;
   onDelete: (row: T) => void;
+  isDeleting: boolean;
 }

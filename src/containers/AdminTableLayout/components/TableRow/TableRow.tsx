@@ -1,9 +1,15 @@
 import { Delete } from '@mui/icons-material';
-import { IconButton, TableCell, TableRow } from '@mui/material';
+import { CircularProgress, IconButton, TableCell, TableRow } from '@mui/material';
 import { JSX, memo } from 'react';
 import { DataRowProps } from './TableRow.types';
 
-const DataRowComponent = <T,>({ row, columns, onRowClick, onDelete }: DataRowProps<T>) => (
+const DataRowComponent = <T,>({
+  row,
+  columns,
+  onRowClick,
+  onDelete,
+  isDeleting,
+}: DataRowProps<T>) => (
   <TableRow hover onClick={() => onRowClick(row)} sx={{ cursor: 'pointer' }}>
     {columns.map(col => (
       <TableCell key={col.label} align={col.align || 'left'}>
@@ -11,8 +17,8 @@ const DataRowComponent = <T,>({ row, columns, onRowClick, onDelete }: DataRowPro
       </TableCell>
     ))}
     <TableCell align="right" onClick={e => e.stopPropagation()}>
-      <IconButton color="error" onClick={() => onDelete(row)}>
-        <Delete />
+      <IconButton disabled={isDeleting} color="error" onClick={() => onDelete(row)}>
+        {isDeleting ? <CircularProgress /> : <Delete />}
       </IconButton>
     </TableCell>
   </TableRow>

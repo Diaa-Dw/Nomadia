@@ -31,7 +31,7 @@ export const updateCityRequest = async (city: UpdateCityRequest): Promise<City> 
   return city;
 };
 
-export const deleteCityRequest = async (cityId: number) => {
+export const deleteCityRequest = async (cityId: number): Promise<number> => {
   await axios.delete(`/cities/${cityId}`);
 
   return cityId;

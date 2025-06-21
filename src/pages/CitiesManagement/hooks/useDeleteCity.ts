@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteCityRequest } from '../API';
 import { CITIES_QUERY_KEY } from '../constants';
-import { CitiesInfiniteData } from '../types';
+import { CitiesInfiniteData, CityFilters } from '../types';
 import { showErrorToast, showSuccessToast } from '@/utils';
 
-const useDeleteCity = () => {
+const useDeleteCity = (filters: CityFilters) => {
   const queryClient = useQueryClient();
 
   const {
@@ -15,14 +15,17 @@ const useDeleteCity = () => {
     mutationFn: deleteCityRequest,
 
     onSuccess: deletedCityId => {
-      queryClient.setQueryData<CitiesInfiniteData>([CITIES_QUERY_KEY], prev => {
+      queryClient.setQueryData<CitiesInfiniteData>([CITIES_QUERY_KEY, filters], prev => {
+        console.log('🚀 ~ prev:', prev);
+
         if (!prev) return prev;
 
         const updatedPages = prev.pages.map(page => page.filter(city => city.id !== deletedCityId));
 
-        return { ...prev, pages: updatedPages };
+        const newData = { ...prev, pages: updatedPages };
+        console.log('✅ Cache after delete:', newData);
+        return newData;
       });
-
       showSuccessToast('City deleted successfully.');
     },
 
