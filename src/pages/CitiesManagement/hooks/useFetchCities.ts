@@ -1,41 +1,29 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { CITIES_PER_PAGE, CITIES_QUERY_KEY } from '../constants';
 import { fetchCities } from '../API';
+import { CITIES_PER_PAGE, CITIES_QUERY_KEY } from '../constants';
 import { useErrorToastOnce } from '@/hooks';
-import { useState } from 'react';
+import { CityFilters } from '../types';
 
-const useFetchCities = (filters: { filterField?: string; searchQuery?: string }) => {
-  const [page, setPage] = useState(1);
-
+const useFetchCities = (filters: CityFilters) => {
   const { data, isFetching, error, fetchNextPage, isFetchingNextPage, hasNextPage } =
     useInfiniteQuery({
       queryKey: [CITIES_QUERY_KEY, filters],
-      queryFn: ({ pageParam = 1 }) =>
-        fetchCities(pageParam, CITIES_PER_PAGE, filters.filterField, filters.searchQuery),
+      queryFn: ({ pageParam = 1 }) => fetchCities(pageParam, CITIES_PER_PAGE, filters),
       getNextPageParam: (lastPage, allPages) =>
         lastPage.length < CITIES_PER_PAGE ? undefined : allPages.length + 1,
       initialPageParam: 1,
     });
 
-  useErrorToastOnce(error, 'Faild to load cities. Please try again later.');
+  useErrorToastOnce(error, 'Failed to load cities. Please try again later.');
 
-  const handlePageChange = async (newPage: number) => {
-    if (newPage > page && hasNextPage) {
-      await fetchNextPage();
-    }
-    setPage(newPage);
-  };
-
-  const cities = data?.pages.flat() ?? [];
+  const cities = data?.pages.flatMap(page => page) ?? [];
 
   return {
     cities,
     isFetching,
-    error,
-    fetchNextPage,
     isFetchingNextPage,
+    fetchNextPage,
     hasNextPage,
-    onPageChange: handlePageChange,
   };
 };
 

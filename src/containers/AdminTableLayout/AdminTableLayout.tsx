@@ -1,25 +1,25 @@
-import { Container } from '@mui/material';
+import { Button, Container, Stack } from '@mui/material';
 import { AdminTableLayoutProps, SearchFormBase } from './AdminTableLayout.types';
-import { AdminTable, AdminTableHeader, AdminTablePagination } from './components';
+import { AdminTable, AdminTableHeader } from './components';
+import { JSX, memo } from 'react';
 
-const AdminTableLayout = <T, F extends SearchFormBase>({
+function AdminTableLayoutComponet<T extends { id: number }, F extends SearchFormBase>({
   title,
   columns,
   data,
-  isLoading,
+  isFetching,
+  isFetchingNextPage,
+  fetchNextPage,
   isError,
   onAdd,
   onRowClick,
   onDelete,
-  page,
-  rowsPerPage,
-  onPageChange,
   onSearchChange,
   searchValue,
   hasNextPage,
   formikProps,
   searchOptions,
-}: AdminTableLayoutProps<T, F>) => {
+}: AdminTableLayoutProps<T, F>) {
   return (
     <Container maxWidth="xl" sx={{ padding: 3 }}>
       <AdminTableHeader<T, F>
@@ -33,20 +33,27 @@ const AdminTableLayout = <T, F extends SearchFormBase>({
       <AdminTable<T>
         columns={columns}
         data={data}
-        isLoading={isLoading}
+        isLoading={isFetching}
         isError={isError}
         onRowClick={onRowClick}
         onDelete={onDelete}
       />
-
-      <AdminTablePagination
-        page={page}
-        rowsPerPage={rowsPerPage}
-        onPageChange={onPageChange}
-        hasNextPage={hasNextPage}
-      />
+      {hasNextPage && fetchNextPage && (
+        <Stack direction="row" justifyContent="center" mt={2}>
+          <Button variant="outlined" onClick={fetchNextPage} disabled={isFetchingNextPage}>
+            {isFetchingNextPage ? 'Loading more...' : 'Load More'}
+          </Button>
+        </Stack>
+      )}
     </Container>
   );
-};
+}
+
+const AdminTableLayout = memo(AdminTableLayoutComponet) as <
+  T extends { id: number },
+  F extends SearchFormBase,
+>(
+  props: AdminTableLayoutProps<T, F>
+) => JSX.Element;
 
 export default AdminTableLayout;

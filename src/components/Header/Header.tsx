@@ -1,4 +1,4 @@
-import { selectUser } from '@/features';
+import { selectIsAdmin, selectUser } from '@/features';
 import { useAppSelector } from '@/store';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Container, IconButton, Stack, Toolbar, Typography } from '@mui/material';
@@ -9,6 +9,7 @@ import { HeaderPorps } from './Header.types';
 
 const Header = ({ onOpenSidebar }: HeaderPorps) => {
   const { isAuthenticated } = useAppSelector(selectUser);
+  const isAdmin = useAppSelector(selectIsAdmin);
 
   return (
     <AppBar position="static" color="transparent" elevation={0}>
@@ -27,7 +28,7 @@ const Header = ({ onOpenSidebar }: HeaderPorps) => {
 
           {isAuthenticated ? (
             <Stack direction="row" spacing={2} alignItems="center">
-              <ShoppingCart />
+              {!isAdmin && <ShoppingCart />}
               <UserMenu />
             </Stack>
           ) : (

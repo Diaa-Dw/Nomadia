@@ -1,9 +1,10 @@
 import { Column } from '@/containers/AdminTableLayout/AdminTableLayout.types';
-import { City, SearchFormValues } from '../types';
+import { AddCityRequest, City, SearchFormValues } from '../types';
 
 export const CITIES_QUERY_KEY = 'cities';
 export const CITIES_PER_PAGE = 10;
 
+export const CITY_DIALOG_INTIAL_VALUES:AddCityRequest = { name: '', description: '' };
 export const INITIAL_VALUES: SearchFormValues = {
   filterField: 'name',
   searchValue: '',

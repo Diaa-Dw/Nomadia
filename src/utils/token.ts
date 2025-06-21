@@ -28,8 +28,6 @@ export const parseJwtToLoginPayload = (token: string): LoginPayload | null => {
 export const isTokenExpired = (expirationDate: number): boolean => {
   const expDate = new Date(expirationDate * 1000);
   const currentDate = new Date();
-  console.log('🚀 ~ isTokenExpired ~ expDate:', expDate);
-  console.log('🚀 ~ isTokenExpired ~ currentDate:', currentDate);
 
   return expDate <= currentDate;
 };

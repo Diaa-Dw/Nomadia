@@ -23,14 +23,14 @@ export interface AdminTableLayoutProps<T, F> {
   title: string;
   columns: Column<T>[];
   data: T[];
-  isLoading: boolean;
+  isFetching: boolean;
+  isFetchingNextPage: boolean;
   isError: boolean;
+  fetchNextPage: () => void;
   onAdd: () => void;
   onRowClick: (row: T) => void;
-  onDelete?: (row: T) => void;
-  page: number;
+  onDelete: (row: T) => void;
   rowsPerPage: number;
-  onPageChange: (page: number) => void;
   onSearchChange: (value: string) => void;
   searchValue: string;
   hasNextPage: boolean;

@@ -1,7 +1,7 @@
-import { useField } from 'formik';
 import { Box, InputAdornment, TextField as MuiTextField, Typography } from '@mui/material';
+import { useField } from 'formik';
+import { type FC } from 'react';
 import type { TextFieldProps } from './';
-import type { FC } from 'react';
 
 const TextField: FC<TextFieldProps> = ({
   name,

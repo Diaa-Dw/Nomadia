@@ -11,7 +11,7 @@ import {
 import { DataRow } from '../TableRow';
 import { AdminTableProps } from './AdminTable.types';
 
-function AdminTable<T extends { id: number; roomId: number }>({
+function AdminTable<T extends { id: number }>({
   columns,
   data,
   isLoading,
@@ -22,7 +22,7 @@ function AdminTable<T extends { id: number; roomId: number }>({
   const colSpan = columns.length + 1;
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ maxHeight: '70vh' }}>
       <Table sx={{ minWidth: 700 }}>
         <TableHead>
           <TableRow>
@@ -49,8 +49,14 @@ function AdminTable<T extends { id: number; roomId: number }>({
               </TableCell>
             </TableRow>
           ) : (
-            data.map(row => (
-              <DataRow row={row} columns={columns} onRowClick={onRowClick} onDelete={onDelete} />
+            data.map((row, idx) => (
+              <DataRow
+                key={row.id ?? idx}
+                row={row}
+                columns={columns}
+                onRowClick={onRowClick}
+                onDelete={onDelete}
+              />
             ))
           )}
         </TableBody>

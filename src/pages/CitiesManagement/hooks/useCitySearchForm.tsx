@@ -15,9 +15,8 @@ const useCitySearchForm = () => {
 
   const filters = useMemo(
     () => ({
-      name: debouncedValues.filterField === 'name' ? debouncedValues.searchValue : undefined,
-      searchQuery:
-        debouncedValues.filterField === 'description' ? debouncedValues.searchValue : undefined,
+      name: debouncedValues.filterField === 'name' ? debouncedValues.searchValue : '',
+      searchQuery: debouncedValues.filterField === 'description' ? debouncedValues.searchValue : '',
     }),
     [debouncedValues]
   );
