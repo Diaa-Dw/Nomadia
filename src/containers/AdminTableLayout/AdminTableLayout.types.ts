@@ -1,16 +1,30 @@
-import { UseQueryResult } from '@tanstack/react-query';
+import { FormikProps } from 'formik';
+import { ReactNode } from 'react';
 
 export interface Column<T> {
   label: string;
   accessor: keyof T;
   align?: 'left' | 'center' | 'right';
-  render?: (value: unknown, row: T) => React.ReactNode;
+  filterable?: boolean;
+  render?: (value: unknown, row: T) => ReactNode;
 }
 
-export interface AdminTableLayoutProps<T> {
+export interface SearchOption<T> {
+  label: string;
+  value: keyof T;
+}
+
+export interface SearchFormBase {
+  filterField: string;
+  searchValue: string;
+}
+
+export interface AdminTableLayoutProps<T, F> {
   title: string;
   columns: Column<T>[];
-  queryResult: UseQueryResult<{ data: T[]; total: number }>;
+  data: T[];
+  isLoading: boolean;
+  isError: boolean;
   onAdd: () => void;
   onRowClick: (row: T) => void;
   onDelete?: (row: T) => void;
@@ -19,4 +33,7 @@ export interface AdminTableLayoutProps<T> {
   onPageChange: (page: number) => void;
   onSearchChange: (value: string) => void;
   searchValue: string;
+  hasNextPage: boolean;
+  formikProps: FormikProps<F>;
+  searchOptions: SearchOption<T>[];
 }

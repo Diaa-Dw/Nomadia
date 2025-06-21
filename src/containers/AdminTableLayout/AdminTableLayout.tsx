@@ -1,11 +1,13 @@
 import { Container } from '@mui/material';
-import { AdminTableLayoutProps } from './AdminTableLayout.types';
+import { AdminTableLayoutProps, SearchFormBase } from './AdminTableLayout.types';
 import { AdminTable, AdminTableHeader, AdminTablePagination } from './components';
 
-const AdminTableLayout = <T,>({
+const AdminTableLayout = <T, F extends SearchFormBase>({
   title,
   columns,
-  queryResult,
+  data,
+  isLoading,
+  isError,
   onAdd,
   onRowClick,
   onDelete,
@@ -14,20 +16,23 @@ const AdminTableLayout = <T,>({
   onPageChange,
   onSearchChange,
   searchValue,
-}: AdminTableLayoutProps<T>) => {
-  const { data, isLoading, isError } = queryResult;
-
+  hasNextPage,
+  formikProps,
+  searchOptions,
+}: AdminTableLayoutProps<T, F>) => {
   return (
     <Container maxWidth="xl" sx={{ padding: 3 }}>
-      <AdminTableHeader
+      <AdminTableHeader<T, F>
         title={title}
         searchValue={searchValue}
         onSearchChange={onSearchChange}
         onAdd={onAdd}
+        searchOptions={searchOptions}
+        formikProps={formikProps}
       />
-      <AdminTable
+      <AdminTable<T>
         columns={columns}
-        data={data?.data || []}
+        data={data}
         isLoading={isLoading}
         isError={isError}
         onRowClick={onRowClick}
@@ -37,8 +42,8 @@ const AdminTableLayout = <T,>({
       <AdminTablePagination
         page={page}
         rowsPerPage={rowsPerPage}
-        total={data?.total || 0}
         onPageChange={onPageChange}
+        hasNextPage={hasNextPage}
       />
     </Container>
   );

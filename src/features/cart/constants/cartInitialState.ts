@@ -2,7 +2,6 @@ import { getCartItems } from '@/utils';
 import { CartState } from '../types';
 
 const items = getCartItems();
-console.log('🚀 ~ items:', items);
 
 export const cartInitialState: CartState = {
   items,

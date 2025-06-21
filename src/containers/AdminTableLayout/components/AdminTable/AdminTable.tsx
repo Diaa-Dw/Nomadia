@@ -24,7 +24,7 @@ const AdminTable = <T,>({
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }}>
+      <Table sx={{ minWidth: 70 }}>
         <TableHead>
           <TableRow>
             {columns.map(col => (
@@ -69,7 +69,7 @@ const AdminTable = <T,>({
                 })}
                 {onDelete && (
                   <TableCell align="right" onClick={e => e.stopPropagation()}>
-                    <IconButton onClick={() => onDelete(row)}>
+                    <IconButton color="error" onClick={() => onDelete(row)}>
                       <Delete />
                     </IconButton>
                   </TableCell>

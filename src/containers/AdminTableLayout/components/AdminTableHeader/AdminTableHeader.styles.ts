@@ -7,7 +7,7 @@ export const Stack = styled(MuiStack)(({ theme }) => ({
   gap: theme.spacing(1.2),
   marginBottom: theme.spacing(1.2),
 
-  ['@media (max-width: 740px)']: {
+  ['@media (max-width: 800px)']: {
     flexDirection: 'column',
     '& > *': {
       textAlign: 'center',
