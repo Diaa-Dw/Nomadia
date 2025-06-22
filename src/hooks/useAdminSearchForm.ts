@@ -3,7 +3,7 @@ import { INITIAL_VALUES } from '../constants';
 import { useDebounce } from '@/hooks';
 import { useMemo } from 'react';
 
-const useCitySearchForm = () => {
+const useAdminSearchForm = () => {
   const formikProps = useFormik({
     initialValues: INITIAL_VALUES,
     onSubmit: () => {},
@@ -29,4 +29,4 @@ const useCitySearchForm = () => {
   };
 };
 
-export default useCitySearchForm;
+export default useAdminSearchForm;

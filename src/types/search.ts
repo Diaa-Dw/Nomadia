@@ -43,3 +43,10 @@ export interface Filters {
   name?: string;
   searchQuery?: string;
 }
+
+type FilterField = 'name' | 'description';
+
+export interface SearchFormValues {
+  filterField: FilterField;
+  searchValue: string;
+}

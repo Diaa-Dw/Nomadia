@@ -1,14 +1,15 @@
+import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { AdminTableLayout } from '@/containers';
+import { useAdminSearchForm } from '@/hooks';
 import { Container } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { CityDialog } from './components';
 import { CITIES_PER_PAGE, CITY_COLUMNS } from './constants';
-import useCitySearchForm from './hooks/useCitySearchForm';
+import useDeleteCity from './hooks/useDeleteCity';
 import useFetchCities from './hooks/useFetchCities';
 import useCityMutation from './hooks/useMutateCity';
-import useDeleteCity from './hooks/useDeleteCity';
-import { City, SearchFormValues } from './types';
-import { ConfirmDialog } from '@/components/ConfirmDialog';
+import { City } from './types';
+import { SearchFormValues } from '@/types';
 
 function CityManagement() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -20,7 +21,7 @@ function CityManagement() {
   const isEditMode = Boolean(selectedCity);
   const mode = isEditMode ? 'edit' : 'add';
 
-  const { formikProps, filters } = useCitySearchForm();
+  const { formikProps, filters } = useAdminSearchForm();
   const { cities, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useFetchCities(filters);
 
