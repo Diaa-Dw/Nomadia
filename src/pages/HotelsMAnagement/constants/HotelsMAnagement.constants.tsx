@@ -1,10 +1,20 @@
 import { Column } from '@/containers/AdminTableLayout/AdminTableLayout.types';
-import { Hotel } from '../types/HotelsMAnagement.types';
+import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
 import { Box } from '@mui/material';
 import { HotelMap } from '@/pages/Hotel/components';
 
 export const HOTELS_QUERY_KEY = 'hotels';
 export const HOTELS_PER_PAGE = 10;
+
+export const HOTEL_INITIAL_VALUES: AddHotelRequest = {
+  cityId: null,
+  name: '',
+  description: '',
+  hotelType: 1,
+  starRating: 5,
+  latitude: 41.0082,
+  longitude: 28.9784,
+};
 
 export const HOTEL_COLUMNS: Column<Hotel>[] = [
   {
@@ -39,4 +49,10 @@ export const HOTEL_COLUMNS: Column<Hotel>[] = [
       </Box>
     ),
   },
+];
+
+export const hotelTypeOptions = [
+  { label: 'Lodge', value: 0 },
+  { label: 'Hotel', value: 1 },
+  { label: 'Resort', value: 2 },
 ];

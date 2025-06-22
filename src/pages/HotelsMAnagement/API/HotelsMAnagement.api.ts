@@ -1,6 +1,7 @@
-import { Filters } from '@/types';
-import { AddHotelRequest, Hotel, UpdateHotelRequest } from '../types/HotelsMAnagement.types';
 import axios from '@/api';
+import { City } from '@/pages/CitiesManagement/types';
+import { Filters } from '@/types';
+import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
 
 export const fetchHotels = async (
   pageNumber: number,
@@ -21,12 +22,24 @@ export const fetchHotels = async (
 };
 
 export const addHotel = async (hotel: AddHotelRequest): Promise<Hotel> => {
-  const response = await axios.post('/cities/1/hotels', hotel);
+  const { cityId } = hotel;
+  const response = await axios.post(`/cities/${cityId}/hotels`, hotel);
 
   return response.data;
 };
 
-export const updateHotel = async ({ hotelId, ...rest }: UpdateHotelRequest): Promise<number> => {
+export const updateHotel = async ({ id: hotelId, ...rest }: Hotel): Promise<number> => {
   await axios.put(`/hotels/${hotelId}`, rest);
+
   return hotelId;
+};
+
+export const fetchCities = async (name: string): Promise<City[]> => {
+  const response = await axios.get<City[]>('/cities', {
+    params: {
+      name,
+    },
+  });
+
+  return response.data;
 };

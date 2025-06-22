@@ -1,19 +1,17 @@
+import { showErrorToast, showSuccessToast } from '@/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { AddHotelRequest, Hotel, UpdateHotelRequest } from '../types/HotelsMAnagement.types';
 import { addHotel, updateHotel } from '../API';
 import { HOTELS_QUERY_KEY } from '../constants';
-import { showErrorToast, showSuccessToast } from '@/utils';
+import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
 
 const useHotelMutation = (mode: 'add' | 'edit') => {
   const queryClient = useQueryClient();
 
-  const mutationFn = async (
-    values: AddHotelRequest | UpdateHotelRequest
-  ): Promise<Hotel | number> => {
+  const mutationFn = async (values: AddHotelRequest | Hotel): Promise<Hotel | number> => {
     if (mode === 'add') {
       return await addHotel(values as AddHotelRequest);
     } else {
-      return await updateHotel(values as UpdateHotelRequest);
+      return await updateHotel(values as Hotel);
     }
   };
 

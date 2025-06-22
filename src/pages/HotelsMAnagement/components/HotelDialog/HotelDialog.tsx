@@ -9,19 +9,20 @@ import {
   Divider,
   Drawer,
   IconButton,
+  MenuItem,
   Rating,
   Stack,
   Typography,
 } from '@mui/material';
 import { Form, FormikProvider } from 'formik';
-import { HOTEL_INITIAL_VALUES } from '../../constants';
+import { HOTEL_INITIAL_VALUES, hotelTypeOptions } from '../../constants';
 import useHotelMutation from '../../hooks/useHotelMutation';
 import useHotelsForms from '../../hooks/useHotelsForm';
 import { HotelDialogProps } from './HotelDialog.types';
 import { CitySelect } from '../CitySelect';
 
 const HotelDrawer = ({ open, onClose, isEditMode, selectedHotel }: HotelDialogProps) => {
-  const initialValues = selectedHotel ?? HOTEL_INITIAL_VALUES;
+  const initialValues = selectedHotel ?? { ...HOTEL_INITIAL_VALUES };
   const { mutateAsync, isPending } = useHotelMutation(isEditMode ? 'edit' : 'add');
   const formikProps = useHotelsForms({ initialValues, mutateAsync, onClose });
 
@@ -60,7 +61,13 @@ const HotelDrawer = ({ open, onClose, isEditMode, selectedHotel }: HotelDialogPr
               placeholder="e.g., Red Rose is a 5-star hotel"
             />
 
-            <TextField name="hotelType" label="Hotel Type" placeholder="e.g., Resort" />
+            <TextField name="hotelType" label="Hotel Type" select fullWidth>
+              {hotelTypeOptions.map(option => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
             <Stack gap={0.25} pb={1.5}>
               <Typography variant="caption" color="GrayText" pl={0.5}>

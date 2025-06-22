@@ -8,8 +8,12 @@ export interface Hotel {
   longitude: number;
 }
 
-export type CreateHotelRequest = Omit<Hotel, 'id'>
+export interface AddHotelRequest extends Omit<Hotel, 'id'> {
+  cityId: number | null;
+}
 
-export interface UpdateHotelRequest extends CreateHotelRequest {
-  hotelId: number;
+export interface UseHotelsFormProps {
+  initialValues: AddHotelRequest | Hotel;
+  mutateAsync: (values: AddHotelRequest | Hotel) => Promise<Hotel | number>;
+  onClose: () => void;
 }
