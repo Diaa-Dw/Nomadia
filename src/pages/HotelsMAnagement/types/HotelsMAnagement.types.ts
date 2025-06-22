@@ -1,3 +1,5 @@
+import { InfiniteData } from '@tanstack/react-query';
+
 export interface Hotel {
   id: number;
   name: string;
@@ -17,3 +19,5 @@ export interface UseHotelsFormProps {
   mutateAsync: (values: AddHotelRequest | Hotel) => Promise<Hotel | number>;
   onClose: () => void;
 }
+
+export type HotelsInfiniteData = InfiniteData<Hotel[]>;

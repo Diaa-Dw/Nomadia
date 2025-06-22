@@ -43,3 +43,12 @@ export const fetchCities = async (name: string): Promise<City[]> => {
 
   return response.data;
 };
+
+export const deleteHotelApi = async (hotelId: number) => {
+  const res = await axios.get(`/hotels/${hotelId}`);
+  const { cityId } = res.data;
+
+  await axios.delete(`/cities/${cityId}/hotels/${hotelId}`);
+
+  return hotelId;
+};

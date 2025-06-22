@@ -1,24 +1,22 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteCityRequest } from '../API';
-import { CITIES_QUERY_KEY } from '../constants';
-import { CitiesInfiniteData } from '../types';
 import { showErrorToast, showSuccessToast } from '@/utils';
 import { Filters } from '@/types';
+import { deleteHotelApi } from '../API';
+import { HotelsInfiniteData } from '../types/HotelsMAnagement.types';
+import { HOTELS_PER_PAGE } from '../constants';
 
-const useDeleteCity = (filters: Filters) => {
+const useDeleteHotel = (filters: Filters) => {
   const queryClient = useQueryClient();
 
   const {
-    mutate: deleteCity,
+    mutate: deleteHotel,
     isPending: isDeleting,
     error,
   } = useMutation({
-    mutationFn: deleteCityRequest,
+    mutationFn: deleteHotelApi,
 
     onSuccess: deletedCityId => {
-      queryClient.setQueryData<CitiesInfiniteData>([CITIES_QUERY_KEY, filters], prev => {
-        console.log('🚀 ~ prev:', prev);
-
+      queryClient.setQueryData<HotelsInfiniteData>([HOTELS_PER_PAGE, filters], prev => {
         if (!prev) return prev;
 
         const updatedPages = prev.pages.map(page => page.filter(city => city.id !== deletedCityId));
@@ -27,23 +25,23 @@ const useDeleteCity = (filters: Filters) => {
         console.log('✅ Cache after delete:', newData);
         return newData;
       });
-      showSuccessToast('City deleted successfully.');
+      showSuccessToast('Hotel deleted successfully.');
     },
 
     onError: () => {
-      showErrorToast('Failed to delete city.');
+      showErrorToast('Failed to delete Hotel.');
     },
 
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: [CITIES_QUERY_KEY], exact: true });
+      queryClient.invalidateQueries({ queryKey: [HOTELS_PER_PAGE], exact: true });
     },
   });
 
   return {
-    deleteCity,
+    deleteHotel,
     isDeleting,
     error,
   };
 };
 
-export default useDeleteCity;
+export default useDeleteHotel;
