@@ -2,7 +2,7 @@ import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { AdminTableLayout } from '@/containers';
 import { useAdminSearchForm } from '@/hooks';
 import { Container } from '@mui/material';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { CityDialog } from './components';
 import { CITIES_PER_PAGE, CITY_COLUMNS } from './constants';
 import useDeleteCity from './hooks/useDeleteCity';
@@ -10,6 +10,7 @@ import useFetchCities from './hooks/useFetchCities';
 import useCityMutation from './hooks/useMutateCity';
 import { City } from './types';
 import { SearchFormValues } from '@/types';
+import { Delete } from '@mui/icons-material';
 
 function CityManagement() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -62,6 +63,18 @@ function CityManagement() {
     setCityToDelete(null);
   };
 
+  const actions = useMemo(() => {
+    return [
+      {
+        label: 'Delete City',
+        icon: <Delete />,
+        onClick: onDeleteRequest,
+        isPending: isDeleting,
+        color: 'error' as const,
+      },
+    ];
+  }, [isDeleting]);
+
   return (
     <Container maxWidth="xl">
       <AdminTableLayout<City, SearchFormValues>
@@ -74,14 +87,13 @@ function CityManagement() {
         data={cities}
         onAdd={onAddCity}
         onRowClick={onRowClick}
-        onDelete={onDeleteRequest}
         onSearchChange={() => {}}
         searchValue={''}
         rowsPerPage={CITIES_PER_PAGE}
         hasNextPage={hasNextPage}
         formikProps={formikProps}
         searchOptions={searchOptions}
-        isDeleting={isDeleting}
+        actions={actions}
       />
 
       <CityDialog

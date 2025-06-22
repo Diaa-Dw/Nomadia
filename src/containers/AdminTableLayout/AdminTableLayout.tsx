@@ -13,13 +13,12 @@ function AdminTableLayoutComponet<T extends { id: number }, F extends SearchForm
   isError,
   onAdd,
   onRowClick,
-  onDelete,
   onSearchChange,
   searchValue,
   hasNextPage,
   formikProps,
   searchOptions,
-  isDeleting,
+  actions,
 }: AdminTableLayoutProps<T, F>) {
   return (
     <Container maxWidth="xl" sx={{ padding: 3 }}>
@@ -37,8 +36,7 @@ function AdminTableLayoutComponet<T extends { id: number }, F extends SearchForm
         isLoading={isFetching}
         isError={isError}
         onRowClick={onRowClick}
-        onDelete={onDelete}
-        isDeleting={isDeleting}
+        actions={actions}
       />
       {hasNextPage && fetchNextPage && (
         <Stack direction="row" justifyContent="center" mt={2}>

@@ -19,6 +19,14 @@ export interface SearchFormBase {
   searchValue: string;
 }
 
+export interface TableRowAction<T> {
+  label: string;
+  icon: ReactNode;
+  onClick: (row: T) => void;
+  color?: 'primary' | 'error';
+  isPending?: boolean;
+}
+
 export interface AdminTableLayoutProps<T, F> {
   title: string;
   columns: Column<T>[];
@@ -29,12 +37,11 @@ export interface AdminTableLayoutProps<T, F> {
   fetchNextPage: () => void;
   onAdd: () => void;
   onRowClick: (row: T) => void;
-  onDelete: (row: T) => void;
-  isDeleting: boolean;
   rowsPerPage: number;
   onSearchChange: (value: string) => void;
   searchValue: string;
   hasNextPage: boolean;
   formikProps: FormikProps<F>;
   searchOptions: SearchOption<T>[];
+  actions: TableRowAction<T>[];
 }

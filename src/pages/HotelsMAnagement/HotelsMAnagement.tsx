@@ -6,11 +6,14 @@ import { Container } from '@mui/material';
 import { AdminTableLayout } from '@/containers';
 import { SearchFormValues } from '@/types';
 import { HotelDialog } from './components/HotelDialog';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import useDeleteHotel from './hooks/useDeleteHotel';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
+import { Delete, KingBedRounded } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 const HotelsMAnagement = () => {
+  const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [hotelToDelete, setHotelToDelete] = useState<Hotel | null>(null);
@@ -58,6 +61,28 @@ const HotelsMAnagement = () => {
     setSelectedHotel(hotel);
     setOpenDialog(true);
   };
+
+  const onShowRooms = (hotel: Hotel) => {
+    navigate(`/me/admin/rooms/${hotel.id}`);
+  };
+
+  const actions = useMemo(() => {
+    return [
+      {
+        label: 'Show Rooms',
+        icon: <KingBedRounded />,
+        onClick: onShowRooms,
+      },
+      {
+        label: 'Delete Hotel',
+        icon: <Delete />,
+        onClick: onDeleteRequest,
+        isPending: isDeleting,
+        color: 'error' as const,
+      },
+    ];
+  }, [isDeleting]);
+
   return (
     <Container maxWidth="xl">
       <AdminTableLayout<Hotel, SearchFormValues>
@@ -70,14 +95,13 @@ const HotelsMAnagement = () => {
         data={hotels}
         onAdd={onAddHotel}
         onRowClick={onRowClick}
-        onDelete={onDeleteRequest}
         onSearchChange={() => {}}
         searchValue={''}
         rowsPerPage={HOTELS_PER_PAGE}
         hasNextPage={hasNextPage}
         formikProps={formikProps}
         searchOptions={searchOptions}
-        isDeleting={isDeleting}
+        actions={actions}
       />
 
       <HotelDialog

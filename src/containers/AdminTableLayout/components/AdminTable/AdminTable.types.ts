@@ -1,4 +1,4 @@
-import { Column } from '../../AdminTableLayout.types';
+import { Column, TableRowAction } from '../../AdminTableLayout.types';
 
 export interface AdminTableProps<T> {
   columns: Column<T>[];
@@ -6,6 +6,5 @@ export interface AdminTableProps<T> {
   isLoading: boolean;
   isError: boolean;
   onRowClick: (row: T) => void;
-  onDelete: (row: T) => void;
-  isDeleting: boolean;
+  actions: TableRowAction<T>[];
 }

@@ -17,8 +17,7 @@ function AdminTable<T extends { id: number }>({
   isLoading,
   isError,
   onRowClick,
-  onDelete,
-  isDeleting,
+  actions,
 }: AdminTableProps<T>) {
   const colSpan = columns.length + 1;
 
@@ -51,13 +50,12 @@ function AdminTable<T extends { id: number }>({
             </TableRow>
           ) : (
             data.map((row, idx) => (
-              <DataRow
+              <DataRow<T>
                 key={row.id ?? idx}
                 row={row}
                 columns={columns}
                 onRowClick={onRowClick}
-                onDelete={onDelete}
-                isDeleting={isDeleting}
+                actions={actions}
               />
             ))
           )}
