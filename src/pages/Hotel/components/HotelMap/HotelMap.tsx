@@ -3,8 +3,9 @@ import L from 'leaflet';
 import { memo, useMemo } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import { HotelMapProps } from './HotelMap.types';
+import 'leaflet/dist/leaflet.css';
 
-const HotelMap = ({ lat, lng, name }: HotelMapProps) => {
+const HotelMap = ({ lat, lng, name, height = 400 }: HotelMapProps) => {
   const markerIcon = useMemo(
     () =>
       new L.Icon({
@@ -16,7 +17,7 @@ const HotelMap = ({ lat, lng, name }: HotelMapProps) => {
   );
 
   return (
-    <Box sx={{ width: '100%', height: 400, borderRadius: 2, overflow: 'hidden' }}>
+    <Box sx={{ width: '100%', height: { height }, borderRadius: 2, overflow: 'hidden' }}>
       <MapContainer center={[lat, lng]} zoom={15} style={{ height: '100%', width: '100%' }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <Marker position={[lat, lng]} icon={markerIcon}>
