@@ -1,10 +1,11 @@
 import axios from '@/api';
-import { AddCityRequest, City, CityFilters, UpdateCityRequest } from '../types';
+import { AddCityRequest, City, UpdateCityRequest } from '../types';
+import { Filters } from '@/types';
 
 export const fetchCities = async (
   pageNumber: number,
   pageSize: number,
-  filters: CityFilters
+  filters: Filters
 ): Promise<City[]> => {
   const { name, searchQuery } = filters;
 

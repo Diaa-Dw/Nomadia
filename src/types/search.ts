@@ -38,3 +38,8 @@ export interface SearchFormPayload extends Omit<SearchRequest, 'checkInDate' | '
 export interface SearchFormWithTimestamp extends SearchFormPayload {
   ts: number;
 }
+
+export interface Filters {
+  name?: string;
+  searchQuery?: string;
+}

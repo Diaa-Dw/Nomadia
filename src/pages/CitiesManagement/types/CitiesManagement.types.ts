@@ -36,9 +36,4 @@ export interface UseCityFormProps {
   onClose: () => void;
 }
 
-export interface CityFilters {
-  name?: string;
-  searchQuery?: string;
-}
-
 export type CitiesInfiniteData = InfiniteData<City[]>;
