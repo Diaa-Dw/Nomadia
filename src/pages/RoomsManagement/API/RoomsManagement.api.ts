@@ -10,3 +10,9 @@ export const fetchHotelsApi = async (name: string): Promise<Hotel[]> => {
 
   return response.data;
 };
+
+export const deleteRoomApi = async (hotelId: number, roomId: number) => {
+  await axios.delete(`/hotels/${hotelId}/rooms/${roomId}`);
+
+  return roomId;
+};
