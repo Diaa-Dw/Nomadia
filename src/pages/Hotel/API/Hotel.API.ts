@@ -1,6 +1,5 @@
 import axios from '@/api';
-import { fetchHotelRoomsProps, HotelResponse, PhotoResponse, ReviewResponse } from '../types';
-import { Room } from '@/types/room';
+import { HotelResponse, PhotoResponse, ReviewResponse } from '../types';
 
 export const fetchHotel = async (hotelId: number): Promise<HotelResponse> => {
   const response = await axios.get<HotelResponse>(`/hotels/${hotelId}`);
@@ -17,16 +16,5 @@ export const fetchHotelGallery = async (hotelId: number) => {
 export const fetchHotelReviews = async (hotelId: number): Promise<ReviewResponse[]> => {
   const response = await axios.get<ReviewResponse[]>(`/hotels/${hotelId}/reviews`);
 
-  return response.data;
-};
-
-export const fetchHotelRooms = async ({
-  hotelId,
-  checkInDate,
-  checkOutDate,
-}: fetchHotelRoomsProps) => {
-  const response = await axios.get<Room[]>(
-    `hotels/${hotelId}/rooms?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}`
-  );
   return response.data;
 };

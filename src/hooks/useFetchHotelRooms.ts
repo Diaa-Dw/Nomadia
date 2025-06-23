@@ -1,8 +1,8 @@
 import { useErrorToastOnce } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
-import { fetchHotelRooms } from '../API';
-import { HOTEL_ROOMS_QUERY_KEY } from '../Hotel.constants';
-import { fetchHotelRoomsProps } from '../types';
+import { HOTEL_ROOMS_QUERY_KEY } from '../pages/Hotel/Hotel.constants';
+import { fetchHotelRooms } from '@/services/Rooms.api';
+import { fetchHotelRoomsProps } from '@/types/room';
 
 const useFetchHotelRooms = ({ hotelId, checkInDate, checkOutDate }: fetchHotelRoomsProps) => {
   const {

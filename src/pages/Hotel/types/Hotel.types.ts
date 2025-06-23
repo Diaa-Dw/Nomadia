@@ -24,9 +24,3 @@ export interface ReviewResponse {
   rating: number;
   description: string;
 }
-
-export interface fetchHotelRoomsProps {
-  hotelId: number;
-  checkInDate: string;
-  checkOutDate: string;
-}

@@ -11,3 +11,9 @@ export interface Room {
   price: number;
   availability: boolean;
 }
+
+export interface fetchHotelRoomsProps {
+  hotelId: number;
+  checkInDate: string;
+  checkOutDate: string;
+}
