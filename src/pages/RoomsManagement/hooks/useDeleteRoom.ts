@@ -41,7 +41,7 @@ const useDeleteRoom = (searchParams: fetchHotelRoomsProps | null) => {
   });
 
   return {
-    deleteRoom: searchParams ? mutateAsync : undefined,
+    deleteRoom: mutateAsync,
     isDeleting,
     error,
   };
