@@ -1,25 +1,24 @@
-import { useAdminSearchForm } from '@/hooks';
+import { AdminFilterForm } from '@/components';
+import { ConfirmDialog } from '@/components/ConfirmDialog';
+import { AdminTableLayout } from '@/containers';
+import { AdminTable, AdminTableHeader } from '@/containers/AdminTableLayout';
+import { Filters } from '@/types';
+import { Container } from '@mui/material';
+import { useCallback, useMemo, useState } from 'react';
+import { HotelDialog } from './components/HotelDialog';
+import { HOTEL_ACTIONS, HOTEL_COLUMNS, TITLE } from './constants';
+import useDeleteHotel from './hooks/useDeleteHotel';
 import useFetchHotels from './hooks/useFetchHotels';
 import { Hotel } from './types/HotelsMAnagement.types';
-import { HOTEL_COLUMNS, HOTELS_PER_PAGE } from './constants';
-import { Container } from '@mui/material';
-import { AdminTableLayout } from '@/containers';
-import { SearchFormValues } from '@/types';
-import { HotelDialog } from './components/HotelDialog';
-import { useMemo, useState } from 'react';
-import useDeleteHotel from './hooks/useDeleteHotel';
-import { ConfirmDialog } from '@/components/ConfirmDialog';
-import { Delete, KingBedRounded } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
 
 const HotelsMAnagement = () => {
-  const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [hotelToDelete, setHotelToDelete] = useState<Hotel | null>(null);
+  const [filters, setFilters] = useState<Filters>({ name: '', searchQuery: '' });
+
   const [confirmOpen, setConfirmOpen] = useState(false);
 
-  const { formikProps, filters } = useAdminSearchForm();
   const { hotels, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useFetchHotels(filters);
 
@@ -31,6 +30,9 @@ const HotelsMAnagement = () => {
     value: col.accessor as keyof Hotel,
   }));
 
+  const onFilterChange = (newValue: Filters) => {
+    setFilters(newValue);
+  };
   const onCloseDialog = () => {
     setOpenDialog(false);
   };
@@ -62,48 +64,39 @@ const HotelsMAnagement = () => {
     setOpenDialog(true);
   };
 
-  const onShowRooms = (hotel: Hotel) => {
-    navigate(`/me/admin/rooms/${hotel.id}`);
-  };
+  const memoizedHotels = useMemo(() => hotels, [hotels]);
 
-  const actions = useMemo(() => {
-    return [
+  const buildHotelActions = useCallback(
+    (hotel: Hotel) => [
       {
-        label: 'Show Rooms',
-        icon: <KingBedRounded />,
-        onClick: onShowRooms,
-      },
-      {
-        label: 'Delete Hotel',
-        icon: <Delete />,
-        onClick: onDeleteRequest,
+        ...HOTEL_ACTIONS[0],
+        onClick: () => onDeleteRequest(hotel),
         isPending: isDeleting,
-        color: 'error' as const,
       },
-    ];
-  }, [isDeleting]);
+    ],
+    [isDeleting]
+  );
 
   return (
     <Container maxWidth="xl">
-      <AdminTableLayout<Hotel, SearchFormValues>
-        title="City Management"
-        columns={HOTEL_COLUMNS}
+      <AdminTableLayout
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
         fetchNextPage={fetchNextPage}
-        isError={false}
-        data={hotels}
-        onAdd={onAddHotel}
-        onRowClick={onRowClick}
-        onSearchChange={() => {}}
-        searchValue={''}
-        rowsPerPage={HOTELS_PER_PAGE}
         hasNextPage={hasNextPage}
-        formikProps={formikProps}
-        searchOptions={searchOptions}
-        actions={actions}
-      />
+      >
+        <AdminTableHeader title={TITLE} onAdd={onAddHotel}>
+          <AdminFilterForm searchOptions={searchOptions} onFilterChange={onFilterChange} />
+        </AdminTableHeader>
 
+        <AdminTable<Hotel>
+          columns={HOTEL_COLUMNS}
+          data={memoizedHotels}
+          isLoading={isFetching}
+          onRowClick={onRowClick}
+          actions={buildHotelActions}
+        />
+      </AdminTableLayout>
       <HotelDialog
         open={openDialog}
         onClose={onCloseDialog}

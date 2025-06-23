@@ -1,32 +1,20 @@
 import { useFormik } from 'formik';
 import { INITIAL_VALUES } from '../constants';
-import { useDebounce } from '@/hooks';
-import { useMemo } from 'react';
+import { Filters } from '@/types';
 
-const useAdminSearchForm = () => {
+const useAdminSearchForm = (onFilterChange: (value: Filters) => void) => {
   const formikProps = useFormik({
     initialValues: INITIAL_VALUES,
-    onSubmit: () => {},
+    onSubmit: values => {
+      const filters = {
+        name: values.filterField === 'name' ? values.searchValue : '',
+        searchQuery: values.filterField === 'description' ? values.searchValue : '',
+      };
+      onFilterChange(filters);
+    },
   });
 
-  const { values } = formikProps;
-
-  const debouncedValues = useDebounce(values, 300);
-
-  const filters = useMemo(
-    () => ({
-      name: debouncedValues.filterField === 'name' ? debouncedValues.searchValue : '',
-      searchQuery: debouncedValues.filterField === 'description' ? debouncedValues.searchValue : '',
-    }),
-    [debouncedValues]
-  );
-
-  return {
-    filters,
-    formikProps,
-    searchValue: formikProps.values.searchValue,
-    onSearchChange: formikProps.handleChange,
-  };
+  return formikProps;
 };
 
 export default useAdminSearchForm;

@@ -6,3 +6,4 @@ export { EmblaCarousel } from './EmblaCarousel';
 export { SectionTitle } from './SectionTitle';
 export { RoomCard } from './RoomCard';
 export { EmptyState } from './EmptyState';
+export { AdminFilterForm } from './AdminFilterForm';

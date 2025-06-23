@@ -8,16 +8,19 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import { memo } from 'react';
 import { DataRow } from '../TableRow';
 import { AdminTableProps } from './AdminTable.types';
+import { JSX } from 'react';
 
-function AdminTable<T extends { id: number }>({
+function AdminTableComponent<T extends { id: number }>({
   columns,
   data,
   isLoading,
   onRowClick,
   actions,
 }: AdminTableProps<T>) {
+  console.log('🚀 ~ columns:', columns);
   const colSpan = columns.length + 1;
 
   return (
@@ -30,7 +33,7 @@ function AdminTable<T extends { id: number }>({
                 {col.label}
               </TableCell>
             ))}
-            {<TableCell align="right">Actions</TableCell>}
+            <TableCell align="right">Actions</TableCell>
           </TableRow>
         </TableHead>
 
@@ -54,7 +57,7 @@ function AdminTable<T extends { id: number }>({
                 row={row}
                 columns={columns}
                 onRowClick={onRowClick}
-                actions={actions}
+                actions={actions ? actions(row) : []}
               />
             ))
           )}
@@ -63,5 +66,9 @@ function AdminTable<T extends { id: number }>({
     </TableContainer>
   );
 }
+
+const AdminTable = memo(AdminTableComponent) as <T extends { id: number }>(
+  props: AdminTableProps<T>
+) => JSX.Element;
 
 export default AdminTable;

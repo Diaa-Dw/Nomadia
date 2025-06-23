@@ -5,5 +5,5 @@ export interface AdminTableProps<T> {
   data: T[];
   isLoading: boolean;
   onRowClick: (row: T) => void;
-  actions: TableRowAction<T>[];
+  actions: (row: T) => TableRowAction<T>[];
 }

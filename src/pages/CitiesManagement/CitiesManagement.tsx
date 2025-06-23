@@ -1,12 +1,12 @@
+import { AdminFilterForm } from '@/components';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { AdminTableLayout } from '@/containers';
 import { AdminTable, AdminTableHeader } from '@/containers/AdminTableLayout';
-import { useAdminSearchForm } from '@/hooks';
-import { Delete } from '@mui/icons-material';
-import { Container, MenuItem, TextField } from '@mui/material';
-import { useCallback, useMemo, useState } from 'react';
+import { Filters } from '@/types';
+import { Container } from '@mui/material';
+import { useCallback, useState } from 'react';
 import { CityDialog } from './components';
-import { CITY_COLUMNS, TITLE } from './constants';
+import { CITY_ACTIONS, CITY_COLUMNS, TITLE } from './constants';
 import useDeleteCity from './hooks/useDeleteCity';
 import useFetchCities from './hooks/useFetchCities';
 import useCityMutation from './hooks/useMutateCity';
@@ -15,6 +15,7 @@ import { City } from './types';
 function CityManagement() {
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
+  const [filters, setFilters] = useState<Filters>({ name: '', searchQuery: '' });
 
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [cityToDelete, setCityToDelete] = useState<City | null>(null);
@@ -22,7 +23,6 @@ function CityManagement() {
   const isEditMode = Boolean(selectedCity);
   const mode = isEditMode ? 'edit' : 'add';
 
-  const { formikProps, filters } = useAdminSearchForm();
   const { cities, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useFetchCities(filters);
 
@@ -34,7 +34,9 @@ function CityManagement() {
     value: col.accessor as keyof City,
   }));
 
-  const { values, handleChange } = formikProps;
+  const onFilterChange = (newValue: Filters) => {
+    setFilters(newValue);
+  };
   const onClose = () => {
     setSelectedCity(null);
     setOpenDialog(false);
@@ -63,18 +65,6 @@ function CityManagement() {
     setCityToDelete(null);
   };
 
-  const actions = useMemo(() => {
-    return [
-      {
-        label: 'Delete City',
-        icon: <Delete />,
-        onClick: onDeleteRequest,
-        isPending: isDeleting,
-        color: 'error' as const,
-      },
-    ];
-  }, [isDeleting]);
-
   return (
     <Container maxWidth="xl">
       <AdminTableLayout
@@ -84,26 +74,7 @@ function CityManagement() {
         hasNextPage={hasNextPage}
       >
         <AdminTableHeader title={TITLE} onAdd={onAddCity}>
-          <TextField
-            select
-            size="small"
-            name="filterField"
-            value={String(values.filterField)}
-            onChange={handleChange}
-          >
-            {searchOptions.map(option => (
-              <MenuItem key={option.label} value={String(option.value)}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            size="small"
-            placeholder="Search..."
-            name="searchValue"
-            value={values.searchValue}
-            onChange={handleChange}
-          />
+          <AdminFilterForm searchOptions={searchOptions} onFilterChange={onFilterChange} />
         </AdminTableHeader>
 
         <AdminTable<City>
@@ -111,7 +82,13 @@ function CityManagement() {
           data={cities}
           isLoading={isFetching}
           onRowClick={onRowClick}
-          actions={actions}
+          actions={hotel => [
+            {
+              ...CITY_ACTIONS[0],
+              onClick: () => onDeleteRequest(hotel),
+              isPending: isDeleting,
+            },
+          ]}
         />
       </AdminTableLayout>
 

@@ -1,10 +1,12 @@
 import { Column } from '@/containers/AdminTableLayout/AdminTableLayout.types';
-import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
-import { Box } from '@mui/material';
 import { HotelMap } from '@/pages/Hotel/components';
+import { Delete } from '@mui/icons-material';
+import { Box } from '@mui/material';
+import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
 
 export const HOTELS_QUERY_KEY = 'hotels';
 export const HOTELS_PER_PAGE = 10;
+export const TITLE = 'Hotels Management';
 
 export const HOTEL_INITIAL_VALUES: AddHotelRequest = {
   cityId: null,
@@ -55,4 +57,13 @@ export const hotelTypeOptions = [
   { label: 'Lodge', value: 0 },
   { label: 'Hotel', value: 1 },
   { label: 'Resort', value: 2 },
+];
+
+export const HOTEL_ACTIONS = [
+  {
+    key: 'deleteHotel',
+    label: 'Delete Hotel',
+    icon: <Delete />,
+    color: 'error' as const,
+  },
 ];
