@@ -4,17 +4,23 @@ import { HOTEL_ROOMS_QUERY_KEY } from '../pages/Hotel/Hotel.constants';
 import { fetchHotelRooms } from '@/services/Rooms.api';
 import { fetchHotelRoomsProps } from '@/types/room';
 
-const useFetchHotelRooms = ({ hotelId, checkInDate, checkOutDate }: fetchHotelRoomsProps) => {
+const useFetchHotelRooms = (params: fetchHotelRoomsProps | null) => {
   const {
     data: hotelRooms,
     isPending,
     error,
   } = useQuery({
-    queryFn: () => fetchHotelRooms({ hotelId, checkInDate, checkOutDate }),
-    queryKey: [HOTEL_ROOMS_QUERY_KEY, hotelId, checkInDate, checkOutDate],
+    queryFn: () => {
+      if (!params) throw new Error('Params are required');
+      return fetchHotelRooms(params);
+    },
+    queryKey: [HOTEL_ROOMS_QUERY_KEY, params],
   });
 
-  useErrorToastOnce(error, `Failed to load hotel's rooms data.`);
+  useErrorToastOnce(
+    error,
+    `Failed to load hotel's rooms data. Please be sure to select hotels and try again.`
+  );
 
   return { hotelRooms, isPending };
 };

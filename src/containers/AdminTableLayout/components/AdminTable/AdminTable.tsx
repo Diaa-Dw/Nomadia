@@ -13,14 +13,13 @@ import { DataRow } from '../TableRow';
 import { AdminTableProps } from './AdminTable.types';
 import { JSX } from 'react';
 
-function AdminTableComponent<T extends { id: number }>({
+function AdminTableComponent<T extends { id?: number; roomId?: number }>({
   columns,
   data,
   isLoading,
   onRowClick,
   actions,
 }: AdminTableProps<T>) {
-  console.log('🚀 ~ columns:', columns);
   const colSpan = columns.length + 1;
 
   return (
@@ -51,9 +50,9 @@ function AdminTableComponent<T extends { id: number }>({
               </TableCell>
             </TableRow>
           ) : (
-            data.map((row, idx) => (
+            data.map(row => (
               <DataRow<T>
-                key={row.id ?? idx}
+                key={row.id ?? row.roomId}
                 row={row}
                 columns={columns}
                 onRowClick={onRowClick}
@@ -67,7 +66,7 @@ function AdminTableComponent<T extends { id: number }>({
   );
 }
 
-const AdminTable = memo(AdminTableComponent) as <T extends { id: number }>(
+const AdminTable = memo(AdminTableComponent) as <T extends { id?: number; roomId?: number }>(
   props: AdminTableProps<T>
 ) => JSX.Element;
 

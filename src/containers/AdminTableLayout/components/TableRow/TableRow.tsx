@@ -6,7 +6,7 @@ const DataRowComponent = <T,>({ row, columns, onRowClick, actions }: DataRowProp
   <TableRow hover onClick={() => onRowClick(row)} sx={{ cursor: 'pointer' }}>
     {columns.map(col => (
       <TableCell key={col.label} align={col.align || 'left'}>
-        {col.render ? col.render(col.accessor, row) : String(row[col.accessor])}
+        {col.render ? col.render(row[col.accessor], row) : String(row[col.accessor])}
       </TableCell>
     ))}
     <TableCell align="right" onClick={e => e.stopPropagation()}>

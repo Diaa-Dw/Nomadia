@@ -9,6 +9,5 @@ export const fetchHotelRooms = async ({
   const response = await axios.get<Room[]>(
     `hotels/${hotelId}/rooms?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}`
   );
-  console.log('🚀 ~ response:', response);
   return response.data;
 };

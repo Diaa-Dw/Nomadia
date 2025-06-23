@@ -94,8 +94,8 @@ const HotelsMAnagement = () => {
           data={memoizedHotels}
           isLoading={isFetching}
           onRowClick={onRowClick}
-          actions={buildHotelActions}
-        />
+         actions={buildHotelActions}
+        /> 
       </AdminTableLayout>
       <HotelDialog
         open={openDialog}

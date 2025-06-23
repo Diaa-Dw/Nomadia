@@ -1,4 +1,5 @@
 import { DateRange } from '@/types';
+import { fetchHotelRoomsProps } from '@/types/room';
 
 export interface SearchFormPayload {
   hotelId: number | null;
@@ -6,5 +7,5 @@ export interface SearchFormPayload {
 }
 
 export interface HotelRoomsSearchProps {
-  onSearch: (value: SearchFormPayload) => void;
+  onSearch: (value: fetchHotelRoomsProps) => void;
 }
