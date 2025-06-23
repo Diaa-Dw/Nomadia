@@ -5,6 +5,6 @@ export interface SearchFormPayload {
   dateRange: DateRange;
 }
 
-export interface UseHotelRoomsFormProps {
+export interface HotelRoomsSearchProps {
   onSearch: (value: SearchFormPayload) => void;
 }
