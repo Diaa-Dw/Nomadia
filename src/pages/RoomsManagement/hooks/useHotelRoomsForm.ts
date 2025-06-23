@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
-import { validationSchema } from '../schema';
-import { SearchFormPayload, UseHotelRoomsFormProps } from '../types';
 import { INITIAL_VALUES } from '../constants';
+import { validationSchema } from '../schema';
+import { HotelRoomsSearchProps, SearchFormPayload } from '../types';
 
-const useHotelRoomsForm = ({ onSearch }: UseHotelRoomsFormProps) => {
+const useHotelRoomsForm = ({ onSearch }: HotelRoomsSearchProps) => {
   const onSubmit = (values: SearchFormPayload) => {
     onSearch(values);
   };
