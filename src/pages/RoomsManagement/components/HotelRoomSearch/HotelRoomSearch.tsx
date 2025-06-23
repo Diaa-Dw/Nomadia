@@ -1,24 +1,36 @@
-import { Form, FormikProvider } from 'formik';
+import { DatePicker } from '@/features/search/components/DatePicker';
+import { Box, Button, Divider, useMediaQuery } from '@mui/material';
+import { FormikProvider } from 'formik';
 import { useHotelRoomsForm } from '../../hooks';
 import { HotelRoomsSearchProps } from '../../types';
 import { HotelSelect } from '../HotelSelect';
-import { DatePicker } from '@/features/search/components/DatePicker';
-import { Button, Stack } from '@mui/material';
+import { SearchContainer } from './HotelRoomsSearch.styles';
 
 const RoomsSearchForm = ({ onSearch }: HotelRoomsSearchProps) => {
   const formikProps = useHotelRoomsForm({ onSearch });
+  const isSmallScreen = useMediaQuery('(min-width:900px)');
+
   return (
     <FormikProvider value={formikProps}>
-      <Form>
-        <Stack direction={'row'} alignItems={'center'}>
+      <SearchContainer>
+        <Box>
           <HotelSelect name="hotelId" />
+        </Box>
 
+        <Divider variant="middle" orientation={isSmallScreen ? 'horizontal' : 'vertical'} />
+
+        <Box>
           <DatePicker />
-          <Button type="submit" variant={'outlined'}>
+        </Box>
+
+        <Divider variant="middle" orientation={isSmallScreen ? 'horizontal' : 'vertical'} />
+
+        <Box>
+          <Button type="submit" variant="outlined" fullWidth>
             Show Rooms
           </Button>
-        </Stack>
-      </Form>
+        </Box>
+      </SearchContainer>
     </FormikProvider>
   );
 };
