@@ -1,43 +1,16 @@
 import { Button, Container, Stack } from '@mui/material';
-import { AdminTableLayoutProps, SearchFormBase } from './AdminTableLayout.types';
-import { AdminTable, AdminTableHeader } from './components';
-import { JSX, memo } from 'react';
+import { AdminTableLayoutProps } from './AdminTableLayout.types';
 
-function AdminTableLayoutComponet<T extends { id: number }, F extends SearchFormBase>({
-  title,
-  columns,
-  data,
-  isFetching,
+function AdminTableLayout({
   isFetchingNextPage,
   fetchNextPage,
-  isError,
-  onAdd,
-  onRowClick,
-  onSearchChange,
-  searchValue,
   hasNextPage,
-  formikProps,
-  searchOptions,
-  actions,
-}: AdminTableLayoutProps<T, F>) {
+  children,
+}: AdminTableLayoutProps) {
   return (
     <Container maxWidth="xl" sx={{ padding: 3 }}>
-      <AdminTableHeader<T, F>
-        title={title}
-        searchValue={searchValue}
-        onSearchChange={onSearchChange}
-        onAdd={onAdd}
-        searchOptions={searchOptions}
-        formikProps={formikProps}
-      />
-      <AdminTable<T>
-        columns={columns}
-        data={data}
-        isLoading={isFetching}
-        isError={isError}
-        onRowClick={onRowClick}
-        actions={actions}
-      />
+      {children}
+
       {hasNextPage && fetchNextPage && (
         <Stack direction="row" justifyContent="center" mt={2}>
           <Button variant="outlined" onClick={fetchNextPage} disabled={isFetchingNextPage}>
@@ -48,12 +21,5 @@ function AdminTableLayoutComponet<T extends { id: number }, F extends SearchForm
     </Container>
   );
 }
-
-const AdminTableLayout = memo(AdminTableLayoutComponet) as <
-  T extends { id: number },
-  F extends SearchFormBase,
->(
-  props: AdminTableLayoutProps<T, F>
-) => JSX.Element;
 
 export default AdminTableLayout;

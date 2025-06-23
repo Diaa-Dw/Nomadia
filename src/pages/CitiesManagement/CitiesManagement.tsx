@@ -1,16 +1,16 @@
 import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { AdminTableLayout } from '@/containers';
+import { AdminTable, AdminTableHeader } from '@/containers/AdminTableLayout';
 import { useAdminSearchForm } from '@/hooks';
-import { Container } from '@mui/material';
+import { Delete } from '@mui/icons-material';
+import { Container, MenuItem, TextField } from '@mui/material';
 import { useCallback, useMemo, useState } from 'react';
 import { CityDialog } from './components';
-import { CITIES_PER_PAGE, CITY_COLUMNS } from './constants';
+import { CITY_COLUMNS, TITLE } from './constants';
 import useDeleteCity from './hooks/useDeleteCity';
 import useFetchCities from './hooks/useFetchCities';
 import useCityMutation from './hooks/useMutateCity';
 import { City } from './types';
-import { SearchFormValues } from '@/types';
-import { Delete } from '@mui/icons-material';
 
 function CityManagement() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -34,11 +34,11 @@ function CityManagement() {
     value: col.accessor as keyof City,
   }));
 
+  const { values, handleChange } = formikProps;
   const onClose = () => {
     setSelectedCity(null);
     setOpenDialog(false);
   };
-
   const onAddCity = useCallback(() => setOpenDialog(true), []);
   const onRowClick = useCallback((city: City) => {
     setSelectedCity(city);
@@ -77,24 +77,43 @@ function CityManagement() {
 
   return (
     <Container maxWidth="xl">
-      <AdminTableLayout<City, SearchFormValues>
-        title="City Management"
-        columns={CITY_COLUMNS}
+      <AdminTableLayout
         isFetching={isFetching}
         isFetchingNextPage={isFetchingNextPage}
         fetchNextPage={fetchNextPage}
-        isError={false}
-        data={cities}
-        onAdd={onAddCity}
-        onRowClick={onRowClick}
-        onSearchChange={() => {}}
-        searchValue={''}
-        rowsPerPage={CITIES_PER_PAGE}
         hasNextPage={hasNextPage}
-        formikProps={formikProps}
-        searchOptions={searchOptions}
-        actions={actions}
-      />
+      >
+        <AdminTableHeader title={TITLE} onAdd={onAddCity}>
+          <TextField
+            select
+            size="small"
+            name="filterField"
+            value={String(values.filterField)}
+            onChange={handleChange}
+          >
+            {searchOptions.map(option => (
+              <MenuItem key={option.label} value={String(option.value)}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            size="small"
+            placeholder="Search..."
+            name="searchValue"
+            value={values.searchValue}
+            onChange={handleChange}
+          />
+        </AdminTableHeader>
+
+        <AdminTable<City>
+          columns={CITY_COLUMNS}
+          data={cities}
+          isLoading={isFetching}
+          onRowClick={onRowClick}
+          actions={actions}
+        />
+      </AdminTableLayout>
 
       <CityDialog
         open={openDialog}

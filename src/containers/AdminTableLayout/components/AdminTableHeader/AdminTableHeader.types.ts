@@ -1,11 +1,7 @@
-import { FormikProps } from 'formik';
-import { SearchOption } from '../../AdminTableLayout.types';
+import { ReactNode } from 'react';
 
-export interface AdminTableHeaderProps<T, F> {
+export interface AdminTableHeaderProps {
   title: string;
-  searchValue: string;
-  onSearchChange: (value: string) => void;
   onAdd: () => void;
-  formikProps: FormikProps<F>;
-  searchOptions: SearchOption<T>[];
+  children: ReactNode;
 }

@@ -1,40 +1,14 @@
 import { Add } from '@mui/icons-material';
-import { Button, MenuItem, TextField, Typography } from '@mui/material';
-import { AdminTableHeaderProps } from './AdminTableHeader.types';
+import { Button, Typography } from '@mui/material';
 import { Stack } from './AdminTableHeader.styles';
-import { SearchFormBase } from '../../AdminTableLayout.types';
+import { AdminTableHeaderProps } from './AdminTableHeader.types';
 
-const AdminTableHeader = <T, F extends SearchFormBase>({
-  title,
-  onAdd,
-  searchOptions,
-  formikProps,
-}: AdminTableHeaderProps<T, F>) => {
+const AdminTableHeader = ({ title, onAdd, children }: AdminTableHeaderProps) => {
   return (
     <Stack>
       <Typography variant={'h5'}>{title}</Typography>
       <Stack>
-        <TextField
-          select
-          size="small"
-          name="filterField"
-          value={String(formikProps.values.filterField)}
-          onChange={formikProps.handleChange}
-        >
-          {searchOptions.map(option => (
-            <MenuItem key={option.label} value={String(option.value)}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          size="small"
-          placeholder="Search..."
-          name="searchValue"
-          value={formikProps.values.searchValue}
-          onChange={formikProps.handleChange}
-        />
-
+        {children}
         <Button variant={'contained'} onClick={onAdd} startIcon={<Add />}>
           Create New
         </Button>

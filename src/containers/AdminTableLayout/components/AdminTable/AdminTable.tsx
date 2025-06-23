@@ -15,7 +15,6 @@ function AdminTable<T extends { id: number }>({
   columns,
   data,
   isLoading,
-  isError,
   onRowClick,
   actions,
 }: AdminTableProps<T>) {
@@ -42,7 +41,7 @@ function AdminTable<T extends { id: number }>({
                 <CircularProgress />
               </TableCell>
             </TableRow>
-          ) : isError || !data.length ? (
+          ) : !data.length ? (
             <TableRow>
               <TableCell colSpan={colSpan} align="center">
                 No data found.

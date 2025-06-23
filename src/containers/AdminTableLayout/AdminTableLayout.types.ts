@@ -1,4 +1,3 @@
-import { FormikProps } from 'formik';
 import { ReactNode } from 'react';
 
 export interface Column<T> {
@@ -27,21 +26,10 @@ export interface TableRowAction<T> {
   isPending?: boolean;
 }
 
-export interface AdminTableLayoutProps<T, F> {
-  title: string;
-  columns: Column<T>[];
-  data: T[];
+export interface AdminTableLayoutProps {
   isFetching: boolean;
   isFetchingNextPage: boolean;
-  isError: boolean;
   fetchNextPage: () => void;
-  onAdd: () => void;
-  onRowClick: (row: T) => void;
-  rowsPerPage: number;
-  onSearchChange: (value: string) => void;
-  searchValue: string;
   hasNextPage: boolean;
-  formikProps: FormikProps<F>;
-  searchOptions: SearchOption<T>[];
-  actions: TableRowAction<T>[];
+  children: ReactNode;
 }
