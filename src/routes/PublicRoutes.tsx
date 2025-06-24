@@ -4,6 +4,7 @@ import type { RouteObject } from 'react-router-dom';
 const Layout = lazy(() => import('@/containers/Layout'));
 const Login = lazy(() => import('@/pages/Login'));
 const Unauthorized = lazy(() => import('@/pages/Unauthenticated'));
+const NotFoundPage = lazy(() => import('@/pages/NotFound/NotFound'));
 
 const publicRoutes: RouteObject = {
   path: '/',
@@ -23,7 +24,7 @@ const publicRoutes: RouteObject = {
     },
     {
       path: '*',
-      element: <h1>Not Found Page</h1>,
+      element: <NotFoundPage />,
     },
   ],
 };
