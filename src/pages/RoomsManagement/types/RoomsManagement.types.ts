@@ -9,3 +9,16 @@ export interface SearchFormPayload {
 export interface HotelRoomsSearchProps {
   onSearch: (value: fetchHotelRoomsProps) => void;
 }
+
+export interface BaseRoomData {
+  roomNumber: string;
+  price: number;
+}
+
+export interface CreateRoomRequest extends BaseRoomData {
+  hotelId: number;
+}
+
+export interface CreateRoomResponse extends BaseRoomData {
+  roomId: number;
+}
