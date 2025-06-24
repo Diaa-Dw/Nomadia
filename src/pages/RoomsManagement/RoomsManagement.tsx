@@ -8,12 +8,15 @@ import RoomsSearchForm from './components/HotelRoomSearch/HotelRoomSearch';
 import { ROOM_ACTIONS, ROOM_COLUMNS, TITLE } from './constants';
 import { useDeleteRoom } from './hooks';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
+import { AddRoomDialog } from './components/AddRoomDialog';
+import { showErrorToast } from '@/utils';
 
 const RoomsManagement = () => {
   const [searchParams, setSearchParams] = useState<fetchHotelRoomsProps | null>(null);
   const [roomToDelete, setRoomToDelete] = useState<Room | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
+  const [openAddDialog, setOpenAddDialog] = useState(false);
 
   const { hotelRooms = [], isPending } = useFetchHotelRooms(searchParams);
   const { deleteRoom, isDeleting } = useDeleteRoom(searchParams);
@@ -24,6 +27,16 @@ const RoomsManagement = () => {
     setSearchParams(value);
   };
 
+  const onOpenAddDialog = () => {
+    if (!searchParams?.hotelId) {
+      showErrorToast('Please Select a hotel to be able to create a room');
+      return;
+    }
+    setOpenAddDialog(true);
+  };
+  const onCloseAddDialog = () => {
+    setOpenAddDialog(false);
+  };
   const onCloseConfirm = () => {
     setConfirmOpen(false);
   };
@@ -64,7 +77,7 @@ const RoomsManagement = () => {
         fetchNextPage={() => {}}
         hasNextPage={false}
       >
-        <AdminTableHeader title={TITLE} onAdd={() => {}}>
+        <AdminTableHeader title={TITLE} onAdd={onOpenAddDialog}>
           <Button onClick={toggleSearchForm} variant="outlined" size="small">
             {openSearch ? 'Hide Filters' : 'Show Filters'}
           </Button>
@@ -90,6 +103,12 @@ const RoomsManagement = () => {
         onConfirm={onConfirmDelete}
         confirmText="Delete"
         confirmColor="error"
+      />
+
+      <AddRoomDialog
+        hotelId={searchParams?.hotelId || null}
+        open={openAddDialog}
+        onClose={onCloseAddDialog}
       />
     </Container>
   );
