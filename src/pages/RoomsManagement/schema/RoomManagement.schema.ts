@@ -1,10 +1,10 @@
 import { startOfDay } from 'date-fns';
-import { SearchFormPayload } from '../types';
+import { CreateRoomRequest, SearchFormPayload } from '../types';
 import * as Yup from 'yup';
 
 const today = startOfDay(new Date());
 
-const validationSchema = Yup.object<SearchFormPayload>().shape({
+export const searchRoomvalidationSchema = Yup.object<SearchFormPayload>().shape({
   hotelId: Yup.number().required('You must select a hotel'),
 
   dateRange: Yup.object().shape({
@@ -17,4 +17,8 @@ const validationSchema = Yup.object<SearchFormPayload>().shape({
   }),
 });
 
-export default validationSchema;
+export const addRoomvalidationSchema = Yup.object<CreateRoomRequest>().shape({
+  hotelId: Yup.number().required('Hotel is required'),
+  roomNumber: Yup.string().required('Room number is required'),
+  cost: Yup.number().required('Cost is required'),
+});

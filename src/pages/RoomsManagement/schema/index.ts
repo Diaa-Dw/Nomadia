@@ -1,1 +1,1 @@
-export { default as validationSchema } from './RoomManagement.schema';
+export * from './RoomManagement.schema';

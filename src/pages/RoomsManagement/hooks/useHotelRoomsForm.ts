@@ -1,8 +1,8 @@
+import { formatDate } from '@/utils';
 import { useFormik } from 'formik';
 import { INITIAL_VALUES } from '../constants';
-import { validationSchema } from '../schema';
+import { searchRoomvalidationSchema } from '../schema';
 import { HotelRoomsSearchProps, SearchFormPayload } from '../types';
-import { formatDate } from '@/utils';
 
 const useHotelRoomsForm = ({ onSearch }: HotelRoomsSearchProps) => {
   const onSubmit = (values: SearchFormPayload) => {
@@ -17,7 +17,7 @@ const useHotelRoomsForm = ({ onSearch }: HotelRoomsSearchProps) => {
   };
   const formikProps = useFormik<SearchFormPayload>({
     initialValues: INITIAL_VALUES,
-    validationSchema,
+    validationSchema: searchRoomvalidationSchema,
     onSubmit,
   });
 

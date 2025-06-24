@@ -1,5 +1,5 @@
 import { addDays } from 'date-fns';
-import { SearchFormPayload } from '../types';
+import { CreateRoomRequest, SearchFormPayload } from '../types';
 import { Column } from '@/containers/AdminTableLayout/AdminTableLayout.types';
 import { Room } from '@/types/room';
 import { Box, Chip, Typography } from '@mui/material';
@@ -14,6 +14,12 @@ export const INITIAL_VALUES: SearchFormPayload = {
     checkInDate: new Date(),
     checkOutDate: addDays(new Date(), 1),
   },
+};
+
+export const ADD_ROOM_INITIAL_VALUES: CreateRoomRequest = {
+  hotelId: 0,
+  roomNumber: '',
+  cost: 0,
 };
 
 export const ROOM_COLUMNS: Column<Room>[] = [

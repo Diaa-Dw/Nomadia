@@ -12,7 +12,7 @@ export interface HotelRoomsSearchProps {
 
 export interface BaseRoomData {
   roomNumber: string;
-  price: number;
+  cost: number;
 }
 
 export interface CreateRoomRequest extends BaseRoomData {
