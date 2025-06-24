@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { updateRoomApi } from '../API';
 import { UpdateRoomPayload } from '../types';
 
-const useAddRoom = () => {
+const useUpdateRoom = () => {
   const { mutate: updateRoom, isPending } = useMutation({
     mutationFn: ({ roomId, data }: UpdateRoomPayload) => updateRoomApi(roomId, data),
 
@@ -19,4 +19,4 @@ const useAddRoom = () => {
   return { updateRoom, isPending };
 };
 
-export default useAddRoom;
+export default useUpdateRoom;

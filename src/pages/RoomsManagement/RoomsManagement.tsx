@@ -10,6 +10,7 @@ import { useDeleteRoom } from './hooks';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
 import { AddRoomDialog } from './components/AddRoomDialog';
 import { showErrorToast } from '@/utils';
+import UpdateRoomDialog from './components/UpdateRoomDialog/UpdateRoomDialog';
 
 const RoomsManagement = () => {
   const [searchParams, setSearchParams] = useState<fetchHotelRoomsProps | null>(null);
@@ -17,6 +18,8 @@ const RoomsManagement = () => {
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
   const [openAddDialog, setOpenAddDialog] = useState(false);
+  const [roomToUpdate, setRoomToUpdate] = useState<Room | null>(null);
+  const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
 
   const { hotelRooms = [], isPending } = useFetchHotelRooms(searchParams);
   const { deleteRoom, isDeleting } = useDeleteRoom(searchParams);
@@ -58,6 +61,16 @@ const RoomsManagement = () => {
     setConfirmOpen(true);
   };
 
+  const onUpdateRequest = (room: Room) => {
+    setRoomToUpdate(room);
+    setOpenUpdateDialog(true);
+  };
+
+  const onCloseUpdateDialog = () => {
+    setOpenUpdateDialog(false);
+    setRoomToUpdate(null);
+  };
+
   const buildRoomActions = useCallback(
     (room: Room) => [
       {
@@ -90,7 +103,7 @@ const RoomsManagement = () => {
           columns={ROOM_COLUMNS}
           data={memoizedRooms}
           isLoading={isPending}
-          onRowClick={() => {}}
+          onRowClick={onUpdateRequest}
           actions={buildRoomActions}
         />
       </AdminTableLayout>
@@ -109,6 +122,12 @@ const RoomsManagement = () => {
         hotelId={searchParams?.hotelId || null}
         open={openAddDialog}
         onClose={onCloseAddDialog}
+      />
+
+      <UpdateRoomDialog
+        roomToUodate={roomToUpdate}
+        open={openUpdateDialog}
+        onClose={onCloseUpdateDialog}
       />
     </Container>
   );

@@ -8,5 +8,5 @@ export interface RoomDialogProps<T> {
   isPending: boolean;
   formikProps: FormikProps<T>;
   actionText: string;
-  actionIcon: ReactNode;
+  actionIcon?: ReactNode;
 }
