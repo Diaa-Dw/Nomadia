@@ -7,7 +7,7 @@ import { fetchHotelRoomsProps } from '@/types/room';
 const useFetchHotelRooms = (params: fetchHotelRoomsProps | null) => {
   const {
     data: hotelRooms,
-    isPending,
+    isFetching,
     error,
   } = useQuery({
     queryFn: () => {
@@ -15,6 +15,7 @@ const useFetchHotelRooms = (params: fetchHotelRoomsProps | null) => {
       return fetchHotelRooms(params);
     },
     queryKey: [HOTEL_ROOMS_QUERY_KEY, params],
+    enabled: !!params,
   });
 
   useErrorToastOnce(
@@ -22,7 +23,7 @@ const useFetchHotelRooms = (params: fetchHotelRoomsProps | null) => {
     `Failed to load hotel's rooms data. Please be sure to select hotels and try again.`
   );
 
-  return { hotelRooms, isPending };
+  return { hotelRooms, isPending: isFetching };
 };
 
 export default useFetchHotelRooms;

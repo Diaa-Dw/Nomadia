@@ -11,24 +11,19 @@ export const DRAWER_WIDTH = 300;
 
 export const ADMIN_NAV_ITEMS: NavItemProps[] = [
   {
-    label: 'Home',
-    Icon: <HomeRounded />,
-    href: '/me',
-  },
-  {
     label: 'Cities Management',
     Icon: <LocationCityRounded />,
-    href: '/me/cities',
+    href: '/me/admin/cities',
   },
   {
     label: 'Hotels Management',
     Icon: <KingBedRounded />,
-    href: '/me/hotels',
+    href: '/me/admin/hotels',
   },
   {
     label: 'Rooms Management',
     Icon: <RoomIcon />,
-    href: '/me/rooms',
+    href: '/me/admin/rooms',
   },
 ];
 
