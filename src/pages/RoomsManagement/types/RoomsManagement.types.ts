@@ -23,4 +23,9 @@ export interface CreateRoomResponse extends BaseRoomData {
   roomId: number;
 }
 
-export type UpdateRoomRequest = CreateRoomRequest;
+export type UpdateRoomRequest = Omit<CreateRoomRequest, 'hotelId'>;
+
+export interface UpdateRoomPayload {
+  roomId: number;
+  data: UpdateRoomRequest;
+}

@@ -26,8 +26,8 @@ export const addRoom = async ({
   return response.data;
 };
 
-export const updateRoomApi = async (id: number, data: UpdateRoomRequest): Promise<number> => {
-  await axios.put(`/rooms/${id}`, data);
+export const updateRoomApi = async (roomId: number, data: UpdateRoomRequest): Promise<number> => {
+  await axios.put(`/rooms/${roomId}`, data);
 
-  return id;
+  return roomId;
 };
