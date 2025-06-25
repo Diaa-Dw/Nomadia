@@ -1,4 +1,3 @@
-import React from 'react';
 import { CompactHotelCardProps, HorizontalHotelCardProps, HotelCardProps } from './HotelCard.types';
 import { CompactHotelCard, HorizontalHotelCard } from './components';
 

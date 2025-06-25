@@ -35,10 +35,12 @@ const RoomCard = ({ room }: { room: Room }) => {
 
   const item: CartItem = {
     ...room,
+    checkInDate,
+    checkOutDate,
   };
 
-  item.checkInDate = item.checkInDate || checkInDate;
-  item.checkOutDate = item.checkOutDate || checkOutDate;
+  // item.checkInDate = item.checkInDate || checkInDate;
+  // item.checkOutDate = item.checkOutDate || checkOutDate;
 
   const isInvalid = !isCartItemValid(item);
 
