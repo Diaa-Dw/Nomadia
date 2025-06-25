@@ -51,7 +51,7 @@ const RoomCard = ({ room }: { room: Room }) => {
   };
 
   const onRoomCheckout = () => {
-    navigate(`/me/checkout/${roomId}`);
+    navigate(`/checkout/${roomId}`);
   };
 
   return (

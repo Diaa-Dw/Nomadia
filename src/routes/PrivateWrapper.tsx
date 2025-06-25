@@ -10,8 +10,8 @@ const PrivateWrapper = () => {
   const { isAuthenticated } = useAppSelector(selectUser);
   const isAdmin = useAppSelector(selectIsAdmin);
 
-  const isAdminRoute = pathname.startsWith('/me/admin');
-  const isUserRoute = pathname.startsWith('/me') && !isAdminRoute;
+  const isAdminRoute = pathname.startsWith('/admin');
+  const isUserRoute = pathname.startsWith('/') && !isAdminRoute;
 
   if (isAuthenticating) {
     return <Loader />;
@@ -22,11 +22,11 @@ const PrivateWrapper = () => {
   }
 
   if (isUserRoute && isAdmin) {
-    return <Navigate to="/me/admin/cities" replace />;
+    return <Navigate to="/admin/cities" replace />;
   }
 
   if (isAdminRoute && !isAdmin) {
-    return <Navigate to="/me" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;

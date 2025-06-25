@@ -10,7 +10,7 @@ const ShoppingCart = () => {
   const { totalItems } = useAppSelector(selectCart);
 
   const onShoppingIconClick = () => {
-    navigate('/me/cart');
+    navigate('/cart');
   };
 
   return (

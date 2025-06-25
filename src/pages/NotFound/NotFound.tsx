@@ -26,7 +26,7 @@ const NotFoundPage = () => {
           </Typography>
         </Box>
 
-        <Button variant="contained" onClick={() => navigate('/me')}>
+        <Button variant="contained" onClick={() => navigate('/')}>
           Back to Home
         </Button>
       </ContentBox>

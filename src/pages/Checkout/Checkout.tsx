@@ -28,7 +28,7 @@ const Checkout = () => {
     const invalid = !isCartItemValid(room);
     if (invalid) {
       showErrorToast('The booking dates for this room are no longer valid.');
-      navigate('/me/cart', { replace: true });
+      navigate('/cart', { replace: true });
     }
   }, [room, navigate]);
 

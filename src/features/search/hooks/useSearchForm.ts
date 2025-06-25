@@ -22,7 +22,7 @@ const useSearchForm = () => {
     } else {
       navigate(
         {
-          pathname: '/me/search',
+          pathname: '/search',
           search: `?${queryString}`,
         },
         { replace: true }

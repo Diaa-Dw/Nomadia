@@ -34,7 +34,7 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
   const checkOutParams = searchParams.get('checkOutDate') || checkOutDate;
 
   const onCardClick = () => {
-    navigate(`/me/hotels/${hotelId}?checkInDate=${checkInParams}&checkOutDate=${checkOutParams}`);
+    navigate(`/hotels/${hotelId}?checkInDate=${checkInParams}&checkOutDate=${checkOutParams}`);
   };
 
   const priceAfterDiscount = roomPrice - (roomPrice * discount) / 100;

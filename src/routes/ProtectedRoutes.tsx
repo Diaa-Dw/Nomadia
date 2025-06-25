@@ -13,7 +13,7 @@ const HotelManagement = lazy(() => import('@/pages/HotelsMAnagement/HotelsManage
 const RoomsManagement = lazy(() => import('@/pages/RoomsManagement/RoomsManagement'));
 
 const protectedRoutes: RouteObject = {
-  path: '/me',
+  path: '/',
   element: <Layout />,
   children: [
     {

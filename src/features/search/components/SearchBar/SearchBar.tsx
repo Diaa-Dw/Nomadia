@@ -16,7 +16,7 @@ const SearchBar = ({ isPending }: SearchBarProps) => {
   const { formikProps } = useSearchForm();
   const isSmallScreen = useMediaQuery('(max-width:1018px)');
 
-  const isSearchPage = pathname === '/me/search';
+  const isSearchPage = pathname === '/search';
 
   const { isValid, dirty } = formikProps;
 

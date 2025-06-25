@@ -13,17 +13,17 @@ export const ADMIN_NAV_ITEMS: NavItemProps[] = [
   {
     label: 'Cities Management',
     Icon: <LocationCityRounded />,
-    href: '/me/admin/cities',
+    href: '/admin/cities',
   },
   {
     label: 'Hotels Management',
     Icon: <KingBedRounded />,
-    href: '/me/admin/hotels',
+    href: '/admin/hotels',
   },
   {
     label: 'Rooms Management',
     Icon: <RoomIcon />,
-    href: '/me/admin/rooms',
+    href: '/admin/rooms',
   },
 ];
 
@@ -31,11 +31,11 @@ export const USER_NAV_ITEMS: NavItemProps[] = [
   {
     label: 'Home',
     Icon: <HomeRounded />,
-    href: '/me',
+    href: '/',
   },
   {
     label: 'Search Hotels',
     Icon: <SearchRounded />,
-    href: '/me/search',
+    href: '/search',
   },
 ];

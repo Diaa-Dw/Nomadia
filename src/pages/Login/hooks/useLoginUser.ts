@@ -24,7 +24,7 @@ const useLoginUser = () => {
 
       dispatch(login(payload));
 
-      navigate('/me');
+      navigate('/');
     },
     onError: () => {
       showErrorToast(`Invalid Credentials`);

@@ -31,7 +31,7 @@ const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
   } = hotelData;
 
   const onCardClick = () => {
-    navigate(`/me/hotels/${hotelId}`);
+    navigate(`/hotels/${hotelId}`);
   };
 
   const imageUrl = roomPhotoUrl || thumbnailUrl || '';

@@ -11,10 +11,6 @@ const publicRoutes: RouteObject = {
   element: <Layout />,
   children: [
     {
-      index: true,
-      element: <h1>Landing Page</h1>,
-    },
-    {
       path: 'login',
       element: <Login />,
     },
