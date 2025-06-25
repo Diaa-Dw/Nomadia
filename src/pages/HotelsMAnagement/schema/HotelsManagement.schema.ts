@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
 
 const validationSchema = Yup.object<AddHotelRequest | Hotel>().shape({
+  cityId: Yup.number().required('City is required'),
   name: Yup.string().required('Name is required'),
   description: Yup.string().required('Description is required'),
   hotelType: Yup.number()

@@ -1,18 +1,23 @@
 import { Autocomplete } from '@mui/material';
 import { useField } from 'formik';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useFetchCities } from '../../hooks/useFetchCities';
 import { CitySelectProps } from './CitySelect.types';
 import { TextField } from '@/components';
+import { useDebounce } from '@/hooks';
 
 const CitySelect = ({ name, label = 'City', disabled }: CitySelectProps) => {
   const [field, meta, helpers] = useField<number | null>(name);
   const { setValue } = helpers;
 
   const [inputValue, setInputValue] = useState('');
-  const { cities = [], isFetching } = useFetchCities(inputValue);
+  const debouncedInput = useDebounce(inputValue, 300);
+  const { cities = [], isFetching } = useFetchCities(debouncedInput);
 
-  const selectedCity = cities.find(city => city.id === field.value) || null;
+  const selectedCity = useMemo(
+    () => cities.find(city => city.id === field.value) || null,
+    [field.value, cities]
+  );
 
   return (
     <Autocomplete

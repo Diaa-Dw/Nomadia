@@ -53,12 +53,12 @@ const HotelDrawer = ({ open, onClose, isEditMode, selectedHotel }: HotelDialogPr
 
           <Box flex={1} overflow="auto" p={2}>
             {!isEditMode && <CitySelect name="cityId" />}
-            <TextField name="name" label="Name" placeholder="e.g., Red Rose" />
+            <TextField name="name" label="Name" placeholder="Plaza Hotel" />
 
             <TextField
               name="description"
               label="Description"
-              placeholder="e.g., Red Rose is a 5-star hotel"
+              placeholder="Plaza hotel is a 4-star hotel"
             />
 
             <TextField name="hotelType" label="Hotel Type" select fullWidth>
