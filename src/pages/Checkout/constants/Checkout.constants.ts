@@ -1,4 +1,4 @@
-import { CheckoutFormValues, PaymentType } from './types/Checkout.types';
+import { CheckoutFormValues, PaymentType } from '../types';
 
 export const INITIAL_VALUES: CheckoutFormValues = {
   fullName: '',

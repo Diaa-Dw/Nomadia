@@ -1,10 +1,8 @@
+import { ShoppingCart, ThemeToggle, UserMenu } from '@/components';
 import { selectIsAdmin, selectUser } from '@/features';
 import { useAppSelector } from '@/store';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Container, IconButton, Stack, Toolbar, Typography } from '@mui/material';
-import { ShoppingCart } from '../ShoppingCart';
-import ThemeToggle from '../ThemeToggle/ThemeToggle';
-import { UserMenu } from '../UserMenu';
 import { HeaderPorps } from './Header.types';
 
 const Header = ({ onOpenSidebar }: HeaderPorps) => {

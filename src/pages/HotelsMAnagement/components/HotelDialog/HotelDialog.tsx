@@ -16,15 +16,14 @@ import {
 } from '@mui/material';
 import { Form, FormikProvider } from 'formik';
 import { HOTEL_INITIAL_VALUES, hotelTypeOptions } from '../../constants';
-import useHotelMutation from '../../hooks/useHotelMutation';
-import useHotelsForms from '../../hooks/useHotelsForm';
-import { HotelDialogProps } from './HotelDialog.types';
+import { useHotelMutation, useHotelsForm } from '../../hooks';
 import { CitySelect } from '../CitySelect';
+import { HotelDialogProps } from './HotelDialog.types';
 
 const HotelDrawer = ({ open, onClose, isEditMode, selectedHotel }: HotelDialogProps) => {
   const initialValues = selectedHotel ?? { ...HOTEL_INITIAL_VALUES };
   const { mutateAsync, isPending } = useHotelMutation(isEditMode ? 'edit' : 'add');
-  const formikProps = useHotelsForms({ initialValues, mutateAsync, onClose });
+  const formikProps = useHotelsForm({ initialValues, mutateAsync, onClose });
 
   const { dirty, isValid, resetForm, values, setValues } = formikProps;
   const { name, starRating, latitude, longitude } = values;

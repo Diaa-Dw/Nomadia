@@ -1,7 +1,7 @@
 import { useErrorToastOnce } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { fetchFeaturedDeals } from '../API';
-import { FEATURED_DEALS_QUERY_KEY } from '../Home.constants';
+import { FEATURED_DEALS_QUERY_KEY } from '../constants';
 
 const useFetchFeaturedDeals = () => {
   const {

@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import { useState, useMemo } from 'react';
 import { useFetchGallery } from '../../hooks';
-import { generateSkeletonGallery, getImageSrcSet } from '../../utils/Hotel.utils';
+import { generateSkeletonGallery, getImageSrcSet } from '../../utils';
 import {
   GalleryWrapper,
   MainImageWrapper,
@@ -13,8 +13,8 @@ import {
   SkeletonBox,
 } from './Gallery.style';
 import { GallaryProps } from './Gallery.types';
-import { BackdropViewer } from '../BackdropViewer';
-import { MAX_GALLERY_SIDE_IMAGES } from '../../Hotel.constants';
+import { BackdropViewer } from '../';
+import { MAX_GALLERY_SIDE_IMAGES } from '../../constants';
 import { PhotoResponse } from '../../types';
 
 const Gallery = ({ id }: GallaryProps) => {

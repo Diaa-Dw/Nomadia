@@ -2,7 +2,7 @@ import { Column } from '@/containers/AdminTableLayout/AdminTableLayout.types';
 import { HotelMap } from '@/pages/Hotel/components';
 import { Delete } from '@mui/icons-material';
 import { Box } from '@mui/material';
-import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
+import { AddHotelRequest, Hotel } from '../types/HotelsManagement.types';
 
 export const HOTELS_QUERY_KEY = 'hotels';
 export const HOTELS_PER_PAGE = 10;

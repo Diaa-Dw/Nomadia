@@ -1,6 +1,6 @@
 import { Loader } from '@/containers';
 import { selectUser, selectIsAdmin } from '@/features';
-import useVerifyToken from '@/hooks/userVerifyToken';
+import { useVerifyToken } from '@/hooks';
 import { useAppSelector } from '@/store';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 

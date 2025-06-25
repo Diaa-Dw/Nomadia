@@ -38,13 +38,12 @@ const Checkout = () => {
     };
   }, [sessionKey]);
 
-  if (!bookingResponseRaw || !room) {
+  if (!bookingResponseRaw && !room) {
     return <EmptyState title="Room not found in cart." description="" />;
   }
 
   if (bookingResponseRaw) {
     let parsedResponse: BookResponse | null = null;
-
     try {
       parsedResponse = JSON.parse(bookingResponseRaw);
     } catch {
@@ -58,8 +57,8 @@ const Checkout = () => {
   return (
     <Container maxWidth="xl">
       <CheckoutContainer>
-        <CheckoutRoomCard room={room} />
-        <CheckoutForm room={room} />
+        {room && <CheckoutRoomCard room={room} />}
+        {room && <CheckoutForm room={room} />}
       </CheckoutContainer>
     </Container>
   );

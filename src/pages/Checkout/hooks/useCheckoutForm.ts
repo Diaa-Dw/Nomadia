@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { INITIAL_VALUES } from '../Checkout.constants';
+import { INITIAL_VALUES } from '../constants';
 import { validationSchema } from '../schema';
 import useSubmitBooking from './useSubmitBooking';
 import { Room } from '@/types/room';

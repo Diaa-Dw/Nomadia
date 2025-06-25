@@ -1,4 +1,4 @@
-import { FilterFormValues } from './types';
+import { FilterFormValues } from '../types';
 
 export const SEARCH_PAGE_AMENITIES_QUERY_KEY = 'searchPageAmenities';
 export const SEARCH_QUERY_KEY = 'searchHotels';
@@ -7,5 +7,3 @@ export const filterInitialValues: FilterFormValues = {
   amenities: [],
   starRate: null,
 };
-
-export const REQUIRED_PARAMS = ['city', 'checkInDate', 'checkOutDate', 'adults', 'numberOfRooms'];

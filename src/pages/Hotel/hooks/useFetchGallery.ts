@@ -1,7 +1,7 @@
 import { useErrorToastOnce } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { fetchHotelGallery } from '../API';
-import { HOTEL_GALLERY_QUERY_KEY } from '../Hotel.constants';
+import { HOTEL_GALLERY_QUERY_KEY } from '../constants/Hotel.constants';
 
 const useFetchGallery = (hotelId: number) => {
   const {

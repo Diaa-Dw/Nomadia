@@ -1,4 +1,4 @@
-import { Chip } from '@mui/material';
+import { Box, Chip } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 export const CompactCardContainer = styled('div')(({ theme }) => ({
@@ -13,6 +13,12 @@ export const CompactCardContainer = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   rowGap: theme.spacing(1),
   margin: '0 auto',
+}));
+
+export const HotelImageWrapper = styled(Box)(() => ({
+  position: 'relative',
+  width: '100%',
+  height: 200,
 }));
 
 export const CompactHotelImage = styled('img')({

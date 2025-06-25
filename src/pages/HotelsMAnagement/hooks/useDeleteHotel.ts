@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { showErrorToast, showSuccessToast } from '@/utils';
 import { Filters } from '@/types';
 import { deleteHotelApi } from '../API';
-import { HotelsInfiniteData } from '../types/HotelsMAnagement.types';
+import { HotelsInfiniteData } from '../types/HotelsManagement.types';
 import { HOTELS_PER_PAGE } from '../constants';
 
 const useDeleteHotel = (filters: Filters) => {

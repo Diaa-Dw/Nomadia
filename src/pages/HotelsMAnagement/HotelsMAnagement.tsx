@@ -1,15 +1,13 @@
 import { AdminFilterForm } from '@/components';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
-import { AdminTableLayout } from '@/containers';
-import { AdminTable, AdminTableHeader } from '@/containers/AdminTableLayout';
+import { AdminTable, AdminTableHeader, AdminTableLayout } from '@/containers';
 import { Filters } from '@/types';
 import { Container } from '@mui/material';
 import { useCallback, useMemo, useState } from 'react';
 import { HotelDialog } from './components/HotelDialog';
 import { HOTEL_ACTIONS, HOTEL_COLUMNS, TITLE } from './constants';
-import useDeleteHotel from './hooks/useDeleteHotel';
-import useFetchHotels from './hooks/useFetchHotels';
-import { Hotel } from './types/HotelsMAnagement.types';
+import { useDeleteHotel, useFetchHotels } from './hooks';
+import { Hotel } from './types';
 
 const HotelsMAnagement = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -94,8 +92,8 @@ const HotelsMAnagement = () => {
           data={memoizedHotels}
           isLoading={isFetching}
           onRowClick={onRowClick}
-         actions={buildHotelActions}
-        /> 
+          actions={buildHotelActions}
+        />
       </AdminTableLayout>
       <HotelDialog
         open={openDialog}

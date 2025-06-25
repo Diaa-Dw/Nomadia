@@ -3,7 +3,7 @@ import { useErrorToastOnce } from '@/hooks';
 import { useAppSelector } from '@/store';
 import { useQuery } from '@tanstack/react-query';
 import { fetchRecentlyVisitedHotels } from '../API';
-import { RECENTLY_VISITED_HOTELS_QUERY_KEY } from '../Home.constants';
+import { RECENTLY_VISITED_HOTELS_QUERY_KEY } from '../constants';
 
 const useFetchRecentlyVisitedHotels = () => {
   const { userId } = useAppSelector(selectUser);

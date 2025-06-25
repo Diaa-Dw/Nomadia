@@ -1,7 +1,7 @@
 import { Autocomplete } from '@mui/material';
 import { useField } from 'formik';
 import { useMemo, useState } from 'react';
-import { useFetchCities } from '../../hooks/useFetchCities';
+import { useFetchCities } from '../../hooks';
 import { CitySelectProps } from './CitySelect.types';
 import { TextField } from '@/components';
 import { useDebounce } from '@/hooks';

@@ -1,9 +1,9 @@
 import { login } from '@/features';
 import { useAppDispatch } from '@/store';
-import { parseJwtToLoginPayload, setAuthToken } from '@/utils';
+import { parseJwtToLoginPayload, setAuthToken, showErrorToast } from '@/utils';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../api';
+import { loginUser } from '../API';
 
 const useLoginUser = () => {
   const navigate = useNavigate();
@@ -26,8 +26,9 @@ const useLoginUser = () => {
 
       navigate('/me');
     },
-    onError: error => {
-      console.log('🚀 ~ useLoginUser ~ error:', error);
+    onError: () => {
+      showErrorToast(`Invalid Credentials`);
+      return;
     },
   });
 

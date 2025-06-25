@@ -1,6 +1,6 @@
 import { useErrorToastOnce } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
-import { HOTEL_ROOMS_QUERY_KEY } from '../pages/Hotel/Hotel.constants';
+import { HOTEL_ROOMS_QUERY_KEY } from '../pages/Hotel/constants/Hotel.constants';
 import { fetchHotelRooms } from '@/services/Rooms.api';
 import { fetchHotelRoomsProps } from '@/types/room';
 

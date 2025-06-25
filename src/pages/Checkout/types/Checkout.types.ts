@@ -33,4 +33,6 @@ export interface BookResponse {
   bookingDateTime: string;
   totalCost: number;
   paymentMethod: string;
+  bookingStatus: string;
+  confirmationNumber: string;
 }

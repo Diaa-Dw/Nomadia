@@ -8,4 +8,6 @@ export const ROWS: RowDef[] = [
   { label: 'Total Cost', field: 'totalCost' },
   { label: 'Booking Date', field: 'bookingDateTime', isDate: true },
   { label: 'Payment Method', field: 'paymentMethod' },
+  { label: 'Booking Status', field: 'bookingStatus' },
+  { label: 'Confirmation Number', field: 'confirmationNumber' },
 ];

@@ -1,4 +1,4 @@
-import useUpdateRoomForm from '../../hooks/useUpdateRoomForm';
+import { useUpdateRoomForm } from '../../hooks';
 import { UpdateRoomRequest } from '../../types';
 import { RoomDialog } from '../RoomDialog';
 import { UpdateRoomDialogProps } from './UpdateRoomDialog.types';

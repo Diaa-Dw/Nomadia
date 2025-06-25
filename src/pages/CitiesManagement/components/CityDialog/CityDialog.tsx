@@ -11,7 +11,7 @@ import {
   Stack,
 } from '@mui/material';
 import { Form, FormikProvider } from 'formik';
-import useCityForm from '../../hooks/useCityForm';
+import { useCityForm } from '../../hooks';
 import { CityDialogProps } from './CityDialog.types';
 import { CITY_DIALOG_INTIAL_VALUES } from '../../constants';
 

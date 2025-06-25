@@ -7,3 +7,7 @@ export { SectionTitle } from './SectionTitle';
 export { RoomCard } from './RoomCard';
 export { EmptyState } from './EmptyState';
 export { AdminFilterForm } from './AdminFilterForm';
+export { ThemeToggle } from './ThemeToggle';
+export { ConfirmDialog } from './ConfirmDialog';
+export { ShoppingCart } from './ShoppingCart';
+export { UserMenu } from './UserMenu';

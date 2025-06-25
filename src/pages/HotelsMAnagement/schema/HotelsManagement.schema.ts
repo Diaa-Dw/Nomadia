@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
+import { AddHotelRequest, Hotel } from '../types/HotelsManagement.types';
 
 const validationSchema = Yup.object<AddHotelRequest | Hotel>().shape({
   cityId: Yup.number().required('City is required'),

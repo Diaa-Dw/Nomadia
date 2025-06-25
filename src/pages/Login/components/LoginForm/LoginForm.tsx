@@ -9,6 +9,7 @@ const LoginForm = () => {
   const formikProps = useLoginForm();
 
   const { submitForm, isSubmitting, dirty, isValid } = formikProps;
+  console.log('🚀 ~ LoginForm ~ isSubmitting:', isSubmitting);
   return (
     <FormikProvider value={formikProps}>
       <LoginFormContainer onSubmit={submitForm}>
@@ -17,13 +18,14 @@ const LoginForm = () => {
           label="User Name"
           placeholder="your.username"
           startIcon={<AccountCircle />}
+          aria-invalid="false"
         />
         <PasswordField name="password" label="Password" />
 
         <Button
           type="submit"
-          variant={'contained'}
           onClick={submitForm}
+          variant={'contained'}
           fullWidth
           loading={isSubmitting}
           loadingPosition={'start'}

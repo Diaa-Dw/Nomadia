@@ -1,7 +1,7 @@
 import axios from '@/api';
 import { City } from '@/pages/CitiesManagement/types';
 import { Filters } from '@/types';
-import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
+import { AddHotelRequest, Hotel } from '../types';
 
 export const fetchHotels = async (
   pageNumber: number,

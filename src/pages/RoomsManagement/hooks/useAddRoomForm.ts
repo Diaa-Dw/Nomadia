@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import { ADD_ROOM_INITIAL_VALUES } from '../constants';
 import { addRoomvalidationSchema } from '../schema';
-import useAddRoom from './useAddRoom';
+import { useAddRoom } from './';
 import { CreateRoomRequest } from '../types';
 import { showErrorToast } from '@/utils';
 

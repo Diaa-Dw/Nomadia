@@ -1,7 +1,7 @@
 import { useErrorToastOnce } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { fetchHotelReviews } from '../API';
-import { HOTEL_REVIEWS_QUERY_KEY } from '../Hotel.constants';
+import { HOTEL_REVIEWS_QUERY_KEY } from '../constants/Hotel.constants';
 
 const useFetchHotelReviews = (hotelId: number) => {
   const {

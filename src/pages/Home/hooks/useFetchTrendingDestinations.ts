@@ -1,7 +1,7 @@
 import { useErrorToastOnce } from '@/hooks';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTrendingDestinations } from '../API';
-import { TRENDING_DESTINATIONS_QUERY_KEY } from '../Home.constants';
+import { TRENDING_DESTINATIONS_QUERY_KEY } from '../constants';
 
 const useFetchTrendingDestinations = () => {
   const {

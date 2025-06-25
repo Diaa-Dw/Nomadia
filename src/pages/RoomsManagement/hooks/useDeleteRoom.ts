@@ -1,7 +1,7 @@
 import { showErrorToast, showSuccessToast } from '@/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteRoomApi } from '../API';
-import { HOTEL_ROOMS_QUERY_KEY } from '@/pages/Hotel/Hotel.constants';
+import { HOTEL_ROOMS_QUERY_KEY } from '@/pages/Hotel/constants/Hotel.constants';
 import { fetchHotelRoomsProps, Room } from '@/types/room';
 
 const useDeleteRoom = (searchParams: fetchHotelRoomsProps | null) => {

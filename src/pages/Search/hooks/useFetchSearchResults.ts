@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import { fetchSearchResults } from '../API';
-import { SEARCH_QUERY_KEY } from '../Search.constants';
+import { SEARCH_QUERY_KEY } from '../constants';
 import { formatDate, parseSearchQueryParams } from '@/utils';
 import { SearchRequest } from '@/types';
 

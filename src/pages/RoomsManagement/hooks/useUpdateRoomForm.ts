@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { ADD_ROOM_INITIAL_VALUES } from '../constants';
 import { updateRoomValidationSchema } from '../schema';
 import { UpdateRoomRequest } from '../types';
-import useUpdateRoom from './useUpdateRoom';
+import { useUpdateRoom } from './';
 
 const useUpdateRoomForm = (roomToUpdate: Room | null) => {
   const { updateRoom, isPending } = useUpdateRoom();

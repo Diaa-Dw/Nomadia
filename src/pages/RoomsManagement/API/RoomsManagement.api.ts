@@ -1,5 +1,5 @@
 import axios from '@/api';
-import { Hotel } from '@/pages/HotelsMAnagement/types/HotelsMAnagement.types';
+import { Hotel } from '@/pages/HotelsMAnagement/types/HotelsManagement.types';
 import { CreateRoomRequest, CreateRoomResponse, UpdateRoomRequest } from '../types';
 
 export const fetchHotelsApi = async (name: string): Promise<Hotel[]> => {

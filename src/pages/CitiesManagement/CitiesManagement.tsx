@@ -1,15 +1,12 @@
 import { AdminFilterForm } from '@/components';
 import { ConfirmDialog } from '@/components/ConfirmDialog';
-import { AdminTableLayout } from '@/containers';
-import { AdminTable, AdminTableHeader } from '@/containers/AdminTableLayout';
+import { AdminTable, AdminTableHeader, AdminTableLayout } from '@/containers';
 import { Filters } from '@/types';
 import { Container } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { CityDialog } from './components';
 import { CITY_ACTIONS, CITY_COLUMNS, TITLE } from './constants';
-import useDeleteCity from './hooks/useDeleteCity';
-import useFetchCities from './hooks/useFetchCities';
-import useCityMutation from './hooks/useMutateCity';
+import { useCityMutation, useDeleteCity, useFetchCities } from './hooks';
 import { City } from './types';
 
 function CityManagement() {

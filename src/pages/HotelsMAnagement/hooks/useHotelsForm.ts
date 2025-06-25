@@ -1,8 +1,8 @@
 import { useFormik } from 'formik';
 import { validationSchema } from '../schema';
-import { AddHotelRequest, Hotel, UseHotelsFormProps } from '../types/HotelsMAnagement.types';
+import { AddHotelRequest, Hotel, UseHotelsFormProps } from '../types/HotelsManagement.types';
 
-const useHotelsForms = ({ initialValues, mutateAsync, onClose }: UseHotelsFormProps) => {
+const useHotelsForm = ({ initialValues, mutateAsync, onClose }: UseHotelsFormProps) => {
   const formikProps = useFormik<AddHotelRequest | Hotel>({
     initialValues,
     validationSchema,
@@ -17,4 +17,4 @@ const useHotelsForms = ({ initialValues, mutateAsync, onClose }: UseHotelsFormPr
   return formikProps;
 };
 
-export default useHotelsForms;
+export default useHotelsForm;

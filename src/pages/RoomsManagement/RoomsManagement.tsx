@@ -1,16 +1,13 @@
-import { AdminTableLayout } from '@/containers';
-import { AdminTable, AdminTableHeader } from '@/containers/AdminTableLayout';
-import useFetchHotelRooms from '@/hooks/useFetchHotelRooms';
+import { ConfirmDialog } from '@/components';
+import { AdminTable, AdminTableHeader, AdminTableLayout } from '@/containers';
+import { useFetchHotelRooms } from '@/hooks';
 import { fetchHotelRoomsProps, Room } from '@/types/room';
+import { showErrorToast } from '@/utils';
 import { Button, Collapse, Container } from '@mui/material';
 import { useCallback, useMemo, useState } from 'react';
-import RoomsSearchForm from './components/HotelRoomSearch/HotelRoomSearch';
+import { AddRoomDialog, HotelRoomSearch, UpdateRoomDialog } from './components';
 import { ROOM_ACTIONS, ROOM_COLUMNS, TITLE } from './constants';
 import { useDeleteRoom } from './hooks';
-import { ConfirmDialog } from '@/components/ConfirmDialog';
-import { AddRoomDialog } from './components/AddRoomDialog';
-import { showErrorToast } from '@/utils';
-import UpdateRoomDialog from './components/UpdateRoomDialog/UpdateRoomDialog';
 
 const RoomsManagement = () => {
   const [searchParams, setSearchParams] = useState<fetchHotelRoomsProps | null>(null);
@@ -96,7 +93,7 @@ const RoomsManagement = () => {
           </Button>
         </AdminTableHeader>
         <Collapse in={openSearch}>
-          <RoomsSearchForm onSearch={onSearch} />
+          <HotelRoomSearch onSearch={onSearch} />
         </Collapse>
 
         <AdminTable<Room>

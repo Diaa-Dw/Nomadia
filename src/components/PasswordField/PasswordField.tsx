@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useField } from 'formik';
 import { useState } from 'react';
-import type { PasswordFieldProps } from './';
+import type { PasswordFieldProps } from './PasswordField.type';
 
 const PasswordField = ({ name, label = 'Password', ...resetProps }: PasswordFieldProps) => {
   const [field, meta] = useField(name);

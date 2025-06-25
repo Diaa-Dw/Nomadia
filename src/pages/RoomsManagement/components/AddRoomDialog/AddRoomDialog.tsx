@@ -1,5 +1,5 @@
 import { Add } from '@mui/icons-material';
-import useAddRoomForm from '../../hooks/useAddRoomForm';
+import { useAddRoomForm } from '../../hooks';
 import { RoomDialog } from '../RoomDialog';
 import { AddRoomDialogProps } from './AddRoomDialog.types';
 import { CreateRoomRequest } from '../../types';

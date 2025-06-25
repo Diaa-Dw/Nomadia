@@ -1,1 +1,1 @@
-export { default as AddRoomDialog } from './UpdateRoomDialog';
+export { default as UpdateRoomDialog } from './UpdateRoomDialog';

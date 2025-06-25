@@ -1,15 +1,15 @@
 import { addToCart, removeFromCart } from '@/features';
+import { CartItem } from '@/features/cart/types';
 import { useAppDispatch } from '@/store';
 import { Room } from '@/types/room';
-import { formatDate, isCartItemValid, showErrorToast } from '@/utils';
+import { formatDate, isCartItemValid } from '@/utils';
 import { ShoppingCart } from '@mui/icons-material';
 import { Box, Button, Chip, Stack, Typography } from '@mui/material';
 import { addDays } from 'date-fns';
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { RoomCardContainer, RoomImage } from './RoomCard.style';
-import { ConfirmDialog } from '../ConfirmDialog';
 import { useState } from 'react';
-import { CartItem } from '@/features/cart/types';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { ConfirmDialog } from '../ConfirmDialog';
+import { RoomCardContainer, RoomImage, RoomImageWrapper } from './RoomCard.style';
 
 const RoomCard = ({ room }: { room: Room }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -56,7 +56,7 @@ const RoomCard = ({ room }: { room: Room }) => {
 
   return (
     <RoomCardContainer>
-      <Box position="relative">
+      <RoomImageWrapper>
         <RoomImage src={roomPhotoUrl} alt={roomType} availability={availability} />
         {!availability && (
           <Chip
@@ -86,7 +86,7 @@ const RoomCard = ({ room }: { room: Room }) => {
             }}
           />
         )}
-      </Box>
+      </RoomImageWrapper>
 
       <Stack direction="column" flexGrow={1} p={2} spacing={1}>
         <Typography variant="h6">{roomType}</Typography>

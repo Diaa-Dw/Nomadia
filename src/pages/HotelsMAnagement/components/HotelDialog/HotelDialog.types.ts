@@ -1,4 +1,4 @@
-import { Hotel } from '../../types/HotelsMAnagement.types';
+import { Hotel } from '../../types/HotelsManagement.types';
 
 export interface HotelDialogProps {
   open: boolean;

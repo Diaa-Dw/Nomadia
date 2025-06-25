@@ -3,9 +3,7 @@ import { Box, Container, Skeleton, Typography } from '@mui/material';
 import { addDays } from 'date-fns';
 import 'leaflet/dist/leaflet.css';
 import { useParams, useSearchParams } from 'react-router-dom';
-import { Gallery, HotelMap, RoomsContainer } from './components';
-import { HotelInfo } from './components/HotelInfo';
-import { HotelReviews } from './components/HotelReviews';
+import { Gallery, HotelInfo, HotelMap, HotelReviews, RoomsContainer } from './components';
 import { useFetchHotel } from './hooks';
 import { MapWrapper, ReviewsMapContainer, ReviewsWrapper } from './Hotel.style';
 

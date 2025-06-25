@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { filterInitialValues } from '../Search.constants';
+import { filterInitialValues } from '../constants';
 import { useSearchParams } from 'react-router-dom';
 import { FilterFormValues } from '../types';
 import { useState } from 'react';

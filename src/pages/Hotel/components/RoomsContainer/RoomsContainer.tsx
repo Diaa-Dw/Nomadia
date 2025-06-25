@@ -1,7 +1,7 @@
 import { EmblaCarousel, RoomCard } from '@/components';
 import { Grid, Skeleton } from '@mui/material';
 import { RoomsContainerProps } from './RoomsContainer.type';
-import useFetchHotelRooms from '@/hooks/useFetchHotelRooms';
+import { useFetchHotelRooms } from '@/hooks';
 
 const RoomsContainer = ({ hotelId, checkInDate, checkOutDate }: RoomsContainerProps) => {
   const { hotelRooms, isPending } = useFetchHotelRooms({ hotelId, checkInDate, checkOutDate });

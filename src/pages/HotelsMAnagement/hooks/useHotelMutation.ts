@@ -2,7 +2,7 @@ import { showErrorToast, showSuccessToast } from '@/utils';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { addHotel, updateHotel } from '../API';
 import { HOTELS_QUERY_KEY } from '../constants';
-import { AddHotelRequest, Hotel } from '../types/HotelsMAnagement.types';
+import { AddHotelRequest, Hotel } from '../types/HotelsManagement.types';
 
 const useHotelMutation = (mode: 'add' | 'edit') => {
   const queryClient = useQueryClient();

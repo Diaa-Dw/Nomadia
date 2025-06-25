@@ -1,7 +1,12 @@
 import { ArrowForwardIos } from '@mui/icons-material';
 import { Box, IconButton, Rating, Stack, Typography } from '@mui/material';
 import { CompactHotelCardProps } from '../../HotelCard.types';
-import { CompactCardContainer, CompactHotelImage, DiscountChip } from './CompactHotelCard.style';
+import {
+  CompactCardContainer,
+  CompactHotelImage,
+  DiscountChip,
+  HotelImageWrapper,
+} from './CompactHotelCard.style';
 import { useNavigate } from 'react-router-dom';
 
 const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
@@ -34,7 +39,7 @@ const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
 
   return (
     <CompactCardContainer>
-      <Box position={'relative'}>
+      <HotelImageWrapper>
         <CompactHotelImage
           src={imageUrl}
           alt={hotelName}
@@ -44,7 +49,7 @@ const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
         {discount !== undefined && (
           <DiscountChip label={`${discount}% OFF`} color="primary" size="small" />
         )}
-      </Box>
+      </HotelImageWrapper>
 
       <Stack direction={'column'} flexGrow={1} p={2}>
         <Rating value={rating} precision={0.5} size="small" readOnly />

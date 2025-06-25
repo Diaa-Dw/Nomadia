@@ -1,7 +1,7 @@
 import { EmblaCarousel, SectionTitle } from '@/components';
 import { Grid, Skeleton } from '@mui/material';
-import useFetchTrendingDestinations from '../../hooks/useFetchTrendingDestinations';
-import { TrendingDestinationCard } from '../TrendingDestinationCard';
+import { useFetchTrendingDestinations } from '../../hooks';
+import { TrendingDestinationCard } from '../';
 
 const TrendingDestinations = () => {
   const { trendingDestinations, isFetching } = useFetchTrendingDestinations();

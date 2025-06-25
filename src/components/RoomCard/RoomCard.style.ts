@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { RoomImageProps } from './RoomCard.types';
+import { Box } from '@mui/material';
 
 export const RoomCardContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -12,6 +13,11 @@ export const RoomCardContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   margin: '0 auto',
+}));
+
+export const RoomImageWrapper = styled(Box)(() => ({
+  width: '100%',
+  height: 150,
 }));
 
 export const RoomImage = styled('img', {

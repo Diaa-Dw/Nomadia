@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchCities } from '../API';
 import { useErrorToastOnce } from '@/hooks';
 
-export const useFetchCities = (name: string) => {
+const useFetchCities = (name: string) => {
   const {
     data: cities,
     isFetching,
@@ -20,3 +20,5 @@ export const useFetchCities = (name: string) => {
     isFetching,
   };
 };
+
+export default useFetchCities;

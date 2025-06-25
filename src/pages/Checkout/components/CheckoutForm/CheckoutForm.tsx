@@ -4,7 +4,7 @@ import { Autocomplete, Button, CircularProgress } from '@mui/material';
 import { FormikProvider } from 'formik';
 import { useCheckoutForm } from '../../hooks';
 import { PaymentType } from '../../types';
-import PhoneInputField from '../PhoneInputField/PhoneInputField';
+import { PhoneInputField } from '../';
 import { CheckoutFormContainer } from './CheckoutForm.styles';
 import { CheckoutFormProps } from './CheckoutForm.types';
 
