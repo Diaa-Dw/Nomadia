@@ -14,13 +14,13 @@ const useLoginUser = () => {
     onSuccess: res => {
       const token = res.authentication;
 
-      setAuthToken(token);
-
       const payload = parseJwtToLoginPayload(token);
 
       if (!payload) {
         return;
       }
+
+      setAuthToken(token, payload.expirationDate);
 
       dispatch(login(payload));
 
