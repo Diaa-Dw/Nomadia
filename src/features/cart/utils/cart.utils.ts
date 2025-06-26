@@ -1,7 +1,6 @@
+import { findItemIndex, setCartItems, showErrorToast, showSuccessToast } from '@/utils';
 import { Draft } from '@reduxjs/toolkit';
 import { CartItem, CartState } from '../types';
-
-import { findItemIndex, setCartItems, showErrorToast, showSuccessToast } from '@/utils';
 
 export const handleAddToCart = (state: Draft<CartState>, item: CartItem): boolean => {
   const exists = state.items.some(

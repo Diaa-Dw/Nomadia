@@ -16,7 +16,7 @@ const getInitialState = (): CartState => ({
   totalPrice: 0,
 });
 
-describe('cart.utils', () => {
+describe('cartSlice reducers', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
