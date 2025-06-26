@@ -9,7 +9,10 @@ jest.mock('../toast', () => ({
 }));
 
 const mockToast = showErrorToast as jest.Mock;
-const parseErrorMessage = 'Failed to parse cart items from localStorage.';
+
+const PARSE_ERROR = 'Failed to parse cart items from localStorage.';
+const SAVE_ERROR = 'Failed to save cart data. Your storage might be full.';
+const REMOVE_ERROR = 'Failed to clear cart data.';
 
 const mockItems: CartItem[] = [{ ...sampleItem }];
 const mockState: CartState = {
@@ -47,7 +50,7 @@ describe('cart utils', () => {
       const result = getCartItems();
 
       expect(result).toEqual([]);
-      expect(mockToast).toHaveBeenCalledWith(parseErrorMessage);
+      expect(mockToast).toHaveBeenCalledWith(PARSE_ERROR);
       expect(localStorage.getItem(CART_ITEMS_KEY)).toBeNull();
 
       jest.restoreAllMocks();
@@ -69,9 +72,7 @@ describe('cart utils', () => {
 
       setCartItems(mockState);
 
-      expect(mockToast).toHaveBeenCalledWith(
-        'Failed to save cart data. Your storage might be full.'
-      );
+      expect(mockToast).toHaveBeenCalledWith(SAVE_ERROR);
 
       jest.restoreAllMocks();
     });
@@ -91,7 +92,7 @@ describe('cart utils', () => {
 
       removeCartItems();
 
-      expect(mockToast).toHaveBeenCalledWith('Failed to clear cart data.');
+      expect(mockToast).toHaveBeenCalledWith(REMOVE_ERROR);
 
       jest.restoreAllMocks();
     });
