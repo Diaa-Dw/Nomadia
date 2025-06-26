@@ -1,7 +1,7 @@
-import reducer, { addToCart, removeFromCart } from '../../catSlice';
-import type { CartItem, CartState } from '../../types';
+import reducer, { addToCart, removeFromCart } from '../catSlice';
+import type { CartItem, CartState } from '../types';
 import { setCartItems, showSuccessToast, showErrorToast, getCartItems } from '@/utils';
-import { sampleItem } from '../__mock__/cartItem';
+import { sampleItem } from '@/__mock__/cartItem';
 
 jest.mock('@/utils', () => ({
   getCartItems: jest.fn(() => []),

@@ -1,7 +1,7 @@
 import { Draft } from '@reduxjs/toolkit';
-import { handleAddToCart, handleRemoveFromCart } from '../cart.utils';
-import { CartItem, CartState } from '../../types/cart.types';
-import { sampleItem } from '../__mock__/cartItem';
+import { handleAddToCart, handleRemoveFromCart } from '../utils/cart.utils';
+import { CartItem, CartState } from '../types/cart.types';
+import { sampleItem } from '@/__mock__/cartItem';
 
 jest.mock('@/utils', () => ({
   findItemIndex: jest.fn((items, roomId) => items.findIndex((i: CartItem) => i.roomId === roomId)),
