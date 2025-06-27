@@ -1,5 +1,3 @@
-// import { startOfDay } from 'date-fns';
-
 export const parseDate = (value: unknown, fallback = new Date()): Date => {
   if (typeof value !== 'string') return fallback;
   const parsedDate = new Date(value);

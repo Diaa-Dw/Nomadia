@@ -1,7 +1,7 @@
 import { SearchFormPayload } from '@/types';
 import { parse } from 'qs';
 import { formatDate } from '@/utils';
-import { parseDate, parseEnum, parseNumber } from '@/features/search/utils/parsers';
+import { parseDate, parseEnum, parseNumber } from '@/utils/parsers';
 import { INITIAL_VALUES, SORT_OPTIONS, STAR_RATES } from '@/features/search/constants';
 
 export const parseSearchQueryParams = (search: string): SearchFormPayload => {
