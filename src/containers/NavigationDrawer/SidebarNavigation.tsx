@@ -1,14 +1,10 @@
-import { selectIsAdmin } from '@/features';
-import { useAppSelector } from '@/store';
 import { List, Typography } from '@mui/material';
 import { NavItem } from './components';
 import { ADMIN_NAV_ITEMS, USER_NAV_ITEMS } from './SidebarNavigation.constants';
 import { Drawer } from './SidebarNavigation.styles';
 import { SidebarNavigationProps } from './SidebarNavigation.types';
 
-const SidebarNavigation = ({ isOpen, onCloseSidebar }: SidebarNavigationProps) => {
-  const isAdmin = useAppSelector(selectIsAdmin);
-
+const SidebarNavigation = ({ isOpen, onCloseSidebar, isAdmin }: SidebarNavigationProps) => {
   const navItems = isAdmin ? ADMIN_NAV_ITEMS : USER_NAV_ITEMS;
 
   return (

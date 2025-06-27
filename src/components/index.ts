@@ -11,3 +11,4 @@ export { ThemeToggle } from './ThemeToggle';
 export { ConfirmDialog } from './ConfirmDialog';
 export { ShoppingCart } from './ShoppingCart';
 export { UserMenu } from './UserMenu';
+export { Footer } from './Footer';

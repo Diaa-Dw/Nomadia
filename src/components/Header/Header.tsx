@@ -1,14 +1,9 @@
 import { ShoppingCart, ThemeToggle, UserMenu } from '@/components';
-import { selectIsAdmin, selectUser } from '@/features';
-import { useAppSelector } from '@/store';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Container, IconButton, Stack, Toolbar, Typography } from '@mui/material';
 import { HeaderPorps } from './Header.types';
 
-const Header = ({ onOpenSidebar }: HeaderPorps) => {
-  const { isAuthenticated } = useAppSelector(selectUser);
-  const isAdmin = useAppSelector(selectIsAdmin);
-
+const Header = ({ onOpenSidebar, isAuthenticated, isAdmin }: HeaderPorps) => {
   return (
     <AppBar position="static" color="transparent" elevation={0}>
       <Container maxWidth="xl">

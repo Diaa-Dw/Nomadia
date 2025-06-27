@@ -17,7 +17,7 @@ const Cart = () => {
     );
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{ height: '69vh', overflow: 'auto' }}>
       <Stack gap={3}>
         <Typography variant="h3" align="center" gutterBottom>
           Choose a room to checkout

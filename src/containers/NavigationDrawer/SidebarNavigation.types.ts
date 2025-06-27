@@ -2,6 +2,7 @@ import { ReactElement } from 'react';
 
 export interface SidebarNavigationProps {
   isOpen: boolean;
+  isAdmin: boolean;
   onCloseSidebar: () => void;
 }
 

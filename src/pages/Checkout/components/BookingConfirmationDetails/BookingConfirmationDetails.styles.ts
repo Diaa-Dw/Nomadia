@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Stack, Button, TableContainer, TableCell, Container as MuiContainer } from '@mui/material';
 
 export const Container = styled(MuiContainer)(() => ({
-  height: '93vh',
+  height: '69vh',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
