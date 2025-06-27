@@ -14,9 +14,9 @@ export const parseSearchQueryParams = (search: string): SearchFormPayload => {
       checkInDate: parseDate(params.checkInDate, INITIAL_VALUES.dateRange.checkInDate),
       checkOutDate: parseDate(params.checkOutDate, INITIAL_VALUES.dateRange.checkOutDate),
     },
-    adults: parseNumber(params.adults, INITIAL_VALUES.adults),
-    children: parseNumber(params.children, INITIAL_VALUES.children),
-    numberOfRooms: parseNumber(params.numberOfRooms, INITIAL_VALUES.numberOfRooms),
+    adults: parseNumber(params.adults, INITIAL_VALUES.adults, 1),
+    children: parseNumber(params.children, INITIAL_VALUES.children, 0),
+    numberOfRooms: parseNumber(params.numberOfRooms, INITIAL_VALUES.numberOfRooms, 1),
     starRate: STAR_RATES.includes(starRate) ? starRate : INITIAL_VALUES.starRate,
     sort: parseEnum(
       params.sort,

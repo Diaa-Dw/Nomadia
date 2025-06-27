@@ -58,7 +58,7 @@ describe('Request Interceptor', () => {
       headers: {},
     } as unknown as InternalAxiosRequestConfig;
 
-    mockGetAuthToken.mockReturnValue(null);
+    mockGetAuthToken.mockReturnValue('');
 
     setupRequestInterceptor(mockInstance);
     const requestHandler = mockRequestUse.mock.calls[0][0];

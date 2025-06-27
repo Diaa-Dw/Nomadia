@@ -1,12 +1,16 @@
-import { startOfDay } from 'date-fns';
+// import { startOfDay } from 'date-fns';
 
 export const parseDate = (value: unknown, fallback = new Date()): Date => {
-  return typeof value === 'string' ? startOfDay(new Date(value)) : fallback;
+  if (typeof value !== 'string') return fallback;
+  const parsedDate = new Date(value);
+  return isNaN(parsedDate.getTime()) ? fallback : parsedDate;
 };
 
-export const parseNumber = (value: unknown, fallback: number): number => {
+export const parseNumber = (value: unknown, fallback: number, min?: number): number => {
   const parsed = Number(value);
-  return isNaN(parsed) ? fallback : parsed;
+  if (isNaN(parsed)) return fallback;
+  if (typeof min === 'number' && parsed < min) return fallback;
+  return parsed;
 };
 
 export const parseEnum = <T extends readonly string[]>(
