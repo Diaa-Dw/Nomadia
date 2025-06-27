@@ -21,8 +21,6 @@ export default function FilterSidebar({ formikProps }: FilterSidebarProps) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { amenities, isFetching } = useFetchSearchPageAmenities();
 
-  const { dirty } = formikProps;
-
   const onCloseDrawer = () => {
     setDrawerOpen(false);
   };
@@ -52,13 +50,7 @@ export default function FilterSidebar({ formikProps }: FilterSidebarProps) {
                 Cancel
               </Button>
             )}
-            <Button
-              type="submit"
-              variant="contained"
-              color="info"
-              disableElevation
-              disabled={!dirty}
-            >
+            <Button type="submit" variant="contained" color="info" disableElevation>
               Apply Filter
             </Button>
           </Stack>

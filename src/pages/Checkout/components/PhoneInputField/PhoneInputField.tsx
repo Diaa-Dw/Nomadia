@@ -21,6 +21,7 @@ const PhoneInputField = ({ name, label }: PhoneInputFieldProps) => {
         value={field.value}
         onChange={val => setFieldValue(name, val)}
         onBlur={() => setFieldTouched(name, true)}
+        aria-label="Phone number"
         inputStyle={{
           width: '100%',
           borderColor: hasError ? '#d32f2f' : undefined,

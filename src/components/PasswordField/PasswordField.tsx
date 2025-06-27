@@ -29,7 +29,11 @@ const PasswordField = ({
 
   const endAdornmentElement = (
     <InputAdornment position="end">
-      <IconButton onClick={togglePasswordVisibility} edge="end">
+      <IconButton
+        onClick={togglePasswordVisibility}
+        edge="end"
+        aria-label={showPassword ? 'Hide password' : 'Show password'}
+      >
         {showPassword ? <VisibilityOff /> : <Visibility />}
       </IconButton>
     </InputAdornment>

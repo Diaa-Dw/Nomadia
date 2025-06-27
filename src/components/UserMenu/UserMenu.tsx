@@ -35,7 +35,7 @@ const UserMenu = () => {
   return (
     <Box>
       <Tooltip title="Open settings">
-        <IconButton onClick={onOpenMenu} size="small" sx={{ p: 0 }}>
+        <IconButton onClick={onOpenMenu} size="small" aria-label="Open user menu" sx={{ p: 0 }}>
           <Avatar>{initials}</Avatar>
         </IconButton>
       </Tooltip>
@@ -51,7 +51,13 @@ const UserMenu = () => {
         sx={{ padding: 0 }}
       >
         <CardContent>
-          <Button onClick={toggleTheme} startIcon={themeIcon} color={'inherit'} fullWidth>
+          <Button
+            onClick={toggleTheme}
+            startIcon={themeIcon}
+            color={'inherit'}
+            aria-label={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`}
+            fullWidth
+          >
             Theme
           </Button>
           <Button
@@ -59,6 +65,7 @@ const UserMenu = () => {
             startIcon={<LogoutIcon />}
             color={'error'}
             size={'large'}
+            aria-label="Log out"
             fullWidth
           >
             Log out

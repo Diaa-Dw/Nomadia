@@ -9,7 +9,6 @@ const EmblaCarousel = ({
   children,
   options = { loop: true, align: 'start', containScroll: 'trimSnaps' },
   showButtons = true,
-  ariaLabel = 'carousel',
 }: EmblaCarouselProps) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [showNav, setShowNav] = useState(false);
@@ -34,7 +33,7 @@ const EmblaCarousel = ({
   }, [emblaApi, children]);
 
   return (
-    <Box position={'relative'} width={'100%'} role="region" aria-label={ariaLabel}>
+    <Box position={'relative'} width={'100%'} role="region" aria-label={'carousel'}>
       <Viewport ref={emblaRef}>
         <Container>{children}</Container>
       </Viewport>

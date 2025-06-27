@@ -37,7 +37,12 @@ const CityDialog = ({
       <DialogTitle display={'flex'}>
         {isEditMode ? 'Edit City' : 'Add City'}
 
-        <IconButton size="small" sx={{ ml: 'auto' }} onClick={handleClose}>
+        <IconButton
+          size="small"
+          sx={{ ml: 'auto' }}
+          onClick={handleClose}
+          aria-label="Close dialog"
+        >
           <Close fontSize="small" />
         </IconButton>
       </DialogTitle>

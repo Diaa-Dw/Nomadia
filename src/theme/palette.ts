@@ -15,7 +15,7 @@ const createPalette = (mode: Mode): PaletteOptions => {
     },
     background: {
       default: mode === 'dark' ? '#0F172A' : '#F8FAFC',
-      paper: mode === 'dark' ? '#1E293B' : '#FFFFFF',
+      paper: mode === 'dark' ? '#1E293B' : '#E2E8F0',
     },
     text: {
       primary: mode === 'dark' ? '#F1F5F9' : '#1E293B',

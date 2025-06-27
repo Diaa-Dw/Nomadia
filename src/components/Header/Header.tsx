@@ -10,7 +10,13 @@ const Header = ({ onOpenSidebar, isAuthenticated, isAdmin }: HeaderPorps) => {
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
           <Stack direction="row" alignItems="center" spacing={2}>
             {onOpenSidebar && (
-              <IconButton onClick={onOpenSidebar} edge="start" color="inherit" sx={{ mr: 1 }}>
+              <IconButton
+                onClick={onOpenSidebar}
+                edge="start"
+                color="inherit"
+                aria-label="Open navigation menu"
+                sx={{ mr: 1 }}
+              >
                 <MenuIcon />
               </IconButton>
             )}

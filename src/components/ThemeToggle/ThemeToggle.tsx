@@ -10,7 +10,11 @@ const ThemeToggle = () => {
   const ThemeIcon = isDark ? <DarkMode /> : <LightMode />;
 
   return (
-    <IconButton onClick={toggleTheme} color={'inherit'}>
+    <IconButton
+      onClick={toggleTheme}
+      color={'inherit'}
+      aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+    >
       {ThemeIcon}
     </IconButton>
   );

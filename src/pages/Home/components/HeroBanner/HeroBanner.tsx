@@ -3,7 +3,7 @@ import { Container, ContentContainer, Overlay } from './HeroBanner.style';
 
 const HeroBanner = () => {
   return (
-    <Container>
+    <Container role="banner">
       <Overlay />
       <ContentContainer maxWidth="lg">
         <Typography variant="h2" fontWeight={700}>
