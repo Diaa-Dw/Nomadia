@@ -15,7 +15,7 @@ const SidebarNavigation = ({ isOpen, onCloseSidebar, isAdmin }: SidebarNavigatio
 
       <List>
         {navItems.map(({ label, Icon, href }) => (
-          <NavItem key={label} label={label} Icon={Icon} href={href} />
+          <NavItem key={label} label={label} Icon={Icon} href={href} onClick={onCloseSidebar} />
         ))}
       </List>
     </Drawer>

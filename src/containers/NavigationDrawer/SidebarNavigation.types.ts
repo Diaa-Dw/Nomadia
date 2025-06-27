@@ -10,4 +10,5 @@ export interface NavItemProps {
   label: string;
   Icon: ReactElement;
   href: string;
+  onClick: () => void;
 }
