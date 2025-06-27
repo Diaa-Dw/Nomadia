@@ -10,7 +10,12 @@ import { useField } from 'formik';
 import { useState } from 'react';
 import type { PasswordFieldProps } from './PasswordField.type';
 
-const PasswordField = ({ name, label = 'Password', ...resetProps }: PasswordFieldProps) => {
+const PasswordField = ({
+  name,
+  label = 'Password',
+  autoComplete,
+  ...resetProps
+}: PasswordFieldProps) => {
   const [field, meta] = useField(name);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -45,6 +50,7 @@ const PasswordField = ({ name, label = 'Password', ...resetProps }: PasswordFiel
     error: hasError,
     helperText: hasError ? meta.error : '',
     slotProps,
+    autoComplete,
   };
 
   return (

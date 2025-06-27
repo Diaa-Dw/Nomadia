@@ -4,15 +4,20 @@ import { LoginForm } from './components';
 import { useAppSelector } from '@/store';
 import { selectUser } from '@/features';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Login = () => {
   const navigate = useNavigate();
 
   const { isAuthenticated, userType } = useAppSelector(selectUser);
-  if (isAuthenticated) {
-    const navigateTo = userType === 'Admin' ? '/admin/cities' : '/';
-    navigate(navigateTo);
-  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const navigateTo = userType === 'Admin' ? '/admin/cities' : '/';
+      navigate(navigateTo);
+    }
+  }, [isAuthenticated, userType, navigate]);
+
   return (
     <LoginContainer>
       <Typography component="h2" variant="h4" fontWeight={600} color="primary" gutterBottom>

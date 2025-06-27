@@ -6,28 +6,27 @@ import { PasswordField, TextField } from '@/components';
 import { LoginFormContainer } from './LoginForm.style';
 
 const LoginForm = () => {
-  const formikProps = useLoginForm();
+  const { formikProps, isPending } = useLoginForm();
 
-  const { submitForm, isSubmitting, dirty, isValid } = formikProps;
-  console.log('🚀 ~ LoginForm ~ isSubmitting:', isSubmitting);
+  const { dirty, isValid } = formikProps;
   return (
     <FormikProvider value={formikProps}>
-      <LoginFormContainer onSubmit={submitForm}>
+      <LoginFormContainer>
         <TextField
           name="userName"
           label="User Name"
           placeholder="your.username"
           startIcon={<AccountCircle />}
           aria-invalid="false"
+          autoComplete="username"
         />
-        <PasswordField name="password" label="Password" />
+        <PasswordField name="password" label="Password" autoComplete="current-password" />
 
         <Button
           type="submit"
-          onClick={submitForm}
           variant={'contained'}
           fullWidth
-          loading={isSubmitting}
+          loading={isPending}
           loadingPosition={'start'}
           disabled={!dirty || !isValid}
           aria-label="Login"

@@ -5,10 +5,10 @@ import { LoginFormPayload } from '../types';
 import { validationSchema } from '../schema';
 
 const useLoginForm = () => {
-  const { loginMutate } = useLoginUser();
+  const { loginMutate, isPending } = useLoginUser();
 
   const submitForm = (values: LoginFormPayload) => {
-    loginMutate(values);
+    return loginMutate(values);
   };
 
   const formikProps = useFormik({
@@ -17,7 +17,7 @@ const useLoginForm = () => {
     onSubmit: submitForm,
   });
 
-  return formikProps;
+  return { formikProps, isPending };
 };
 
 export default useLoginForm;
