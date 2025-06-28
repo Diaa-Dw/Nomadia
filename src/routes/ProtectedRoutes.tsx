@@ -9,7 +9,7 @@ const Hotel = lazy(() => import('@/pages/Hotel/Hotel'));
 const Cart = lazy(() => import('@/pages/Cart/Cart'));
 const Checkout = lazy(() => import('@/pages/Checkout/Checkout'));
 const CityManagement = lazy(() => import('@/pages/CitiesManagement/CitiesManagement'));
-const HotelManagement = lazy(() => import('@/pages/HotelsMAnagement/HotelsManagement'));
+const HotelManagement = lazy(() => import('@/pages/HotelsMAnagement/HotelsMAnagement'));
 const RoomsManagement = lazy(() => import('@/pages/RoomsManagement/RoomsManagement'));
 
 const protectedRoutes: RouteObject = {

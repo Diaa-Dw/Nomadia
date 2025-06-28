@@ -1,21 +1,26 @@
-import { Footer, Header } from '@/components';
-import { Outlet } from 'react-router-dom';
-import { LayoutContainer } from './Layout.style';
-import { SidebarNavigation } from '../NavigationDrawer';
-import { useState } from 'react';
-import { useAppSelector } from '@/store';
+import { Loader } from '@/containers';
 import { selectIsAdmin, selectUser } from '@/features';
 import { useVerifyToken } from '@/hooks';
-import { Loader } from '@/containers';
+import { useAppSelector } from '@/store';
+import { useState } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import { SidebarNavigation } from '../NavigationDrawer';
+import { LayoutContainer } from './Layout.style';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { PUBLIC_ROUTES } from './constants/Layout.constants';
 
 const Layout = () => {
-  const [openSidebar, setOpenSideebar] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const { pathname } = useLocation();
   const { isAuthenticating } = useVerifyToken();
   const { isAuthenticated } = useAppSelector(selectUser);
   const isAdmin = useAppSelector(selectIsAdmin);
 
-  const onOpenSidebar = () => setOpenSideebar(true);
-  const onCloseSidebar = () => setOpenSideebar(false);
+  const onOpenSidebar = () => setOpenSidebar(true);
+  const onCloseSidebar = () => setOpenSidebar(false);
+
+  const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
 
   if (isAuthenticating) {
     return <Loader />;
@@ -29,7 +34,7 @@ const Layout = () => {
 
       <Outlet />
 
-      {isAuthenticated && <Footer />}
+      {!isPublicRoute && <Footer />}
     </LayoutContainer>
   );
 };

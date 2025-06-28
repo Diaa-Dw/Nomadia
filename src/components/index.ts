@@ -1,6 +1,5 @@
 export { PasswordField } from './PasswordField';
 export { TextField } from './TextField';
-export { Header } from './Header';
 export { HotelCard } from './HotelCard';
 export { EmblaCarousel } from './EmblaCarousel';
 export { SectionTitle } from './SectionTitle';
@@ -11,4 +10,5 @@ export { ThemeToggle } from './ThemeToggle';
 export { ConfirmDialog } from './ConfirmDialog';
 export { ShoppingCart } from './ShoppingCart';
 export { UserMenu } from './UserMenu';
-export { Footer } from './Footer';
+export { default as Header } from './Header';
+export { default as Footer } from './Footer';

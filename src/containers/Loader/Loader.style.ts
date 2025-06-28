@@ -7,5 +7,5 @@ export const LoaderContainer = styled(Box)(({ theme }: StyledProps) => ({
   justifyContent: 'center',
   alignItems: 'center',
   outline: 'none',
-  background: theme.palette.background.paper,
+  background: theme.palette.background.default,
 }));
