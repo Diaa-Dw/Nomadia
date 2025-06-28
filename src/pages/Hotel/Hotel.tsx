@@ -1,8 +1,10 @@
 import { formatDate } from '@/utils';
+import { setCustomTitle, clearCustomTitle } from '@/hooks';
 import { Box, Container, Skeleton, Typography } from '@mui/material';
 import { addDays } from 'date-fns';
 import 'leaflet/dist/leaflet.css';
 import { useParams, useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Gallery, HotelInfo, HotelMap, HotelReviews, RoomsContainer } from './components';
 import { useFetchHotel } from './hooks';
 import { MapWrapper, ReviewsMapContainer, ReviewsWrapper } from './Hotel.style';
@@ -16,6 +18,16 @@ const Hotel = () => {
 
   const hotelId = parseInt(paramsId ?? '-1');
   const { hotel, isPending } = useFetchHotel(hotelId);
+
+  useEffect(() => {
+    if (hotel) {
+      setCustomTitle(`${hotel.hotelName} - Nomadia`);
+    }
+
+    return () => {
+      clearCustomTitle();
+    };
+  }, [hotel]);
 
   if (isPending) {
     return (

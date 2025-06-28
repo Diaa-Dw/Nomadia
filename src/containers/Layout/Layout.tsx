@@ -1,6 +1,6 @@
 import { Loader } from '@/containers';
 import { selectIsAdmin, selectUser } from '@/features';
-import { useVerifyToken } from '@/hooks';
+import { useVerifyToken, usePageTitle } from '@/hooks';
 import { useAppSelector } from '@/store';
 import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -16,6 +16,9 @@ const Layout = () => {
   const { isAuthenticating } = useVerifyToken();
   const { isAuthenticated } = useAppSelector(selectUser);
   const isAdmin = useAppSelector(selectIsAdmin);
+
+  // Update page title based on current route
+  usePageTitle();
 
   const onOpenSidebar = () => setOpenSidebar(true);
   const onCloseSidebar = () => setOpenSidebar(false);
