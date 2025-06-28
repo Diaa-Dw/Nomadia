@@ -19,7 +19,7 @@ const PrivateWrapper = () => {
   }
 
   if (isAdminRoute && !isAdmin) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/access-denied" replace />;
   }
 
   return <Outlet />;
