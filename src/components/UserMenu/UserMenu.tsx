@@ -1,7 +1,7 @@
 import { logout, selectUser } from '@/features';
 import { useAppDispatch, useAppSelector } from '@/store';
 import { DarkMode, LightMode, Logout as LogoutIcon } from '@mui/icons-material';
-import { Box, Button, IconButton, Menu, Tooltip } from '@mui/material';
+import { Box, Button, IconButton, Menu, Tooltip, Typography, Divider, Stack } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MouseEvent } from 'react';
@@ -16,6 +16,7 @@ const UserMenu = () => {
   const { mode, toggleTheme } = useThemeContext();
   const { givenName, familyName } = useAppSelector(selectUser);
   const initials = `${givenName[0]}${familyName[0]}`;
+  const fullName = `${givenName} ${familyName}`;
 
   const themeIcon = mode === 'light' ? <DarkMode /> : <LightMode />;
 
@@ -30,6 +31,11 @@ const UserMenu = () => {
     setTimeout(() => {
       navigate('/login', { replace: true });
     });
+  };
+
+  const onToggleTheme = () => {
+    toggleTheme();
+    onCloseMenu();
   };
 
   return (
@@ -51,8 +57,15 @@ const UserMenu = () => {
         sx={{ padding: 0 }}
       >
         <CardContent>
+          <Stack direction={'row'} gap={1} alignItems={'center'} px={1} sx={{ cursor: 'pointer' }}>
+            <Avatar>{initials}</Avatar>
+            <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+              {fullName}
+            </Typography>
+          </Stack>
+          <Divider sx={{ my: 1 }} />
           <Button
-            onClick={toggleTheme}
+            onClick={onToggleTheme}
             startIcon={themeIcon}
             color={'inherit'}
             aria-label={`Switch to ${mode === 'light' ? 'dark' : 'light'} mode`}
