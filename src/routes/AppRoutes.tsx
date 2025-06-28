@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { Loader } from '@/containers';
 
 const AppRoutes = () => {
-  const routes = useRoutes([protectedRoutes, publicRoutes]);
+  const routes = useRoutes([publicRoutes, protectedRoutes]);
   return <Suspense fallback={<Loader />}>{routes}</Suspense>;
 };
 

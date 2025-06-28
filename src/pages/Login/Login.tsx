@@ -1,22 +1,16 @@
+import { selectUser } from '@/features';
+import { useAppSelector } from '@/store';
 import { Typography } from '@mui/material';
+import { Navigate } from 'react-router-dom';
 import { LoginContainer } from './Login.style';
 import { LoginForm } from './components';
-import { useAppSelector } from '@/store';
-import { selectUser } from '@/features';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const Login = () => {
-  const navigate = useNavigate();
-
   const { isAuthenticated, userType } = useAppSelector(selectUser);
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      const navigateTo = userType === 'Admin' ? '/admin/cities' : '/';
-      navigate(navigateTo);
-    }
-  }, [isAuthenticated, userType, navigate]);
+  if (isAuthenticated) {
+    return <Navigate to={userType === 'Admin' ? '/admin/cities' : '/'} replace />;
+  }
 
   return (
     <LoginContainer>

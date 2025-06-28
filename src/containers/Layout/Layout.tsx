@@ -5,14 +5,21 @@ import { SidebarNavigation } from '../NavigationDrawer';
 import { useState } from 'react';
 import { useAppSelector } from '@/store';
 import { selectIsAdmin, selectUser } from '@/features';
+import { useVerifyToken } from '@/hooks';
+import { Loader } from '@/containers';
 
 const Layout = () => {
   const [openSidebar, setOpenSideebar] = useState(false);
+  const { isAuthenticating } = useVerifyToken();
   const { isAuthenticated } = useAppSelector(selectUser);
   const isAdmin = useAppSelector(selectIsAdmin);
 
   const onOpenSidebar = () => setOpenSideebar(true);
   const onCloseSidebar = () => setOpenSideebar(false);
+
+  if (isAuthenticating) {
+    return <Loader />;
+  }
 
   return (
     <LayoutContainer>
