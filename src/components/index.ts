@@ -12,3 +12,5 @@ export { ShoppingCart } from './ShoppingCart';
 export { UserMenu } from './UserMenu';
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';
+export { default as ErrorBoundary } from './ErrorBoundary';
+export { default as ErrorFallback } from './ErrorFallback';
