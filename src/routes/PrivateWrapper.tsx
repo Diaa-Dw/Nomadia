@@ -11,7 +11,7 @@ const PrivateWrapper = () => {
   const isUserRoute = pathname.startsWith('/') && !isAdminRoute;
 
   if (!isAuthenticated) {
-    return <Navigate to="/unauthorized" replace />;
+    return <Navigate to="/login-required" replace />;
   }
 
   if (isUserRoute && isAdmin) {
