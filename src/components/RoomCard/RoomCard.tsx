@@ -59,7 +59,7 @@ const RoomCard = ({ room }: { room: Room }) => {
   return (
     <RoomCardContainer>
       <RoomImageWrapper>
-        <RoomImage src={roomPhotoUrl} alt={roomType} availability={availability} />
+        <RoomImage src={roomPhotoUrl} alt={roomType} loading="lazy" availability={availability} />
         {!availability && (
           <Chip
             label="Not Available"

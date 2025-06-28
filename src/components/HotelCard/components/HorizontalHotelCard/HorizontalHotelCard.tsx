@@ -42,7 +42,7 @@ const HorizontalHotelCard = ({ hotelData }: { hotelData: HorizontalHotelCardProp
 
   return (
     <HorizontalCardContainer>
-      <HotelImage src={imageUrl} alt={hotelName} onClick={onCardClick} />
+      <HotelImage src={imageUrl} alt={hotelName} loading="lazy" onClick={onCardClick} />
 
       <InfoSection>
         <Typography variant="h6">{hotelName}</Typography>

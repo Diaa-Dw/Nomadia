@@ -23,7 +23,7 @@ const Cart = () => {
           Choose a room to checkout
         </Typography>
 
-        <Stack direction={'row'}>
+        <Stack direction={'row'} flexWrap={'wrap'} justifyContent={'center'} gap={2}>
           {items.map(item => (
             <RoomCard room={item} />
           ))}

@@ -20,6 +20,11 @@ const ConfirmDialog = ({
   confirmColor = 'primary',
 }: ConfirmDialogProps) => {
   const isError = confirmColor === 'error';
+
+  const handleConfrim = () => {
+    onConfirm();
+    onClose();
+  };
   return (
     <Dialog open={open} onClose={onClose} aria-labelledby="confirm-dialog-title">
       <DialogTitle id="confirm-dialog-title">{title}</DialogTitle>
@@ -30,7 +35,7 @@ const ConfirmDialog = ({
         <Button onClick={onClose} variant="outlined" color="inherit">
           {cancelText}
         </Button>
-        <ConfirmButton isError={isError} onClick={onConfirm} color={confirmColor} autoFocus>
+        <ConfirmButton isError={isError} onClick={handleConfrim} color={confirmColor} autoFocus>
           {confirmText}
         </ConfirmButton>
       </DialogActions>

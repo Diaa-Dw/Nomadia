@@ -73,6 +73,7 @@ const Gallery = ({ id }: GallaryProps) => {
           <MainImage
             {...getImageSrcSet(mainPhoto.url, 500)}
             alt={`Main photo ${mainPhoto.id}`}
+            loading="lazy"
             onClick={() => handleClick(0)}
           />
         </MainImageWrapper>
@@ -83,7 +84,11 @@ const Gallery = ({ id }: GallaryProps) => {
             return (
               <SideImageWrapper key={photo?.id ?? index} onClick={() => handleClick(index + 1)}>
                 <>
-                  <SideImage {...getImageSrcSet(photo.url, 200)} alt={`Side photo ${photo.id}`} />
+                  <SideImage
+                    {...getImageSrcSet(photo.url, 200)}
+                    loading="lazy"
+                    alt={`Side photo ${photo.id}`}
+                  />
                   {isLast && <OverlayText>+{extraCount} more</OverlayText>}
                 </>
               </SideImageWrapper>

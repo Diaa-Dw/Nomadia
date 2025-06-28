@@ -43,6 +43,7 @@ const HotelCard = ({ hotelData }: { hotelData: CompactHotelCardProps }) => {
         <CompactHotelImage
           src={imageUrl}
           alt={hotelName}
+          loading="lazy"
           style={{ width: '100%', height: '200px', objectFit: 'cover' }}
           onClick={onCardClick}
         />
