@@ -77,12 +77,7 @@ const HotelsMAnagement = () => {
 
   return (
     <Container maxWidth="xl">
-      <AdminTableLayout
-        isFetching={isFetching}
-        isFetchingNextPage={isFetchingNextPage}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-      >
+      <AdminTableLayout>
         <AdminTableHeader title={TITLE} onAdd={onAddHotel}>
           <AdminFilterForm searchOptions={searchOptions} onFilterChange={onFilterChange} />
         </AdminTableHeader>
@@ -90,9 +85,12 @@ const HotelsMAnagement = () => {
         <AdminTable<Hotel>
           columns={HOTEL_COLUMNS}
           data={memoizedHotels}
-          isLoading={isFetching}
+          isLoading={isFetching && !hotels.length}
           onRowClick={onRowClick}
           actions={buildHotelActions}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
         />
       </AdminTableLayout>
       <HotelDialog

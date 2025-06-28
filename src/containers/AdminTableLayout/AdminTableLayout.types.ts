@@ -27,9 +27,5 @@ export interface TableRowAction<T> {
 }
 
 export interface AdminTableLayoutProps {
-  isFetching: boolean;
-  isFetchingNextPage: boolean;
-  fetchNextPage: () => void;
-  hasNextPage: boolean;
   children: ReactNode;
 }

@@ -27,9 +27,7 @@ const UserMenu = () => {
 
   const onLogout = () => {
     dispatch(logout());
-    setTimeout(() => {
-      navigate('/login', { replace: true });
-    }, 0);
+    navigate('/login', { replace: true });
   };
 
   return (

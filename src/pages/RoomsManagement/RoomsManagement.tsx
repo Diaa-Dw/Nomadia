@@ -81,12 +81,7 @@ const RoomsManagement = () => {
 
   return (
     <Container maxWidth="xl">
-      <AdminTableLayout
-        isFetching={false}
-        isFetchingNextPage={false}
-        fetchNextPage={() => {}}
-        hasNextPage={false}
-      >
+      <AdminTableLayout>
         <AdminTableHeader title={TITLE} onAdd={onOpenAddDialog}>
           <Button onClick={toggleSearchForm} variant="outlined" size="small">
             {openSearch ? 'Hide Filters' : 'Show Filters'}

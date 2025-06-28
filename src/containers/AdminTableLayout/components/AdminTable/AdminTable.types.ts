@@ -6,4 +6,7 @@ export interface AdminTableProps<T> {
   isLoading: boolean;
   onRowClick: (row: T) => void;
   actions: (row: T) => TableRowAction<T>[];
+  fetchNextPage?: () => void;
+  hasNextPage?: boolean;
+  isFetchingNextPage?: boolean;
 }

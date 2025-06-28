@@ -67,6 +67,28 @@ const components: Components<Theme> = {
       }),
     },
   },
+
+  MuiDrawer: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        '--Paper-shadow': 'none',
+        '--Paper-overlay': 'none !important',
+        boxShadow: 'none',
+        backgroundColor: theme.palette.background.paper,
+      }),
+    },
+  },
+
+  MuiDialog: {
+    styleOverrides: {
+      paper: ({ theme }) => ({
+        '--Paper-shadow': 'none',
+        '--Paper-overlay': 'none !important',
+        boxShadow: 'none',
+        backgroundColor: theme.palette.background.paper,
+      }),
+    },
+  },
 };
 
 export default components;

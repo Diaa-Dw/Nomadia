@@ -64,12 +64,7 @@ function CityManagement() {
 
   return (
     <Container maxWidth="xl">
-      <AdminTableLayout
-        isFetching={isFetching}
-        isFetchingNextPage={isFetchingNextPage}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-      >
+      <AdminTableLayout>
         <AdminTableHeader title={TITLE} onAdd={onAddCity}>
           <AdminFilterForm searchOptions={searchOptions} onFilterChange={onFilterChange} />
         </AdminTableHeader>
@@ -86,6 +81,9 @@ function CityManagement() {
               isPending: isDeleting,
             },
           ]}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
         />
       </AdminTableLayout>
 
