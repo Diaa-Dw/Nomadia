@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <LoaderContainer>
       <DotLottieReact
-        src="https://lottie.host/43fc89d2-859a-4501-a3cd-3155e3daa043/AKSerqDwoZ.lottie"
+        src="https://lottie.host/afa9a189-a34a-4f6d-b349-6adf70db2640/u9VRKDS4Hw.lottie"
         loop
         autoplay
         style={{ height: '200px', width: '200px' }}
