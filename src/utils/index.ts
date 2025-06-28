@@ -6,3 +6,4 @@ export * from './searchParams';
 export * from './cart';
 export * from './pluralize';
 export * from './cartItemValidation';
+export * from './theme';
