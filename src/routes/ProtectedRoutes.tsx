@@ -1,16 +1,16 @@
-import { lazy } from 'react';
 import { type RouteObject } from 'react-router-dom';
-
-const Layout = lazy(() => import('@/containers/Layout'));
-const PrivateWrapper = lazy(() => import('@/routes/PrivateWrapper'));
-const Home = lazy(() => import('@/pages/Home/Home'));
-const Search = lazy(() => import('@/pages/Search/Search'));
-const Hotel = lazy(() => import('@/pages/Hotel/Hotel'));
-const Cart = lazy(() => import('@/pages/Cart/Cart'));
-const Checkout = lazy(() => import('@/pages/Checkout/Checkout'));
-const CityManagement = lazy(() => import('@/pages/CitiesManagement/CitiesManagement'));
-const HotelManagement = lazy(() => import('@/pages/HotelsMAnagement/HotelsMAnagement'));
-const RoomsManagement = lazy(() => import('@/pages/RoomsManagement/RoomsManagement'));
+import {
+  Layout,
+  PrivateWrapper,
+  Home,
+  Search,
+  Hotel,
+  Cart,
+  Checkout,
+  CityManagement,
+  HotelManagement,
+  RoomsManagement,
+} from './routeImports';
 
 const protectedRoutes: RouteObject = {
   path: '/',
