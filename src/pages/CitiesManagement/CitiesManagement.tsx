@@ -16,6 +16,7 @@ function CityManagement() {
 
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [cityToDelete, setCityToDelete] = useState<City | null>(null);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const isEditMode = Boolean(selectedCity);
   const mode = isEditMode ? 'edit' : 'add';
@@ -24,7 +25,7 @@ function CityManagement() {
     useFetchCities(filters);
 
   const { mutateAsync, isPending } = useCityMutation({ mode });
-  const { deleteCity, isDeleting } = useDeleteCity(filters);
+  const { deleteCity } = useDeleteCity(filters, setDeletingId);
 
   const searchOptions = CITY_COLUMNS.filter(col => col.filterable).map(col => ({
     label: col.label,
@@ -51,6 +52,7 @@ function CityManagement() {
 
   const handleConfirmDelete = () => {
     if (cityToDelete) {
+      setDeletingId(cityToDelete.id);
       deleteCity(cityToDelete.id);
       setConfirmOpen(false);
       setCityToDelete(null);
@@ -61,6 +63,17 @@ function CityManagement() {
     setConfirmOpen(false);
     setCityToDelete(null);
   };
+
+  const buildCityActions = useCallback(
+    (city: City) => [
+      {
+        ...CITY_ACTIONS[0],
+        onClick: () => onDeleteRequest(city),
+        isPending: deletingId === city.id,
+      },
+    ],
+    [deletingId]
+  );
 
   return (
     <Container maxWidth="xl">
@@ -74,13 +87,7 @@ function CityManagement() {
           data={cities}
           isLoading={isFetching}
           onRowClick={onRowClick}
-          actions={hotel => [
-            {
-              ...CITY_ACTIONS[0],
-              onClick: () => onDeleteRequest(hotel),
-              isPending: isDeleting,
-            },
-          ]}
+          actions={buildCityActions}
           isFetchingNextPage={isFetchingNextPage}
           fetchNextPage={fetchNextPage}
           hasNextPage={hasNextPage}

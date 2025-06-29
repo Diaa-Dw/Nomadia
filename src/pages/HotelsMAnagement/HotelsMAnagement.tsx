@@ -14,13 +14,14 @@ const HotelsMAnagement = () => {
   const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   const [hotelToDelete, setHotelToDelete] = useState<Hotel | null>(null);
   const [filters, setFilters] = useState<Filters>({ name: '', searchQuery: '' });
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const [confirmOpen, setConfirmOpen] = useState(false);
 
   const { hotels, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useFetchHotels(filters);
 
-  const { deleteHotel, isDeleting } = useDeleteHotel(filters);
+  const { deleteHotel } = useDeleteHotel(filters, setDeletingId);
 
   const isEditMode = Boolean(selectedHotel);
   const searchOptions = HOTEL_COLUMNS.filter(col => col.filterable).map(col => ({
@@ -42,6 +43,7 @@ const HotelsMAnagement = () => {
 
   const handleConfirmDelete = () => {
     if (hotelToDelete) {
+      setDeletingId(hotelToDelete.id);
       deleteHotel(hotelToDelete.id);
       setConfirmOpen(false);
       setHotelToDelete(null);
@@ -69,10 +71,10 @@ const HotelsMAnagement = () => {
       {
         ...HOTEL_ACTIONS[0],
         onClick: () => onDeleteRequest(hotel),
-        isPending: isDeleting,
+        isPending: deletingId === hotel.id,
       },
     ],
-    [isDeleting]
+    [deletingId]
   );
 
   return (

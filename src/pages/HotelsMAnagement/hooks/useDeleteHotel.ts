@@ -5,14 +5,10 @@ import { deleteHotelApi } from '../API';
 import { HotelsInfiniteData } from '../types/HotelsManagement.types';
 import { HOTELS_PER_PAGE } from '../constants';
 
-const useDeleteHotel = (filters: Filters) => {
+const useDeleteHotel = (filters: Filters, setDeletingId?: (id: number | null) => void) => {
   const queryClient = useQueryClient();
 
-  const {
-    mutate: deleteHotel,
-    isPending: isDeleting,
-    error,
-  } = useMutation({
+  const { mutate: deleteHotel, error } = useMutation({
     mutationFn: deleteHotelApi,
 
     onSuccess: deletedCityId => {
@@ -26,10 +22,12 @@ const useDeleteHotel = (filters: Filters) => {
         return newData;
       });
       showSuccessToast('Hotel deleted successfully.');
+      setDeletingId?.(null);
     },
 
     onError: () => {
       showErrorToast('Failed to delete Hotel.');
+      setDeletingId?.(null);
     },
 
     onSettled: () => {
@@ -39,7 +37,6 @@ const useDeleteHotel = (filters: Filters) => {
 
   return {
     deleteHotel,
-    isDeleting,
     error,
   };
 };

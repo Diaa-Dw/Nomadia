@@ -17,9 +17,10 @@ const RoomsManagement = () => {
   const [openAddDialog, setOpenAddDialog] = useState(false);
   const [roomToUpdate, setRoomToUpdate] = useState<Room | null>(null);
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
+  const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const { hotelRooms = [], isPending } = useFetchHotelRooms(searchParams);
-  const { deleteRoom, isDeleting } = useDeleteRoom(searchParams);
+  const { deleteRoom } = useDeleteRoom(searchParams);
 
   const memoizedRooms = useMemo(() => hotelRooms, [hotelRooms]);
 
@@ -41,11 +42,18 @@ const RoomsManagement = () => {
     setConfirmOpen(false);
   };
 
-  const onConfirmDelete = () => {
+  const onConfirmDelete = async () => {
     if (roomToDelete) {
-      deleteRoom(roomToDelete.roomId);
-      setConfirmOpen(false);
-      setRoomToDelete(null);
+      setDeletingId(roomToDelete.roomId);
+      try {
+        await deleteRoom(roomToDelete.roomId);
+        setConfirmOpen(false);
+        setRoomToDelete(null);
+      } catch (error) {
+        console.error('Delete room failed:', error);
+      } finally {
+        setDeletingId(null);
+      }
     }
   };
 
@@ -73,10 +81,10 @@ const RoomsManagement = () => {
       {
         ...ROOM_ACTIONS[0],
         onClick: () => onDeleteRequest(room),
-        isPending: isDeleting,
+        isPending: deletingId === room.roomId,
       },
     ],
-    [isDeleting]
+    [deletingId]
   );
 
   return (

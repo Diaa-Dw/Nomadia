@@ -5,7 +5,7 @@ import { CitiesInfiniteData } from '../types';
 import { showErrorToast, showSuccessToast } from '@/utils';
 import { Filters } from '@/types';
 
-const useDeleteCity = (filters: Filters) => {
+const useDeleteCity = (filters: Filters, setDeletingId?: (id: number | null) => void) => {
   const queryClient = useQueryClient();
 
   const {
@@ -17,21 +17,20 @@ const useDeleteCity = (filters: Filters) => {
 
     onSuccess: deletedCityId => {
       queryClient.setQueryData<CitiesInfiniteData>([CITIES_QUERY_KEY, filters], prev => {
-        console.log('🚀 ~ prev:', prev);
-
         if (!prev) return prev;
 
         const updatedPages = prev.pages.map(page => page.filter(city => city.id !== deletedCityId));
 
         const newData = { ...prev, pages: updatedPages };
-        console.log('✅ Cache after delete:', newData);
         return newData;
       });
       showSuccessToast('City deleted successfully.');
+      setDeletingId?.(null);
     },
 
     onError: () => {
       showErrorToast('Failed to delete city.');
+      setDeletingId?.(null);
     },
 
     onSettled: () => {
