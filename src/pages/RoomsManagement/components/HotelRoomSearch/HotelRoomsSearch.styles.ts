@@ -3,7 +3,7 @@ import { Form } from 'formik';
 
 export const SearchContainer = styled(Form)(({ theme }) => ({
   maxWidth: '1018px',
-  margin: '0 auto',
+  margin: '16px auto',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

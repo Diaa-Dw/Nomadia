@@ -13,7 +13,7 @@ const RoomsManagement = () => {
   const [searchParams, setSearchParams] = useState<fetchHotelRoomsProps | null>(null);
   const [roomToDelete, setRoomToDelete] = useState<Room | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const [openSearch, setOpenSearch] = useState(false);
+  const [openSearch, setOpenSearch] = useState(true);
   const [openAddDialog, setOpenAddDialog] = useState(false);
   const [roomToUpdate, setRoomToUpdate] = useState<Room | null>(null);
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
