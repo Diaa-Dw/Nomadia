@@ -13,7 +13,7 @@ import { BookingConfirmationDetailsProps } from './BookingConfirmationDetails.ty
 
 const BookingConfirmationDetails = ({ details }: BookingConfirmationDetailsProps) => {
   return (
-    <Container maxWidth={'xl'}>
+    <Container maxWidth={'xl'} >
       <ContentContainer>
         <Typography component="h1" variant="h5" fontWeight={600}>
           Confirmation Details

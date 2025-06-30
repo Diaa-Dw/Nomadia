@@ -5,7 +5,7 @@ const REGEX = {
   cardNumber: /^[0-9]{16}$/,
   cvv: /^[0-9]{3}$/,
   expiry: /^(0[1-9]|1[0-2])\/[0-9]{2}$/,
-  phone: /^[0-9+]{1,15}$/,
+  phone: /^[0-9+\s\-()]{7,20}$/,
 };
 
 const validateExpiry = (value: string | undefined): boolean => {

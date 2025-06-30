@@ -6,6 +6,7 @@ export const Container = styled(MuiContainer)(() => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  margin: '8px 0',
 }));
 
 export const ContentContainer = styled(Stack)(({ theme }) => ({
