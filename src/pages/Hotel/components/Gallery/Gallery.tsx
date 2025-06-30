@@ -1,21 +1,22 @@
+import { getImageSrcSet } from '@/utils';
 import { Typography } from '@mui/material';
-import { useState, useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { BackdropViewer } from '../';
+import { MAX_GALLERY_SIDE_IMAGES } from '../../constants';
 import { useFetchGallery } from '../../hooks';
-import { generateSkeletonGallery, getImageSrcSet } from '../../utils';
+import { PhotoResponse } from '../../types';
+import { generateSkeletonGallery } from '../../utils';
 import {
   GalleryWrapper,
-  MainImageWrapper,
   MainImage,
+  MainImageWrapper,
+  OverlayText,
+  SideImage,
   SideImageGrid,
   SideImageWrapper,
-  SideImage,
-  OverlayText,
   SkeletonBox,
 } from './Gallery.style';
 import { GallaryProps } from './Gallery.types';
-import { BackdropViewer } from '../';
-import { MAX_GALLERY_SIDE_IMAGES } from '../../constants';
-import { PhotoResponse } from '../../types';
 
 const Gallery = ({ id }: GallaryProps) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);

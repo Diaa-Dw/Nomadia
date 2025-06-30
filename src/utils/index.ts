@@ -7,3 +7,4 @@ export * from './cart';
 export * from './pluralize';
 export * from './cartItemValidation';
 export * from './theme';
+export * from './getImageSrcSet';

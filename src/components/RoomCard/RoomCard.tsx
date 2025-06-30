@@ -2,7 +2,7 @@ import { addToCart, removeFromCart } from '@/features';
 import { CartItem } from '@/features/cart/types';
 import { useAppDispatch } from '@/store';
 import { Room } from '@/types/room';
-import { formatDate, isCartItemValid } from '@/utils';
+import { formatDate, getImageSrcSet, isCartItemValid } from '@/utils';
 import { ShoppingCart } from '@mui/icons-material';
 import { Box, Button, Chip, Stack, Typography } from '@mui/material';
 import { addDays } from 'date-fns';
@@ -59,7 +59,12 @@ const RoomCard = ({ room }: { room: Room }) => {
   return (
     <RoomCardContainer>
       <RoomImageWrapper>
-        <RoomImage src={roomPhotoUrl} alt={roomType} loading="lazy" availability={availability} />
+        <RoomImage
+          {...getImageSrcSet(roomPhotoUrl, 280)}
+          alt={roomType}
+          loading="lazy"
+          availability={availability}
+        />
         {!availability && (
           <Chip
             label="Not Available"

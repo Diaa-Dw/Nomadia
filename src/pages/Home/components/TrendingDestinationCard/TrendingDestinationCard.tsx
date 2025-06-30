@@ -1,3 +1,4 @@
+import { getImageSrcSet } from '@/utils';
 import { Chip } from '@mui/material';
 import { Destination } from './TendingDestinationCard.type';
 import {
@@ -13,7 +14,11 @@ const TrendingDestinationCard = ({ destination }: { destination: Destination }) 
   const { cityName, countryName, description, thumbnailUrl } = destination;
   return (
     <CardContainer>
-      <Thumbnail src={thumbnailUrl} alt={`${cityName}, ${countryName}`} loading="lazy" />
+      <Thumbnail
+        {...getImageSrcSet(thumbnailUrl, 320)}
+        alt={`${cityName}, ${countryName}`}
+        loading="lazy"
+      />
       <Content>
         <TitleRow>
           <CityName>{cityName}</CityName>
