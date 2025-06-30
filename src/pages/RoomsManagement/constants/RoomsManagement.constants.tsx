@@ -4,6 +4,7 @@ import { Column } from '@/containers/AdminTableLayout/AdminTableLayout.types';
 import { Room } from '@/types/room';
 import { Box, Chip, Typography } from '@mui/material';
 import { Delete } from '@mui/icons-material';
+import { getImageSrcSet } from '@/utils';
 
 export const TITLE = 'Rooms Management';
 export const HOTELS_QUERY_KEY = 'rooms/hotels';
@@ -67,9 +68,10 @@ export const ROOM_COLUMNS: Column<Room>[] = [
     render: url => (
       <Box
         component="img"
-        src={url as string}
+        loading="lazy"
+        {...getImageSrcSet(url as string, 160)}
         alt="Room"
-        sx={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 1 }}
+        sx={{ width: 160, height: 140, objectFit: 'cover', borderRadius: 1 }}
       />
     ),
   },
