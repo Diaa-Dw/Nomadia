@@ -160,7 +160,7 @@ _User authentication interface_
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Diaa-Dw/Travel-and-Accommodation-Booking-Platform.git
+git clone https://github.com/Diaa-Dw/Nomadia.git
 cd travel-platform
 ```
 
@@ -289,10 +289,17 @@ This project wouldn't have been possible without the guidance and expertise of o
 ### 🏢 **Internship Company**
 
 <div align="center">
-  <img src="public/compny_logo.png" alt="Foothill Technology Solutions Logo" width="200" style="filter: invert(0);">
-  
-  **Company Name**: Foothill Technology Solutions
-  **Website**: [https://www.foothillsolutions.com](https://www.foothillsolutions.com)
+  <picture>
+    <source srcset="public/compny_logo-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="public/compny_logo.png" alt="Foothill Technology Solutions Logo" width="200">
+  </picture>
+
+  <br>
+
+  <strong>Company Name</strong>: Foothill Technology Solutions  
+  <strong>Website</strong>: <a href="https://www.foothillsolutions.com">https://www.foothillsolutions.com</a>
+
+  <br><br>
 
   <img src="https://img.shields.io/badge/Internship-Professional_Experience-blue?style=for-the-badge" alt="Internship">
   <img src="https://img.shields.io/badge/Company-Industry_Leader-green?style=for-the-badge" alt="Industry Leader">
@@ -306,30 +313,13 @@ This project wouldn't have been possible without the guidance and expertise of o
 
 - **Name**: Omar Dere
 
-### 🎓 **Learning Journey**
-
-This project represents the culmination of intensive training under the guidance of two experienced mentors in:
-
-- Modern React development with TypeScript
-- State management with Redux Toolkit
-- UI/UX design with Material-UI
-- Testing strategies and best practices
-- Professional development workflows
-- Code architecture and design patterns
-
-<div align="center">
-  <img src="https://img.shields.io/badge/Mentored_By-Expert_Developers-blue?style=for-the-badge" alt="Mentored by Experts">
-<img src="https://img.shields.io/badge/Training-Intensive_Internship-green?style=for-the-badge" alt="Training">
-
-</div>
-
 ### 🙏 Thank You
 
 <div align="center"> <p>I sincerely thank my mentors and the team at Foothill Technology Solutions for their guidance and support throughout this journey. Your mentorship has been essential to my growth as a developer.</p> <img src="https://img.shields.io/badge/Thank_You-Appreciation-red?style=for-the-badge" alt="Thank You">  <img src="https://img.shields.io/badge/Growth-Skills_Enhanced-green?style=for-the-badge" alt="Growth"> </div>
 
 ## 🔄 Version History
 
-- **v0.0.0** - Initial release with core booking functionality
+- **v1.0.0** - Initial release with core booking functionality
 - Features: Hotel search, booking, admin management, user authentication
 
 ---
