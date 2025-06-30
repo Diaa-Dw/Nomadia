@@ -1,1 +1,7 @@
-export const PUBLIC_ROUTES = ['/login', '/login-required', '/unauthenticated', '/access-denied'];
+export const PUBLIC_ROUTES = [
+  '/login',
+  '/login-required',
+  '/unauthenticated',
+  '/access-denied',
+  '*',
+];

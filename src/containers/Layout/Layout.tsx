@@ -17,7 +17,6 @@ const Layout = () => {
   const { isAuthenticated } = useAppSelector(selectUser);
   const isAdmin = useAppSelector(selectIsAdmin);
 
-  // Update page title based on current route
   usePageTitle();
 
   const onOpenSidebar = () => setOpenSidebar(true);
@@ -33,11 +32,13 @@ const Layout = () => {
     <LayoutContainer>
       <Header onOpenSidebar={onOpenSidebar} isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
 
-      <SidebarNavigation isOpen={openSidebar} onCloseSidebar={onCloseSidebar} isAdmin={isAdmin} />
+      {isAuthenticated && (
+        <SidebarNavigation isOpen={openSidebar} onCloseSidebar={onCloseSidebar} isAdmin={isAdmin} />
+      )}
 
       <Outlet />
 
-      {!isPublicRoute && <Footer />}
+      {isAuthenticated && !isAuthenticating && !isPublicRoute && <Footer />}
     </LayoutContainer>
   );
 };

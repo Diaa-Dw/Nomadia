@@ -2,6 +2,7 @@ import { ShoppingCart, ThemeToggle, UserMenu } from '@/components';
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Container, IconButton, Stack, Toolbar, Typography } from '@mui/material';
 import { HeaderPorps } from './Header.types';
+import { Link } from 'react-router-dom';
 
 const Header = ({ onOpenSidebar, isAuthenticated, isAdmin }: HeaderPorps) => {
   return (
@@ -9,7 +10,7 @@ const Header = ({ onOpenSidebar, isAuthenticated, isAdmin }: HeaderPorps) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
           <Stack direction="row" alignItems="center" spacing={2}>
-            {onOpenSidebar && (
+            {isAuthenticated && onOpenSidebar && (
               <IconButton
                 onClick={onOpenSidebar}
                 edge="start"
@@ -20,7 +21,15 @@ const Header = ({ onOpenSidebar, isAuthenticated, isAdmin }: HeaderPorps) => {
                 <MenuIcon />
               </IconButton>
             )}
-            <Typography component="h1" variant="h2" fontWeight={600} color="primary" noWrap>
+            <Typography
+              component={Link}
+              to={isAdmin ? '/admin/cities' : '/'}
+              variant="h2"
+              fontWeight={600}
+              color="primary"
+              noWrap
+              sx={{ textDecoration: 'none' }}
+            >
               Nomadia
             </Typography>
           </Stack>
