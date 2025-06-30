@@ -9,7 +9,7 @@ interface RouteTitle {
 const ROUTE_TITLES: RouteTitle[] = [
   { path: '/', title: 'Home - Nomadia' },
   { path: '/login', title: 'Login - Nomadia' },
-  { path: '/login-required', title: 'Login Required - Nomadia' },
+  { path: '/unauthenticated', title: 'Unauthenticated - Nomadia' },
   { path: '/access-denied', title: 'Access Denied - Nomadia' },
   { path: '/search', title: 'Search Hotels - Nomadia' },
   { path: '/hotels/:hotelId', title: 'Hotel Details - Nomadia' },

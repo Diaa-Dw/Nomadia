@@ -242,12 +242,6 @@ npm run test:coverage
 npm run test:ci
 ```
 
-### Test Structure
-
-- Unit tests for utilities and hooks
-- Component testing with React Testing Library
-- API mocking with MSW
-- Redux store testing
 
 ## 🔧 Development Scripts
 
