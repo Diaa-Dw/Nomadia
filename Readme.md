@@ -290,8 +290,8 @@ This project wouldn't have been possible without the guidance and expertise of o
 
 <div align="center">
   <picture>
-    <source srcset="public/compny_logo-dark.png" media="(prefers-color-scheme: dark)">
-    <img src="public/compny_logo.png" alt="Foothill Technology Solutions Logo" width="200">
+    <source srcset="public/company_logo-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="public/company_logo.png" alt="Foothill Technology Solutions Logo" width="200">
   </picture>
 
   <br>
