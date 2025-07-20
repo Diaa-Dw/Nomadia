@@ -2,27 +2,32 @@ import { type PaletteOptions } from '@mui/material/styles';
 
 const createPalette = (mode: Mode): PaletteOptions => {
   return {
+    mode,
     primary: {
-      main: mode === 'dark' ? '#42a5f5' : '#1565c0',
-      light: '#42a5f5',
-      dark: '#0d47a1',
+      main: mode === 'dark' ? '#6366F1' : '#4F46E5',
+      light: '#818CF8',
+      dark: '#4338CA',
     },
     secondary: {
-      main: mode === 'dark' ? '#90a4ae' : '#607d8b',
-      light: '#90a4ae',
-      dark: '#455a64',
+      main: mode === 'dark' ? '#8B5CF6' : '#7C3AED',
+      light: '#A78BFA',
+      dark: '#6D28D9',
     },
     background: {
-      default: mode === 'dark' ? '#121212' : '#e0e0e0',
-      paper: mode === 'dark' ? '#424242' : '#ffffff',
+      default: mode === 'dark' ? '#0F172A' : '#F8FAFC',
+      paper: mode === 'dark' ? '#1E293B' : '#E2E8F0',
     },
     text: {
-      primary: mode === 'dark' ? '#ffffff' : '#333333',
-      secondary: mode === 'dark' ? '#b0b0b0' : '#666666',
-      disabled: mode === 'dark' ? '#757575' : '#999999',
+      primary: mode === 'dark' ? '#F1F5F9' : '#1E293B',
+      secondary: mode === 'dark' ? '#94A3B8' : '#64748B',
+      disabled: mode === 'dark' ? '#475569' : '#CBD5E1',
     },
+    error: { main: '#EF4444' },
+
     success: {
-      main: '#2e7d32',
+      main: '#009d52',
+      light: '#4ade80',
+      dark: '#047857',
     },
     info: {
       main: '#00acc1',
